@@ -75,12 +75,51 @@
 
 ---
 
-## 4. 技术栈（已确认）
+## 4. 技术栈（已锁定，原则：只用最成熟、长期有人维护的）
 
-- **Next.js 14+ App Router + TypeScript**
-- **Tailwind CSS** + CSS 变量（对齐 bot 项目的 monochrome 设计语言）
-- **动效库**：待定，等用户提供参考后确定，大概率 `framer-motion` + `GSAP`，部分场景 `three.js / WebGL`
+| 层 | 选型 |
+|---|---|
+| 框架 | Next.js 15（App Router） |
+| 语言 | TypeScript（strict） |
+| 样式 | Tailwind CSS v3.4 + CSS 变量 |
+| 基础动效 | Framer Motion |
+| 时间轴动效 | GSAP |
+| 3D/WebGL | Three.js + React Three Fiber + @react-three/postprocessing |
+| 字体 | next/font（自托管） |
+| 构建期脚本 | Python 3.12+（仅 `scripts/`，不做后端） |
+
+- **不写传统后端**：宣发页主体纯静态 SSG。需要服务端能力时用 Next.js 自带的 ISR / Route Handler，同一部署
 - **部署**：使用 `cloud-service` skill 发布成在线链接
+
+详见 `docs/ARCHITECTURE.md`。
+
+---
+
+## 4.5 工程规范（用户立的「法律」，必须遵守）
+
+**用户强烈反对屎山代码**，明确要求工程化、模块化、文件夹整洁一眼看懂。
+
+完整规范见 **`docs/CODE_STYLE.md`**，7 条红线摘要：
+
+| # | 红线 |
+|---|---|
+| R1 | 文件 ≤300 行、组件 ≤150 行、函数 ≤60 行（**硬上限，超了必须拆**） |
+| R2 | 一个文件只做一件事 |
+| R3 | 特效必须「三可」：可懒加载 / 可降级 / 可关闭 |
+| R4 | 禁止组件里裸写 THREE，必须走 `lib/effects/` 封装层 |
+| R5 | 禁止魔法数字与硬编码文案，全部集中到 `src/config/` |
+| R6 | 不提交敏感内容 |
+| R7 | 不修改 bot 源码目录（只读参考） |
+
+**已做成机器可执行**：`eslint.config.mjs` 里 `max-lines: 300` / `max-lines-per-function: 60` / `no-explicit-any` 全是 `error` 级别。
+
+### 性能与特效：可以兼得（用户明确要求两者都要）
+
+完整方案见 **`docs/PERFORMANCE.md`**：
+- 三条铁律：首屏轻+重特效懒加载 / 特效强度按设备分 4 档 / 看不见就停
+- 12 条技术手段（代码分割、IntersectionObserver 门控、DPR 钳制、统一 rAF、降分辨率后处理...）
+- 性能预算：首屏 JS ≤170KB、LCP <2.5s、CLS <0.1、mid 档 ≥50fps
+- **双层结构**：内容层 SSR 直出（大厂宣发底子，特效全挂也能读）+ 表现层特效懒加载叠加（美术级观感）
 
 ---
 
