@@ -12,7 +12,7 @@ interface FeatureCardProps {
  */
 export function FeatureCard({ feature }: FeatureCardProps) {
   return (
-    <SpotlightCard className="flex flex-col gap-4 bg-surface p-7 transition-colors hover:bg-surface-raised">
+    <SpotlightCard className="flex flex-col gap-4 bg-surface p-5 transition-colors hover:bg-surface-raised sm:p-7">
       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-accent">
         <Icon name={feature.icon} size={20} />
       </div>

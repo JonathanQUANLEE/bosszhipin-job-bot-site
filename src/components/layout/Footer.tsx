@@ -4,8 +4,8 @@ import { siteConfig } from '@/config/site';
 export function Footer() {
   return (
     <footer className="border-t border-line bg-surface">
-      <div className="container-content py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr]">
+      <div className="container-content py-10 sm:py-14">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-[1.5fr_1fr]">
           <div>
             <p className="font-display text-xl text-paper">{siteConfig.name}</p>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-paper-muted">

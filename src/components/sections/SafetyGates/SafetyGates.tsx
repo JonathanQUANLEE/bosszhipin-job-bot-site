@@ -10,7 +10,7 @@ import { ModeCard } from './ModeCard';
  */
 export function SafetyGates() {
   return (
-    <section id="gates" className="border-t border-line bg-surface py-24 sm:py-32">
+    <section id="gates" className="border-t border-line bg-surface py-20 sm:py-32">
       <Crosshair>
         <div className="container-content">
           <InView>
@@ -22,7 +22,7 @@ export function SafetyGates() {
             />
           </InView>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:mt-16 sm:gap-6 md:grid-cols-3">
             {siteConfig.modes.map((mode, i) => (
               <InView key={mode.id} transition={{ delay: i * 0.12 }}>
                 <ModeCard mode={mode} />

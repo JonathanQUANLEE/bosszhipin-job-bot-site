@@ -8,14 +8,14 @@ import { Icon } from '@/components/ui/Icon';
  */
 export function Start() {
   return (
-    <section id="start" className="border-t border-line py-24 sm:py-32">
+    <section id="start" className="border-t border-line py-20 sm:py-32">
       <div className="container-content">
-        <div className="grid gap-16 lg:grid-cols-2">
+        <div className="grid gap-12 sm:gap-16 lg:grid-cols-2">
           {/* 下载 */}
           <div>
             <p className="label-mono mb-4 text-accent">开始使用</p>
-            <h2 className="font-display text-3xl text-paper">下载桌面版</h2>
-            <p className="mt-4 text-base text-paper-muted">
+            <h2 className="font-display text-2xl text-paper sm:text-3xl">下载桌面版</h2>
+            <p className="mt-4 text-sm text-paper-muted sm:text-base">
               支持 Windows、macOS、Linux。首次运行前请确保已安装 Chrome 与 uv。
             </p>
 
@@ -26,7 +26,7 @@ export function Start() {
                   href={dl.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-lg border border-line bg-surface p-5 transition-colors hover:border-accent"
+                  className="flex items-center gap-4 rounded-lg border border-line bg-surface p-4 transition-colors hover:border-accent sm:p-5"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-raised text-accent">
                     <Icon name={dl.icon} size={18} />
@@ -35,7 +35,7 @@ export function Start() {
                     <p className="text-sm font-medium text-paper">{dl.platform}</p>
                     <p className="text-xs text-paper-muted">{dl.note}</p>
                   </div>
-                  <ArrowRight size={16} className="ml-auto text-paper-muted" aria-hidden />
+                  <ArrowRight size={16} className="ml-auto shrink-0 text-paper-muted" aria-hidden />
                 </a>
               ))}
             </div>
@@ -44,8 +44,8 @@ export function Start() {
           {/* 快速开始 */}
           <div>
             <p className="label-mono mb-4 text-accent">或者从源码跑</p>
-            <h2 className="font-display text-3xl text-paper">一行命令启动 GUI</h2>
-            <p className="mt-4 text-base text-paper-muted">
+            <h2 className="font-display text-2xl text-paper sm:text-3xl">一行命令启动 GUI</h2>
+            <p className="mt-4 text-sm text-paper-muted sm:text-base">
               如果你习惯命令行，克隆仓库后一行命令即可启动桌面界面。
             </p>
 
@@ -56,7 +56,7 @@ export function Start() {
                 <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                 <span className="ml-2 font-mono text-xs text-paper-muted">bash</span>
               </div>
-              <pre className="p-5 font-mono text-sm text-paper-dim">
+              <pre className="overflow-x-auto p-4 font-mono text-xs text-paper-dim sm:p-5 sm:text-sm">
                 <code>{`git clone https://github.com/4evour/Bosszhipin-job-bot.git
 cd Bosszhipin-job-bot
 uv sync
@@ -65,7 +65,7 @@ ${siteConfig.quickStart}`}</code>
             </div>
 
             <div className="mt-6 flex gap-4">
-              <Button href={siteConfig.github.repoUrl}>
+              <Button href={siteConfig.github.repoUrl} className="w-full justify-center sm:w-auto">
                 查看完整文档
                 <ArrowRight size={16} aria-hidden />
               </Button>

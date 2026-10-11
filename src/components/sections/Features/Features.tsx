@@ -8,7 +8,7 @@ import { FeatureCard } from './FeatureCard';
  */
 export function Features() {
   return (
-    <section id="what" className="border-t border-line py-24 sm:py-32">
+    <section id="what" className="border-t border-line py-20 sm:py-32">
       <div className="container-content">
         <InView>
           <SectionHeading
@@ -18,7 +18,7 @@ export function Features() {
           />
         </InView>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {siteConfig.features.map((feature, i) => (
             <InView key={feature.title} transition={{ delay: i * 0.08 }}>
               <FeatureCard feature={feature} />

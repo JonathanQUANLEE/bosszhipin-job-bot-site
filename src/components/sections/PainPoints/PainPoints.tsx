@@ -33,7 +33,7 @@ const COMPARISONS = [
  */
 export function PainPoints() {
   return (
-    <section id="why" className="border-t border-line py-24 sm:py-32">
+    <section id="why" className="border-t border-line py-20 sm:py-32">
       <div className="container-content">
         <InView>
           <SectionHeading
@@ -43,10 +43,10 @@ export function PainPoints() {
           />
         </InView>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2">
+        <div className="mt-12 grid gap-3 sm:mt-16 sm:gap-4 sm:grid-cols-2">
           {COMPARISONS.map((item, i) => (
             <InView key={item.other} transition={{ delay: i * 0.08 }}>
-              <div className="flex flex-col gap-4 rounded-xl border border-line bg-surface p-6">
+              <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-5 sm:gap-4 sm:p-6">
                 <div className="flex items-start gap-3">
                   <X size={18} className="mt-0.5 shrink-0 text-paper-muted" aria-hidden />
                   <p className="text-sm text-paper-muted line-through">{item.other}</p>

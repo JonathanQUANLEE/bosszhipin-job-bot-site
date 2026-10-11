@@ -22,14 +22,14 @@ const BeamsLazy = dynamic(() => import('@/components/effects/Beams/Beams'), {
  */
 export function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+    <section id="top" className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-40 sm:pb-32">
       {/* 背景层 */}
       <BeamsLazy />
 
       <div className="container-content relative z-10">
         <p className="label-mono mb-6 text-accent">开源 · MIT · 桌面应用</p>
 
-        <h1 className="max-w-3xl font-display text-4xl leading-[1.15] text-paper sm:text-6xl">
+        <h1 className="max-w-3xl font-display text-3xl leading-[1.15] text-paper sm:text-5xl lg:text-6xl">
           <DecryptedText
             text={siteConfig.tagline}
             className="text-paper"
@@ -37,27 +37,27 @@ export function Hero() {
           />
         </h1>
 
-        <p className="mt-8 max-w-2xl text-base leading-relaxed text-paper-dim sm:text-lg">
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-paper-dim sm:mt-8 sm:text-base sm:text-lg">
           {siteConfig.description}
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Button href={siteConfig.github.repoUrl}>
+        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+          <Button href={siteConfig.github.repoUrl} className="w-full justify-center sm:w-auto">
             <GitBranch size={18} aria-hidden />
             <span>在 GitHub 上查看</span>
           </Button>
-          <Button href="#start" variant="secondary">
+          <Button href="#start" variant="secondary" className="w-full justify-center sm:w-auto">
             <Monitor size={18} aria-hidden />
             <span>下载桌面版</span>
             <ArrowRight size={16} aria-hidden />
           </Button>
         </div>
 
-        <dl className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-line pt-10 sm:grid-cols-4">
+        <dl className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-8 sm:mt-20 sm:gap-x-8 sm:gap-y-10 sm:pt-10 sm:grid-cols-4">
           {siteConfig.stats.map(stat => (
             <div key={stat.label}>
               <dt className="label-mono mb-2 text-paper-muted">{stat.label}</dt>
-              <dd className="font-mono text-3xl text-paper sm:text-4xl">
+              <dd className="font-mono text-2xl text-paper sm:text-3xl lg:text-4xl">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix ?? ''} />
               </dd>
             </div>

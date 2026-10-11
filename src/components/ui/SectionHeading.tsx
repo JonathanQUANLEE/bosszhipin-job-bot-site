@@ -22,9 +22,9 @@ export function SectionHeading({
   return (
     <div className={`max-w-2xl ${alignment}`}>
       {eyebrow ? <p className="label-mono mb-3 text-accent">{eyebrow}</p> : null}
-      <h2 className="font-display text-3xl leading-tight text-paper sm:text-4xl">{title}</h2>
+      <h2 className="font-display text-2xl leading-tight text-paper sm:text-3xl lg:text-4xl">{title}</h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-paper-muted">{description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-paper-muted sm:mt-4 sm:text-base">{description}</p>
       ) : null}
     </div>
   );

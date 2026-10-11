@@ -29,7 +29,7 @@ const FAQS = [
  */
 export function FAQ() {
   return (
-    <section id="faq" className="border-t border-line bg-surface py-24 sm:py-32">
+    <section id="faq" className="border-t border-line bg-surface py-20 sm:py-32">
       <div className="container-content max-w-3xl">
         <InView>
           <SectionHeading
@@ -39,13 +39,13 @@ export function FAQ() {
           />
         </InView>
 
-        <div className="mt-16 flex flex-col gap-6">
+        <div className="mt-12 flex flex-col gap-4 sm:mt-16 sm:gap-6">
           {FAQS.map((item, i) => (
             <InView key={item.q} transition={{ delay: i * 0.06 }}>
-              <details className="group rounded-xl border border-line bg-base p-6 open:border-accent/30">
-                <summary className="flex cursor-pointer list-none items-center justify-between font-display text-lg text-paper">
+              <details className="group rounded-xl border border-line bg-base p-5 open:border-accent/30 sm:p-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between font-display text-base text-paper sm:text-lg">
                   {item.q}
-                  <span className="ml-4 text-paper-muted transition-transform group-open:rotate-180">▼</span>
+                  <span className="ml-3 shrink-0 text-paper-muted transition-transform group-open:rotate-180 sm:ml-4">▼</span>
                 </summary>
                 <p className="mt-4 text-sm leading-relaxed text-paper-dim">{item.a}</p>
               </details>
