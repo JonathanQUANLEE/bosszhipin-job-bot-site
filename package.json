@@ -1,8 +1,8 @@
 {
-  "name": "boss-job-bot-site",
+  "name": "bosszhipin-job-bot-site",
   "version": "0.1.0",
   "private": true,
-  "description": "Bosszhipin-job-bot 宣发落地页",
+  "description": "Bosszhipin-job-bot 官方宣发落地页 · 大厂级产品叙事 + 美术级 WebGL 特效",
   "engines": {
     "node": ">=20.0.0"
   },
