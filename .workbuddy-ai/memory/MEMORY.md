@@ -107,13 +107,13 @@
 
 | 层 | 选型 |
 |---|---|
-| 框架 | Next.js 15（App Router） |
+| 框架 | Next.js 16.4（App Router） |
 | 语言 | TypeScript（strict） |
-| 样式 | Tailwind CSS v3.4 + CSS 变量 |
-| 基础动效 | Framer Motion |
-| 时间轴动效 | GSAP |
-| 3D/WebGL | Three.js + React Three Fiber + @react-three/postprocessing |
-| 字体 | next/font（自托管） |
+| 样式 | Tailwind CSS v3.4 + CSS 变量（`tokens.css`） |
+| 动效 | `motion`（Framer Motion 继任者） |
+| 3D/WebGL | 裸 WebGL2 shader（仅 Hero Beams，零 npm 依赖） |
+| 字体 | Google Fonts（DM Serif Display + Geist） |
+| 图标 | Lucide React |
 | 构建期脚本 | Python 3.12+（仅 `scripts/`，不做后端） |
 
 - **不写传统后端**：宣发页主体纯静态 SSG。需要服务端能力时用 Next.js 自带的 ISR / Route Handler，同一部署
@@ -196,17 +196,21 @@
 
 ---
 
-## 5. 页面骨架（当前规划，待特效确定后调整）
+## 5. 页面骨架（v0.2 已上线，2026-10-12）
 
-| 区块 | 作用 | 主打主张 | 风格倾向 |
+| 区块 | 组件路径 | 特效 | 主打主张 |
 |---|---|---|---|
-| **Hero** | 3 秒抓住人，例如"你还在手动海投？" | — | 夸张（粒子 / 3D / 大字 / 滚动） |
-| **"它在想什么"** | 实时管线动画：扫描岗位 → 关键词命中 → 延迟倒计时 → 发送 | 透明 / 可审计 | 技术感，终端 + 3D |
-| **"三道闸门"** | scan / review / auto 三模式 + 限速 + Dry-run | 克制 / 安全 | 克制、对比、留白 |
-| **"它没说的话"** | 致敬原项目、MIT 开源、给求职者的礼物 | 免费开源 / 致敬 | 故事流，衬线字体 |
-| **CTA** | Star / Fork / 试用 / 进 README | — | 一个干净按钮 + GitHub 链接 |
+| **Header** | `layout/Header` | — | 固定导航，含锚点跳转 |
+| **Hero** | `sections/Hero` | Beams(WebGL) + DecryptedText + AnimatedNumber | 视觉冲击 + 解密字效 |
+| **PainPoints** | `sections/PainPoints` | InView stagger | 四组对比：其他工具 vs 本工具 |
+| **Features** | `sections/Features` | InView + SpotlightCard | 6 张功能卡片，鼠标聚光 |
+| **SafetyGates** | `sections/SafetyGates` | InView + SpotlightCard + Crosshair | 三道闸门，限定区块光标 |
+| **FAQ** | `sections/FAQ` | InView + `<details>` 手风琴 | 5 个常见问题 |
+| **Start** | `sections/Start` | — | 下载入口 + 终端代码块 |
+| **Footer** | `layout/Footer` | — | 开源信息 + 免责声明 |
 
-> 原则：**先定骨架，再把特效往 section 上贴**，而不是先挑特效再拼页面。
+> 已部署至 GitHub Pages：`https://jonathanquanlee.github.io/bosszhipin-job-bot-site/`
+> 仓库：`main` 存源码，`gh-pages` 存构建产物（Next.js static export）。
 
 ---
 
@@ -228,31 +232,32 @@
 2. **Lucide vs HugeIcons** → React Bits 有 22 个组件依赖 `@hugeicons/react`，采用时统一替换为 Lucide
 3. **three vs ogl** → **只用 ogl / 裸 shader，全程不装 three**（ogl≈20KB，three 大得多）
 
-### 硬性性能约束
+### 硬性性能约束（已执行）
 
 **全站只允许 1 个 WebGL/shader 背景（放在 Hero）**，其余 section 一律 DOM / Canvas 2D / motion。
 
-### 最终决策（**Agent 已拍板，2026-10-11**）
+### 最终决策与接入状态（**2026-10-12 全部完成**）
 
-用户授权：「你是有脑子的，会根据项目搭配。你先选，能丰富先丰富，有问题再改。」
-
-| 决策 | 选择 | 理由 |
-|---|---|---|
-| Hero 背景 | **`Beams`** | 光带流动 = "扫描/筛选"隐喻；**裸 shader，零 npm 依赖** |
-| ApexCharts | ❌ **不用**，自绘 SVG | 观感偏后台系统，与美术级宣发冲突 |
-| 光标 Crosshair | ✅ **要，但限定范围** | 仅中段 3 个 section，非全站；进视口激活；可降级 |
-| CTA | **`StarBorder` 主 + `HoldButton` 互动演示** | HoldButton "长按发送"把克制做成可交互叙事 |
+| 特效 | 来源 | 状态 | 接入位置 |
+|---|---|---|---|
+| **Beams** | React Bits（裸 shader） | ✅ 已上线 | Hero 背景（lazy, ssr:false） |
+| **DecryptedText** | React Bits（motion） | ✅ 已上线 | Hero 标题 |
+| **AnimatedNumber** | 自研（rAF + ease-out cubic） | ✅ 已上线 | Hero 统计数字 |
+| **SpotlightCard** | 自研（mousemove + radial-gradient） | ✅ 已上线 | Features + SafetyGates 卡片 |
+| **Crosshair** | 自研（限定区块 + IO 门控） | ✅ 已上线 | SafetyGates 区块 |
+| **InView** | 自研（motion + IO 封装） | ✅ 已上线 | 全站滚动进场 |
+| HoldButton | React Bits | ⏸️ 未接入 | 计划用于「克制」互动演示，待后续补充 |
+| StarBorder | React Bits | ⏸️ 未接入 | 计划用于 CTA 按钮美化，待后续补充 |
 
 **选型总原则**：凡能呼应「岗位筛选 / bot 自动化 / 克制」三主题的特效优先选 —— **特效本身要讲项目故事**。
 
-**最终依赖只有 5 个**：`next` / `react` / `react-dom` / `motion` / `lucide-react`
-→ **零 gsap、零 three、零 ogl、零图表库**（功能网格用 SpotlightCard 而非 MagicBento 以避免 gsap）
+**最终运行时依赖只有 5 个**：`next` / `react` / `react-dom` / `motion` / `lucide-react`
+→ **零 gsap、零 three、零 ogl、零图表库**
 
-### 环境状态（已就绪）
+### 环境状态
 
 next 16.4.0 · react 19.3.0 · motion 14.1.0 · lucide-react 1.55.0 · tailwindcss 3.4.19 · typescript 5.9.3 · eslint 9.39.4
-`package-lock.json` 已提交（保证跨机器/跨 Agent 版本一致）。
-Git tag：**`v0.1-foundation`**
+`package-lock.json` 已提交。Git tag：**`v0.1-foundation`** → 下一版建议打 `v0.2-deployed`。
 
 ---
 

@@ -2,7 +2,7 @@
  * AnimatedNumber — 数字滚动动画。
  *
  * 自研简化版：用 requestAnimationFrame 实现数字从 0 滚动到目标值。
- * 不需要抓 React Bits / Motion Primitives 源码，避免额外依赖。
+ * SSR 时直接显示目标值（不写 0 进 HTML），客户端 hydrate 后再播放动画。
  */
 
 'use client';
@@ -22,7 +22,7 @@ export function AnimatedNumber({
   duration = 1200,
   className = '',
 }: AnimatedNumberProps) {
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value); // SSR 直接显示目标值
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
@@ -35,6 +35,8 @@ export function AnimatedNumber({
         entries.forEach(entry => {
           if (entry.isIntersecting && !hasAnimated.current) {
             hasAnimated.current = true;
+            // 重置为 0 再开始动画，制造滚动效果
+            setDisplay(0);
             const start = performance.now();
             const tick = (now: number) => {
               const progress = Math.min((now - start) / duration, 1);
