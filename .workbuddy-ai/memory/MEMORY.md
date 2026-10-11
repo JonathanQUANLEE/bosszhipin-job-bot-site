@@ -182,6 +182,38 @@
 
 ---
 
+## 5.5 特效选型（已分析 4 个参考库，详见 `docs/EFFECTS.md`）
+
+**两层分工**（对应"外壳炸 + 内核静"）：
+
+| 层 | 库 | 依赖 | 气质 |
+|---|---|---|---|
+| 内容层 | **Motion Primitives**（34 组件，MIT，beta） | `motion` | 克制、产品级、专业感 |
+| 表现层 | **React Bits**（215 组件，MIT+Commons Clause） | `ogl` / 裸 shader | 炸裂、美术级 |
+| 基础层 | **Lucide**（24.9k star，ISC） | 无 | 唯一图标源 |
+
+**ApexCharts**：⚠️ 首屏不用。仪表盘级偏重、观感偏后台系统，与美术级宣发气质不符；需要时优先自绘轻量 SVG。
+
+### 三个必须处理的依赖冲突
+
+1. **gsap vs motion 重复** → 优先 motion，只在必需组件时才引 gsap
+2. **Lucide vs HugeIcons** → React Bits 有 22 个组件依赖 `@hugeicons/react`，采用时统一替换为 Lucide
+3. **three vs ogl** → **只用 ogl / 裸 shader，全程不装 three**（ogl≈20KB，three 大得多）
+
+### 硬性性能约束
+
+**全站只允许 1 个 WebGL/shader 背景（放在 Hero）**，其余 section 一律 DOM / Canvas 2D / motion。
+
+### 初选（待用户拍板）
+
+- Hero 背景：`Beams` / `Threads` / `Iridescence`（深色高级 + "数据流/扫描"隐喻，贴主题）
+- Hero 标题：`DecryptedText`（黑客解密感，贴 bot/自动化主题）
+- 统计数字：`AnimatedNumber`（用户点名）
+- 功能卡片：`SpotlightCard` + `BorderGlow`（DOM，零依赖）
+- CTA：`StarBorder` 或 `HoldButton`（"长按开始投递"）
+
+---
+
 ## 6. 协作方式（用户指定的工作流）
 
 1. 用户会**逐个发送开源特效项目的链接**
