@@ -7,6 +7,34 @@
 
 ---
 
+## 0. GitHub 仓库（已建立，2026-10-11）
+
+| 项 | 值 |
+|---|---|
+| **仓库** | `https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site` |
+| 可见性 | **Public** |
+| 默认分支 | `main` |
+| 用户 | JonathanQUANLEE（Quentinlee） |
+| Description | `Bosszhipin-job-bot 官方宣发页 · 把「克制」做成视觉语言的开源落地页 · Next.js / React / motion / Tailwind` |
+| Topics | `animation, automation, framer-motion, job-application, job-search, landing-page, nextjs, open-source, react, tailwindcss, typescript, webgl` |
+| 里程碑 tag | `v0.1-foundation` |
+
+### 认证方式（已持久化，未来任何 Agent / 任何会话都无需重新登录）
+
+- ✅ `git credential.helper = store`，凭据存于 `~/.git-credentials`（明文，权限 600）
+- ✅ 因此 **`git push` / `git pull` / `git ls-remote` 全部免登录**
+- ⚠️ 但 **`gh` CLI 无法持久化登录**（`gh auth login` 要求 `read:org` 权限，本令牌没有）
+  → 需要 `gh` 命令时，必须临时设置环境变量 `GH_TOKEN=...` 再执行
+- ⚠️ 令牌权限范围：`delete_repo, repo, workflow, write:discussion`（**不含** read:org / user / admin:org）
+- 🔒 **令牌本身禁止写入任何文件**（含本记忆文件）——只通过环境变量或 stdin 使用
+
+### 备份状态
+
+- ✅ 代码已异地备份到 GitHub
+- ⚠️ `B:\antigtavity projects\bosszhitou\Bosszhipin-job-bot`（bot 源码）**仍未备份**，风险高于本仓库
+
+---
+
 ## 1. 项目一句话定位
 
 为开源项目 **Bosszhipin-job-bot** 做一个**宣发落地页**（不是产品本身，是营销页）。
