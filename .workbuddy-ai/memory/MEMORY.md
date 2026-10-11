@@ -204,13 +204,27 @@
 
 **全站只允许 1 个 WebGL/shader 背景（放在 Hero）**，其余 section 一律 DOM / Canvas 2D / motion。
 
-### 初选（待用户拍板）
+### 最终决策（**Agent 已拍板，2026-10-11**）
 
-- Hero 背景：`Beams` / `Threads` / `Iridescence`（深色高级 + "数据流/扫描"隐喻，贴主题）
-- Hero 标题：`DecryptedText`（黑客解密感，贴 bot/自动化主题）
-- 统计数字：`AnimatedNumber`（用户点名）
-- 功能卡片：`SpotlightCard` + `BorderGlow`（DOM，零依赖）
-- CTA：`StarBorder` 或 `HoldButton`（"长按开始投递"）
+用户授权：「你是有脑子的，会根据项目搭配。你先选，能丰富先丰富，有问题再改。」
+
+| 决策 | 选择 | 理由 |
+|---|---|---|
+| Hero 背景 | **`Beams`** | 光带流动 = "扫描/筛选"隐喻；**裸 shader，零 npm 依赖** |
+| ApexCharts | ❌ **不用**，自绘 SVG | 观感偏后台系统，与美术级宣发冲突 |
+| 光标 Crosshair | ✅ **要，但限定范围** | 仅中段 3 个 section，非全站；进视口激活；可降级 |
+| CTA | **`StarBorder` 主 + `HoldButton` 互动演示** | HoldButton "长按发送"把克制做成可交互叙事 |
+
+**选型总原则**：凡能呼应「岗位筛选 / bot 自动化 / 克制」三主题的特效优先选 —— **特效本身要讲项目故事**。
+
+**最终依赖只有 5 个**：`next` / `react` / `react-dom` / `motion` / `lucide-react`
+→ **零 gsap、零 three、零 ogl、零图表库**（功能网格用 SpotlightCard 而非 MagicBento 以避免 gsap）
+
+### 环境状态（已就绪）
+
+next 16.4.0 · react 19.3.0 · motion 14.1.0 · lucide-react 1.55.0 · tailwindcss 3.4.19 · typescript 5.9.3 · eslint 9.39.4
+`package-lock.json` 已提交（保证跨机器/跨 Agent 版本一致）。
+Git tag：**`v0.1-foundation`**
 
 ---
 

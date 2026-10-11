@@ -162,23 +162,33 @@ Lucide 是该领域**最成熟、最轻、生态最好**的选择，没有之一
 
 ---
 
-## 四、初选组件清单（按 section）
+## 四、最终选型（已拍板，按 section 编排）
 
-| Section | 组件 | 来源 | 技术 | 负载 | 理由 |
-|---|---|---|---|---|---|
-| **Hero 背景** | `Beams` 或 `Threads` 或 `Iridescence` | React Bits | 裸 shader | 🔴 重（唯一一个） | 深色高级，且有"数据流/扫描"隐喻，贴"岗位筛选"主题 |
-| **Hero 标题** | `DecryptedText` | React Bits | motion | 🟢 轻 | 黑客解密感，完美贴"bot / 自动化"主题 |
-| **Hero 副标题** | `TextEffect` | Motion Primitives | motion | 🟢 轻 | 逐词进场，克制 |
-| **光标特效** | `Crosshair` 或 `MagnetLines` | React Bits | canvas / DOM | 🟡 中 | Crosshair 有"瞄准/精准筛选"隐喻，超贴主题 |
-| **统计数字** | **`AnimatedNumber`** | Motion Primitives | motion | 🟢 轻 | 用户点名要的 |
-| **功能卡片** | `SpotlightCard` + `BorderGlow` | React Bits | DOM | 🟢 轻 | 零依赖，便宜 |
-| **三模式展示** | `ScrollStack` | React Bits | DOM | 🟢 轻 | scan/review/auto 卡片堆叠进场 |
-| **技术栈跑马灯** | `LogoLoop` / `InfiniteSlider` | RB / MP | DOM | 🟢 轻 | 展示 nodriver / Tauri / React 等 |
-| **截图展示** | `MorphingDialog` | Motion Primitives | motion | 🟢 轻 | 点击放大看截图 |
-| **"它在想什么"管线** | 自研 + `LatticeLoader` / `SloshGauge` 参考 | 自研 | DOM | 🟢 轻 | 体现"透明可审计"，自研更贴主题 |
-| **CTA 按钮** | `StarBorder` 或 `HoldButton` | React Bits | canvas / DOM | 🟢 轻 | HoldButton "长按开始投递"极佳 |
-| **滚动进场统一封装** | `InView` / `AnimatedContent` | MP / RB | motion | 🟢 轻 | 统一调度 |
-| **全站图标** | `lucide-react` | Lucide | SVG | 🟢 极小 | 唯一图标源 |
+> 决策依据：**凡是能呼应「岗位筛选 / bot 自动化 / 克制」这三个主题的，优先选。**
+> 不是为了炫而炫，是让特效本身在讲项目故事。
+
+### 页面结构（12 个 section，从丰富出发）
+
+| # | Section | 组件 | 来源 | 技术 | 负载 | 选型理由 |
+|---|---|---|---|---|---|---|
+| 1 | **Hero 背景** | **`Beams`** | RB | 裸 shader | 🔴 重（**全站唯一**） | 暗色光带流动 = **"扫描/筛选"的视觉隐喻**，且裸 shader **零 npm 依赖** |
+| 2 | **Hero 标题** | **`DecryptedText`** | RB | motion | 🟢 | 黑客解密感 → **"bot / 自动化"主题** |
+| 3 | **Hero 副标题** | `TextEffect` | MP | motion | 🟢 | 逐词进场，克制收住 |
+| 4 | **Hero 统计条** | **`AnimatedNumber`** | MP | motion | 🟢 | Star 数 / 下载量 / 已投递次数 |
+| 5 | **痛点对比** | `GlitchText` + 自绘对比 | RB | DOM | 🟢 | 故障字效表现"手动海投的崩溃" |
+| 6 | **"它在想什么"管线** | 自研管线 + `ThoughtLine` | 自研+RB | DOM/motion | 🟢 | **透明可审计**主题，自研更贴 |
+| 7 | **光标（仅中段）** | **`Crosshair`** | RB | canvas | 🟡 中 | **"瞄准 / 精准筛选"隐喻**。⚠️ 仅在 section 6-8 启用，非全站 |
+| 8 | **三道闸门** | `ScrollStack` + `SpotlightCard` + `BorderGlow` | RB | DOM | 🟢 | scan/review/auto 卡片堆叠进场 |
+| 9 | **功能特性网格** | `SpotlightCard` + `BorderGlow` + **Lucide 图标** | RB | DOM | 🟢 | 零 gsap，纯 DOM |
+| 10 | **真实截图** | `MorphingDialog` + `ChromaGrid` | MP+RB | DOM/motion | 🟢 | 点击放大看实拍截图 |
+| 11 | **技术栈跑马灯** | `LogoLoop` | RB | DOM | 🟢 | nodriver / Tauri / React / Python |
+| 12 | **克制数据可视化** | 自绘 SVG + `AnimatedNumber` | 自研 | SVG | 🟢 | 延迟节奏 / 每日上限，**拒绝 ApexCharts** |
+| 13 | **互动演示** | **`HoldButton`** | RB micro | DOM | 🟢 | **"长按才发送"** = 把"克制"做成可交互体验 |
+| 14 | **致敬与开源** | `InfiniteSlider` + 衬线排版 | MP | motion | 🟢 | 致敬原项目、MIT 协议 |
+| 15 | **主 CTA** | **`StarBorder`** | RB | canvas | 🟢 | 星光描边按钮，醒目且不喧宾夺主 |
+| 16 | **FAQ / 免责** | `Accordion` + `ProgressiveBlur` | MP | motion | 🟢 | 免责声明必须保留 |
+| 17 | **全站图标** | **`lucide-react`** | Lucide | SVG | 🟢 极小 | 唯一图标源 |
+| 18 | **滚动进场** | `InView` | MP | motion | 🟢 | 统一调度入口 |
 
 ---
 
@@ -195,12 +205,35 @@ Lucide 是该领域**最成熟、最轻、生态最好**的选择，没有之一
 
 ---
 
-## 六、待用户确认
+## 六、四个决策（已由 Agent 拍板，用户可推翻）
 
-1. **Hero 背景选哪个**：`Beams` / `Threads` / `Iridescence` / `Aurora` / `DarkVeil`？
-2. **是否需要图表**：ApexCharts 要不要上？还是自绘轻量 SVG？
-3. **光标特效要不要**：`Crosshair`（瞄准感）还是不做（更克制）？
-4. **CTA 用哪个**：`StarBorder` 还是 `HoldButton`（长按投递）？
+> 用户指示：「你有脑子的，会根据项目搭配。你先选，能丰富先丰富，有问题再改。」
+
+| # | 决策 | 选择 | 理由 |
+|---|---|---|---|
+| 1 | **Hero 背景** | **`Beams`** | 光带流动 = **"扫描 / 筛选"隐喻**，直接呼应项目功能；且是**裸 WebGL2 shader，零 npm 依赖**，不引入 three/ogl |
+| 2 | **ApexCharts** | ❌ **不用**，自绘 SVG | 仪表盘观感偏后台系统，与美术级宣发冲突；普通求职者也看不懂图表 |
+| 3 | **光标 Crosshair** | ✅ **要，但限定范围** | 仅在「它在想什么 / 三道闸门 / 功能网格」三个 section 内启用，**非全站**；进视口才激活；低端设备与 reduced-motion 下关闭 |
+| 4 | **CTA** | **`StarBorder` 主 CTA + `HoldButton` 互动演示** | 两个都要：**StarBorder** 做"Star / 下载"主按钮；**HoldButton** 做"长按模拟一次发送"的体验装置 —— 后者把"克制"哲学变成了可交互的叙事 |
+
+### 依赖冲突的最终处理
+
+| 冲突 | 最终决定 |
+|---|---|
+| gsap vs motion | ✅ **全程零 gsap**。所选组件全部走 motion，功能网格改用 `SpotlightCard` 而非 `MagicBento` |
+| Lucide vs HugeIcons | ✅ 所选 React Bits 组件均不依赖 HugeIcons，天然无冲突；若后续引入需替换 |
+| three vs ogl | ✅ **两者都不装**。`Beams` 是裸 shader，零 npm 依赖 |
+
+### 最终依赖清单（极简）
+
+```
+next · react · react-dom          # 框架
+motion                            # 唯一的动效运行时（无 gsap）
+lucide-react                      # 唯一图标源
+tailwindcss                       # 样式
+```
+
+**没有 three、没有 ogl、没有 gsap、没有图表库。** 首屏 bundle 可控。
 
 ---
 
