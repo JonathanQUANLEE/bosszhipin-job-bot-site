@@ -1,0 +1,40 @@
+/**
+ * 设计变量（Design Tokens）
+ *
+ * 全站唯一的颜色 / 字体来源。组件里禁止硬编码色值。
+ *
+ * 设计语言：沿用被宣发项目 Bosszhipin-job-bot 的 Minimalist Monochrome
+ * —— 纯黑白 + 衬线字体，唯一的彩色是薄荷绿（运行状态 / 强调）。
+ */
+
+:root {
+  /* ---------- 字体栈 ---------- */
+  /* 全部使用系统字体：零网络请求、零 FOUT，首屏最快 */
+  --font-display: Georgia, 'Times New Roman', 'Source Han Serif SC', 'Songti SC', '宋体', serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  --font-mono:
+    Consolas, Menlo, 'Courier New', 'Noto Sans Mono CJK SC', monospace;
+
+  /* ---------- 背景层级 ---------- */
+  --color-base: #0a0a0b; /* 页面底色 */
+  --color-surface: #101012; /* 卡片 / 区块 */
+  --color-surface-raised: #17171a; /* 悬浮层 */
+
+  /* ---------- 前景层级 ---------- */
+  --color-paper: #fafaf9; /* 主文字 */
+  --color-paper-dim: #d4d4d2; /* 次级文字 */
+  --color-paper-muted: #9a9a98; /* 弱文字 / 说明 */
+
+  /* ---------- 唯一强调色 ---------- */
+  --color-accent: #5dcaa5; /* 薄荷绿 */
+  --color-accent-dim: #1d9e75;
+
+  /* ---------- 边框 ---------- */
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.22);
+
+  /* ---------- 布局 ---------- */
+  --content-width: 1200px;
+}

@@ -1,0 +1,63 @@
+import { siteConfig } from '@/config/site';
+
+/** 页脚：开源信息、致谢、免责声明。 */
+export function Footer() {
+  return (
+    <footer className="border-t border-line bg-surface">
+      <div className="container-content py-14">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr]">
+          <div>
+            <p className="font-display text-xl text-paper">{siteConfig.name}</p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-paper-muted">
+              {siteConfig.tagline}
+            </p>
+            <p className="mt-6 text-xs leading-relaxed text-paper-muted">{siteConfig.credits}</p>
+          </div>
+
+          <div className="text-sm">
+            <p className="label-mono mb-4 text-accent">开源</p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href={siteConfig.github.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-paper-dim transition-colors hover:text-accent"
+                >
+                  项目仓库
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.github.inspirationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-paper-dim transition-colors hover:text-accent"
+                >
+                  灵感来源
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.github.siteRepoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-paper-dim transition-colors hover:text-accent"
+                >
+                  本页源码
+                </a>
+              </li>
+            </ul>
+            <p className="mt-6 font-mono text-xs text-paper-muted">
+              License · {siteConfig.license}
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-12 border-t border-line pt-6 text-xs leading-relaxed text-paper-muted">
+          {siteConfig.disclaimer}
+        </p>
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,68 @@
+@import '../styles/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* 锚点滚动时给固定头部留出空间 */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 键盘可访问性：只在键盘导航时显示焦点环 */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-base);
+  }
+}
+
+@layer utilities {
+  /* 小标签：等宽 + 大字距 + 大写 */
+  .label-mono {
+    font-family: var(--font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+  }
+
+  /* 内容容器 */
+  .container-content {
+    width: 100%;
+    max-width: var(--content-width);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+}
+
+/**
+ * 全局降级：尊重系统的"减少动态效果"设置。
+ * 所有特效组件也必须各自实现降级（见 docs/PERFORMANCE.md）。
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
