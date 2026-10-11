@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: 'export',
   distDir: 'dist',
-  assetPrefix: '.',
+  basePath: '/bosszhipin-job-bot-site',
 
   images: {
     unoptimized: true,
