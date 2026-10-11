@@ -1,4 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc';
+import react from 'eslint-plugin-react';
 
 const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 
@@ -29,6 +30,8 @@ export default [
   },
 
   {
+    plugins: { react },
+    settings: { react: { version: '19.0' } },
     rules: {
       // ── R1: 文件长度「真红线」（不是提醒线）────────────────
       //    提醒线 300 行不阻断；超过 600 行才是失控，必须处理或豁免
@@ -51,6 +54,11 @@ export default [
           IIFEs: true,
         },
       ],
+
+      // ── R2（最重要）：一个文件只放一个组件 ───────────────────
+      //    这是「职责分离」唯一能机器检测的维度。
+      //    用 warn 而非 error：确实存在合法的私有小组件，交给 review 判断。
+      'react/no-multi-comp': ['warn', { ignoreStateless: false }],
 
       // ── R2 / 可维护性：这些比行数更能反映屎山 ───────────────
       complexity: ['warn', { max: 15 }],
