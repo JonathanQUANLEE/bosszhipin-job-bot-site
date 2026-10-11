@@ -1,0 +1,94 @@
+# ============================================
+# Boss Job Bot 宣发网页 — .gitignore
+# ============================================
+
+# ---------- 依赖 ----------
+node_modules/
+.pnp
+.pnp.js
+.yarn/
+.pnpm-store/
+
+# ---------- Next.js 构建产物 ----------
+.next/
+out/
+build/
+dist/
+.swc/
+next-env.d.ts
+
+# ---------- 测试 / 覆盖率 ----------
+coverage/
+.nyc_output/
+
+# ---------- 环境变量 & 密钥（重要！绝不提交）----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ---------- 密钥类文件名兜底 ----------
+*secret*
+*credential*
+*.token
+token.json
+serviceAccount*.json
+.credentials/
+
+# ---------- 日志 ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log.*
+
+# ---------- 编辑器 / 系统 ----------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- 缓存 ----------
+.cache/
+.eslintcache
+.stylelintcache
+.turbo/
+.vercel/
+.netlify/
+
+# ---------- TypeScript ----------
+*.tsbuildinfo
+
+# ---------- 本地临时 / 草稿（不进仓库）----------
+_scratch/
+_draft/
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# ---------- 大体积素材（改用 CDN 或 Git LFS）----------
+*.mp4
+*.webm
+*.mov
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# ---------- 其他 ----------
+.chrome_profile/
