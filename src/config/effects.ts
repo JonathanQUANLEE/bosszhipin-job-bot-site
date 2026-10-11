@@ -37,7 +37,7 @@ export const EFFECT_REGISTRY = {
    * ⚠️ 这是全站唯一允许的 heavy 特效。
    */
   heroBeams: {
-    enabled: false,
+    enabled: true,
     section: 'Hero',
     tech: 'webgl',
     load: 'heavy',
@@ -47,7 +47,7 @@ export const EFFECT_REGISTRY = {
 
   /** Hero 标题解密字效：React Bits `DecryptedText` */
   heroDecryptedText: {
-    enabled: false,
+    enabled: true,
     section: 'Hero',
     tech: 'motion',
     load: 'light',
@@ -56,11 +56,11 @@ export const EFFECT_REGISTRY = {
 
   /**
    * 瞄准光标：React Bits `Crosshair`
-   * ⚠️ 仅在「它在想什么 / 三道闸门 / 功能网格」三个区块内启用，非全站。
+   * ⚠️ 仅在「三道闸门」区块内启用，非全站。
    */
   crosshairCursor: {
-    enabled: false,
-    section: 'Pipeline / SafetyGates / Features',
+    enabled: true,
+    section: 'SafetyGates',
     tech: 'canvas',
     load: 'medium',
     tiers: { high: true, mid: true, low: false, off: false },
@@ -69,7 +69,7 @@ export const EFFECT_REGISTRY = {
 
   /** 统计数字滚动：Motion Primitives `AnimatedNumber` */
   animatedNumber: {
-    enabled: false,
+    enabled: true,
     section: 'Hero / Stats',
     tech: 'motion',
     load: 'light',
@@ -78,7 +78,7 @@ export const EFFECT_REGISTRY = {
 
   /** 卡片聚光跟随：React Bits `SpotlightCard` + `BorderGlow`（纯 DOM） */
   spotlightCards: {
-    enabled: false,
+    enabled: true,
     section: 'Features / SafetyGates',
     tech: 'dom',
     load: 'light',

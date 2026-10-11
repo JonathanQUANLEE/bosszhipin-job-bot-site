@@ -3,8 +3,10 @@ import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 
 const NAV_ITEMS = [
+  { label: '为什么', href: '#why' },
   { label: '它做什么', href: '#what' },
   { label: '三道闸门', href: '#gates' },
+  { label: 'FAQ', href: '#faq' },
   { label: '开始使用', href: '#start' },
 ];
 

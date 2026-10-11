@@ -18,8 +18,12 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  output: 'export',
+  distDir: 'dist',
+  assetPrefix: '.',
 
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
   },
 

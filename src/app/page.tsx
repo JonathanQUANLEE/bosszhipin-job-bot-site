@@ -1,8 +1,10 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
+import { PainPoints } from '@/components/sections/PainPoints/PainPoints';
 import { Features } from '@/components/sections/Features';
 import { SafetyGates } from '@/components/sections/SafetyGates';
+import { FAQ } from '@/components/sections/FAQ/FAQ';
 import { Start } from '@/components/sections/Start';
 
 /**
@@ -18,8 +20,10 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <PainPoints />
         <Features />
         <SafetyGates />
+        <FAQ />
         <Start />
       </main>
       <Footer />

@@ -5,6 +5,7 @@ import { GitBranch, Monitor, ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 import { DecryptedText } from '@/components/effects/DecryptedText';
+import { AnimatedNumber } from '@/components/effects/AnimatedNumber/AnimatedNumber';
 
 const BeamsLazy = dynamic(() => import('@/components/effects/Beams/Beams'), {
   ssr: false,
@@ -57,7 +58,7 @@ export function Hero() {
             <div key={stat.label}>
               <dt className="label-mono mb-2 text-paper-muted">{stat.label}</dt>
               <dd className="font-mono text-3xl text-paper sm:text-4xl">
-                {stat.value}{stat.suffix ?? ''}
+                <AnimatedNumber value={stat.value} suffix={stat.suffix ?? ''} />
               </dd>
             </div>
           ))}
