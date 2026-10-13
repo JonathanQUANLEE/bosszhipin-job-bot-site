@@ -75,6 +75,15 @@
     opacity: 1 !important;
     transform: none !important;
   }
+
+  /**
+   * 滚动驱动特效（Showcase 的「电脑展开」等）：motion 用 MotionValue
+   * 直接写内联 transform，CSS 过渡覆盖不到，必须显式归零。
+   */
+  [data-scrollfx] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /**
@@ -82,7 +91,8 @@
  * 若不覆盖，整页会被打印成一堆空白。
  */
 @media print {
-  [data-inview] {
+  [data-inview],
+  [data-scrollfx] {
     opacity: 1 !important;
     transform: none !important;
   }

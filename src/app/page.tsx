@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
 import { PainPoints } from '@/components/sections/PainPoints/PainPoints';
+import { Showcase } from '@/components/sections/Showcase';
 import { Platforms } from '@/components/sections/Platforms';
 import { Features } from '@/components/sections/Features';
 import { SafetyGates } from '@/components/sections/SafetyGates';
@@ -22,6 +23,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <PainPoints />
+        <Showcase />
         <Platforms />
         <Features />
         <SafetyGates />

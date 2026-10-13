@@ -44,7 +44,6 @@ export function SafetyGates() {
                   <p className="font-mono text-lg text-paper">{limit.value}</p>
                   <p className="text-sm font-medium text-paper-dim">{limit.label}</p>
                   <p className="text-xs leading-relaxed text-paper-muted">{limit.description}</p>
-                  <p className="label-mono mt-auto pt-2 text-[10px] text-accent/60">{limit.key}</p>
                 </div>
               </InView>
             ))}
