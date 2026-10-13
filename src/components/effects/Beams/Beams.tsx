@@ -443,7 +443,10 @@ export default function Beams() {
       gl.deleteFramebuffer(framebuffer);
       gl.deleteProgram(fieldProg.program); gl.deleteProgram(compProg.program);
       gl.deleteBuffer(buffer); gl.deleteVertexArray(vao);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      // ⚠️ 刻意不调用 WEBGL_lose_context.loseContext()：
+      // React StrictMode 在开发环境会「挂载 → 清理 → 再挂载」同一个 canvas，
+      // 一旦这里销毁上下文，第二次挂载拿到的是已丢失的上下文，画面会全黑。
+      // 上下文会在 canvas 被移除后由浏览器回收。
     };
   }, []);
 

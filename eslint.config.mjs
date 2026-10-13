@@ -11,10 +11,25 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
  *
  * @see docs/CODE_STYLE.md
  */
+
+/**
+ * 已登记豁免的大文件（CODE_STYLE.md #exemptions）。
+ *
+ * 这些文件超过 R1 提醒线 / 真红线，但职责单一、内聚性高，拆分反而更难维护。
+ * 每一条都必须同时满足：
+ *   1. 文件顶部有注释说明理由
+ *   2. 已登记进 docs/CODE_STYLE.md 的「豁免清单」
+ *   3. 出现在这个数组里
+ */
+const LARGE_FILE_ALLOWLIST = [
+  // 单一职责的 WebGL2 渲染管线（shader + 双 pass + 动画循环 + 交互），450 行
+  'src/components/effects/Beams/Beams.tsx',
+];
+
 export default [
   // ── 忽略路径 ─────────────────────────────────────────
   {
-    ignores: ['.next/**', 'node_modules/**', 'out/**', 'build/**', 'coverage/**'],
+    ignores: ['.next/**', 'node_modules/**', 'out/**', 'build/**', 'dist/**', 'coverage/**'],
   },
 
   // ── TypeScript / React 规则 ───────────────────────────
@@ -60,6 +75,16 @@ export default [
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'prefer-const': 'error',
       'no-var': 'error',
+    },
+  },
+
+  // ── 已登记豁免的大文件（见 LARGE_FILE_ALLOWLIST）─────────
+  {
+    files: LARGE_FILE_ALLOWLIST,
+    rules: {
+      'max-lines': 'off',
+      'max-lines-per-function': 'off',
+      complexity: 'off',
     },
   },
 

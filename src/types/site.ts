@@ -74,6 +74,8 @@ export interface Stat {
 
 /** 站点全局配置 */
 export interface SiteConfig {
+  /** 本站已部署地址（用于 canonical / OG / metadataBase） */
+  url: string;
   /** 被宣发项目的 GitHub 地址 */
   github: {
     /** 源项目仓库（bot 本体） */

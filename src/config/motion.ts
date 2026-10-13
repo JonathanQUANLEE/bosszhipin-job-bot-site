@@ -37,5 +37,18 @@ export const FADE_UP = {
   },
 } as const;
 
-/** 滚动进场的视口配置：元素露出 1/4 才触发，且只触发一次 */
-export const VIEWPORT = { once: true, amount: 0.25 } as const;
+/**
+ * 滚动进场的视口配置：元素露出 1/4 才触发，且只触发一次。
+ *
+ * ⚠️ `margin` 顶部取极大值 —— 把「视口上方」整片纳入观察区。
+ * 原因：IntersectionObserver 只报告「相交状态的变化」。当用户或工具用
+ * **瞬时跳转**（整页截图、print、scrollTo 到底）把某个区块一次性跳过时，
+ * 该区块从未与视口相交 → 回调永不触发 → 内容永远停在 opacity:0。
+ * 加上这个 margin 后，元素一旦落到视口上方就会被判定为「已进入」并立即揭示。
+ * 视口下方的行为完全不变（下边距仍为 0），滚动进场的观感不受影响。
+ */
+export const VIEWPORT = {
+  once: true,
+  amount: 0.25,
+  margin: '100000px 0px 0px 0px',
+} as const;

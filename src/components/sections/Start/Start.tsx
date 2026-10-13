@@ -12,7 +12,7 @@ export function Start() {
       <div className="container-content">
         <div className="grid gap-12 sm:gap-16 lg:grid-cols-2">
           {/* 下载 */}
-          <div>
+          <div className="min-w-0">
             <p className="label-mono mb-4 text-accent">开始使用</p>
             <h2 className="font-display text-2xl text-paper sm:text-3xl">下载桌面版</h2>
             <p className="mt-4 text-sm text-paper-muted sm:text-base">
@@ -42,7 +42,7 @@ export function Start() {
           </div>
 
           {/* 快速开始 */}
-          <div>
+          <div className="min-w-0">
             <p className="label-mono mb-4 text-accent">或者从源码跑</p>
             <h2 className="font-display text-2xl text-paper sm:text-3xl">一行命令启动 GUI</h2>
             <p className="mt-4 text-sm text-paper-muted sm:text-base">

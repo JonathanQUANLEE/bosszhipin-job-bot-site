@@ -7,7 +7,7 @@ import './globals.css';
  * 宣发页的 SEO 与分享卡片质量直接影响传播效果，这里认真配。
  */
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.github.siteRepoUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} · ${siteConfig.tagline}`,
     template: `%s · ${siteConfig.name}`,
@@ -25,13 +25,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'JonathanQUANLEE' }],
   creator: 'JonathanQUANLEE',
+  alternates: { canonical: siteConfig.url },
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    url: siteConfig.github.siteRepoUrl,
+    url: siteConfig.url,
   },
   twitter: {
     card: 'summary_large_image',
@@ -51,7 +52,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN">
-      <body className="min-h-screen bg-base text-paper antialiased">{children}</body>
+      <body className="min-h-screen bg-base text-paper antialiased">
+        {/*
+          JS 不可用时的兜底：滚动进场动效依赖 IntersectionObserver，
+          若脚本未执行，内容会停在 opacity:0 而整段消失。
+          这里强制显示最终态，保证「特效全挂也能读」（docs/PERFORMANCE.md）。
+        */}
+        <noscript>
+          <style>{'[data-inview]{opacity:1!important;transform:none!important}'}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

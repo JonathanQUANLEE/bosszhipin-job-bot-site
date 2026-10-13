@@ -12,6 +12,8 @@ import type { SiteConfig } from '@/types/site';
  * （JonathanQUANLEE 名下没有同名仓库）。若日后迁移，只改这里一处即可。
  */
 export const siteConfig: SiteConfig = {
+  url: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site',
+
   github: {
     repoUrl: 'https://github.com/4evour/Bosszhipin-job-bot',
     siteRepoUrl: 'https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site',

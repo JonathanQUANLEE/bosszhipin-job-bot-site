@@ -20,7 +20,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: 'export',
   distDir: 'dist',
-  basePath: '/bosszhipin-job-bot-site',
+
+  // GitHub Pages 项目页部署在 /<repo>/ 子路径下，必须设 basePath，否则资源 404。
+  // 默认值 = 线上部署地址；本地要预览根路径时可临时用 BASE_PATH= 覆盖。
+  basePath: process.env.BASE_PATH ?? '/bosszhipin-job-bot-site',
 
   images: {
     unoptimized: true,

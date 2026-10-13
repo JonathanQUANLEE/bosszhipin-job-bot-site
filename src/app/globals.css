@@ -65,4 +65,25 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /**
+   * 滚动进场（InView）：motion 把初始态写成内联 style="opacity:0"，
+   * 内联样式优先级高于普通样式表规则，只有 !important 才能覆盖。
+   * 这里强制显示最终态，避免「减少动态效果」用户看到空白区块。
+   */
+  [data-inview] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/**
+ * 打印 / 导出 PDF 兜底：滚动进场动画在打印时不会触发，
+ * 若不覆盖，整页会被打印成一堆空白。
+ */
+@media print {
+  [data-inview] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

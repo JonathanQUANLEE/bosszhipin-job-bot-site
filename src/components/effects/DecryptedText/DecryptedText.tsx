@@ -90,15 +90,39 @@ export default function DecryptedText({
 
   return (
     <span ref={containerRef} className="inline-block whitespace-pre-wrap">
-      {displayText.split('').map((char, i) => {
-        const isRevealed =
-          !isAnimating || displayText[i] === text[i] || char === ' ';
-        return (
-          <span key={i} className={isRevealed ? className : encryptedClassName}>
-            {char}
-          </span>
-        );
-      })}
+      {/*
+        无障碍层：完整原文，供读屏软件一次性朗读。
+        ⚠️ 用 inline style 而不是 .sr-only 类 —— 即使样式表加载失败也不会
+        退化成可见文本（历史上正是这个原因导致标题重复显示）。
+      */}
+      <span
+        style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          borderWidth: 0,
+        }}
+      >
+        {text}
+      </span>
+
+      {/* 视觉层：逐字解密动画，对读屏软件隐藏 */}
+      <span aria-hidden="true">
+        {displayText.split('').map((char, i) => {
+          const isRevealed =
+            !isAnimating || displayText[i] === text[i] || char === ' ';
+          return (
+            <span key={i} className={isRevealed ? className : encryptedClassName}>
+              {char}
+            </span>
+          );
+        })}
+      </span>
     </span>
   );
 }

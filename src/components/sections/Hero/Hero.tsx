@@ -37,7 +37,7 @@ export function Hero() {
           />
         </h1>
 
-        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-paper-dim sm:mt-8 sm:text-base sm:text-lg">
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-paper-dim sm:mt-8 sm:text-lg">
           {siteConfig.description}
         </p>
 

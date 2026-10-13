@@ -4,6 +4,10 @@
  * 统一所有 section 的滚动揭示行为：
  * 元素进入视口 1/4 时触发，只触发一次。
  *
+ * ⚠️ 兜底：根节点带 `data-inview` 属性，供 globals.css 的
+ * 「prefers-reduced-motion」与 layout 的 `<noscript>` 覆盖使用 ——
+ * 保证动画不可用时内容依然可见（见 docs/PERFORMANCE.md 双层结构）。
+ *
  * 依赖：motion（已安装）
  */
 
@@ -21,7 +25,14 @@ interface InViewProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
 
 export function InView({ children, variants = FADE_UP, ...props }: InViewProps) {
   return (
-    <motion.div initial="hidden" whileInView="visible" viewport={VIEWPORT} variants={variants} {...props}>
+    <motion.div
+      data-inview=""
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT}
+      variants={variants}
+      {...props}
+    >
       {children}
     </motion.div>
   );

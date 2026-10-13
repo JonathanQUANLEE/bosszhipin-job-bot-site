@@ -50,7 +50,7 @@
 
 | 文件路径 | 当前行数 | 豁免理由 | 登记日期 |
 |---|---|---|---|
-| _（暂无）_ | | | |
+| `src/components/effects/Beams/Beams.tsx` | 458 | 单一职责的 WebGL2 渲染管线（顶点/片元 shader、双 pass 渲染、动画循环、鼠标交互、Resize/Intersection 监听全部内聚）；拆开需在 3–4 个文件间来回跳，反而更难维护。已在 `eslint.config.mjs` 的 `LARGE_FILE_ALLOWLIST` 登记。 | 2026-10-13 |
 
 > ❌ 唯一绝对不允许的：**几千行的文件**。
 > 那不是"有理由的长"，是设计已经失控。
