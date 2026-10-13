@@ -2,25 +2,27 @@
 
 ## 技术选型（原则：只用最成熟、长期有人维护的）
 
+> ⚠️ 本表于 2026-10-13 校正。早期草案曾规划 GSAP / Three.js / R3F，
+> 最终**全部放弃** —— 见 `docs/EFFECTS.md` 的决策记录。当前运行时依赖只有 5 个。
+
 | 层 | 选型 | 理由 |
 |---|---|---|
-| 框架 | **Next.js 15（App Router）** | React 官方推荐生产框架；SSG/ISR/SSR 通吃；部署生态最成熟 |
+| 框架 | **Next.js 16.4（App Router）** | React 官方推荐生产框架；静态导出即可满足宣发页 |
 | 语言 | **TypeScript（strict）** | 大型特效项目没有类型等于裸奔 |
 | 样式 | **Tailwind CSS v3.4** + CSS 变量 | 与 bot 项目的 monochrome 设计语言对齐；v3 插件生态最全、最稳 |
-| 动效（基础） | **Framer Motion (motion)** | React 生态事实标准，声明式，支持 layout/手势 |
-| 动效（时间轴） | **GSAP** | 复杂滚动叙事、时间轴编排的最强方案，商业级成熟 |
-| 3D / WebGL | **Three.js** + **React Three Fiber** | WebGL 事实标准；R3F 提供 React 声明式封装 |
-| 后处理 | **@react-three/postprocessing** | Bloom / 景深等，美术级观感的关键 |
-| 字体 | **next/font**（自托管） | 避免 FOUT，性能最优 |
-| 部署 | **Vercel** 或静态导出 | 视是否需要后端能力而定 |
-| 脚本 | **Python 3.12+** | 仅做构建期工具（素材处理、内容抽取），**不做后端** |
+| 动效 | **motion**（Framer Motion 继任者） | React 生态事实标准，声明式 |
+| 3D / WebGL | **裸 WebGL2 shader**（零 npm 依赖） | 只有 Hero 的 Beams 用；不装 three / ogl，省下几百 KB |
+| 图标 | **lucide-react** | 唯一图标源，显式白名单映射保证 tree-shaking |
+| 字体 | **系统字体栈**（CSS 变量） | 零网络请求、零 FOUT，首屏最快 |
+| 部署 | **GitHub Pages**（静态导出 `dist/`） | 见 `next.config.ts` 的 `basePath` |
+| 脚本 | **Python 3.12+** | 仅做构建期工具，**不做后端** |
 
-> 所有选型都是该领域 **GitHub star 最高 / 维护最活跃** 的一线方案。
-> 不引入任何「小众但炫」的库——它们会在半年后变成维护负担。
+**运行时依赖仅 5 个**：`next` / `react` / `react-dom` / `motion` / `lucide-react`
+→ **零 gsap、零 three、零 ogl、零图表库**
 
 ---
 
-## 目录结构
+## 目录结构（以实际文件为准，2026-10-13）
 
 ```text
 boss web/
@@ -29,63 +31,52 @@ boss web/
 │   └── YYYY-MM-DD.md              #    每日日志（追加，不覆盖）
 │
 ├── docs/                          # 📚 项目文档
-│   ├── CODE_STYLE.md              #    代码规范（法律）
+│   ├── CODE_STYLE.md              #    代码规范（法律）+ 豁免清单
 │   ├── ARCHITECTURE.md            #    本文件
 │   ├── PERFORMANCE.md             #    性能预算与特效降级策略
-│   └── EFFECTS.md                 #    特效清单（用户提供参考后填充）
+│   ├── EFFECTS.md                 #    特效清单与选型决策
+│   └── GITHUB_SETUP.md            #    仓库元信息
 │
-├── public/                        # 📦 静态资源
-│   ├── fonts/                     #    自托管字体
-│   ├── images/                    #    截图、OG 图、favicon
-│   └── downloads/                 #    安装包（或外链 GitHub Release）
-│
-├── scripts/                       # 🐍 Python / Node 构建期脚本
-│                                  #    素材压缩、内容抽取、批量处理
+├── dist/                          # 📦 构建产物（gitignore，部署到 gh-pages）
+├── public/                        #    静态资源（当前为空；favicon 走 src/app/icon.svg）
+├── scripts/                       # 🐍 构建期脚本
 │
 └── src/
-    ├── app/                       # Next.js App Router
-    │   ├── layout.tsx             #    根布局（字体、meta、Provider）
-    │   ├── page.tsx               #    首页（只做 section 编排，不写内容）
-    │   ├── globals.css            #    全局样式 + 引入 tokens
-    │   ├── opengraph-image.tsx    #    动态 OG 图（可选）
-    │   └── api/                   #    ⚠️ 极少量 Route Handler（见下文"要不要后端"）
+    ├── app/
+    │   ├── layout.tsx             #    根布局（meta / noscript 兜底）
+    │   ├── page.tsx               #    首页（只做 section 编排）
+    │   ├── globals.css            #    全局样式 + 动效降级
+    │   └── icon.svg               #    favicon
     │
     ├── components/
-    │   ├── sections/              # 🎬 页面区块，一个 section 一个目录
-    │   │   ├── Hero/              #       Hero.tsx + config.ts + index.ts
-    │   │   ├── Pipeline/          #       "它在想什么" 管线动画
-    │   │   ├── SafetyGates/       #       "三道闸门"
-    │   │   ├── Credits/           #       "它没说的话" 致敬
-    │   │   └── CTA/               #       下载 / Star / 文档
-    │   │
-    │   ├── effects/               # ✨ 特效组件（全部懒加载）
-    │   │   ├── ParticleField/
-    │   │   ├── ScrollNarrative/
-    │   │   └── ...
-    │   │
-    │   ├── ui/                    # 🧱 通用原子组件（Button/Card/Badge...）
-    │   └── layout/                #    页头、页脚、容器
-    │
-    ├── lib/                       # 🔧 纯逻辑，与 React 无关
-    │   ├── effects/               #    引擎适配层（three / gsap / canvas 封装）
-    │   ├── performance/           #    性能检测、降级策略、rAF 调度
-    │   └── utils/                 #    格式化等纯函数
-    │
-    ├── hooks/                     # 🪝 自定义 Hook
-    │   ├── use-reduced-motion.ts
-    │   ├── use-in-view.ts
-    │   └── use-performance-tier.ts
+    │   ├── sections/              # 🎬 页面区块（一个 section 一个目录）
+    │   │   ├── Hero/              #     首屏（Beams + 解密字效 + 数字滚动）
+    │   │   ├── PainPoints/        #     痛点对比
+    │   │   ├── Features/          #     功能网格（FeatureCard）
+    │   │   ├── SafetyGates/       #     三道闸门（ModeCard + Crosshair）
+    │   │   ├── FAQ/               #     常见问题
+    │   │   └── Start/             #     下载 + 快速开始
+    │   ├── effects/               # ✨ 特效组件
+    │   │   ├── Beams/             #     裸 WebGL2 光带（唯一 heavy，懒加载）
+    │   │   ├── DecryptedText/     #     解密字效
+    │   │   ├── AnimatedNumber/    #     数字滚动
+    │   │   ├── SpotlightCard/     #     聚光卡片
+    │   │   ├── Crosshair/         #     限定区块瞄准光标（触摸设备自动禁用）
+    │   │   └── InView/            #     滚动进场统一封装
+    │   ├── ui/                    # 🧱 原子组件（Button / Icon / SectionHeading）
+    │   └── layout/                #    Header（含移动端抽屉）/ Footer
     │
     ├── config/                    # ⚙️ 所有常量集中地
-    │   ├── site.ts                #    GitHub 地址、下载链接、项目介绍文案
-    │   ├── motion.ts              #    动画时长、缓动曲线
-    │   └── effects.ts             #    特效参数（粒子数、强度...）
+    │   ├── site.ts                #    全部文案 / 链接 / 数字
+    │   ├── motion.ts              #    动画时长、缓动、VIEWPORT
+    │   └── effects.ts             #    EFFECT_REGISTRY + 性能预算
     │
-    ├── styles/
-    │   └── tokens.css             # 🎨 设计变量（颜色/字号/间距）
-    │
-    └── types/                     # 跨模块共用类型
+    ├── styles/tokens.css          # 🎨 设计变量
+    └── types/site.ts              # 跨模块共用类型
 ```
+
+> `src/lib/` 与 `src/hooks/` 尚未创建 —— 当前逻辑量还不足以需要它们。
+> 需要时再建，不预先造空目录。
 
 ---
 

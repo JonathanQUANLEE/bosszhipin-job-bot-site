@@ -261,6 +261,62 @@ next 16.4.0 · react 19.3.0 · motion 14.1.0 · lucide-react 1.55.0 · tailwindc
 
 ---
 
+## 5.6 部署流程（**照做，别踩坑**）
+
+GitHub Pages 部署 = `main` 存源码 + `gh-pages` 存构建产物。
+
+```bash
+# 1. 构建（输出到 dist/）
+node node_modules/next/dist/bin/next build
+
+# 2. 关键：不要把 dist 当 git 仓库直接 push！
+#    dist/ 会被 next build 清空重建，里面的 .git 会消失，
+#    之后在 dist 里跑 git 命令会「穿透」到主仓库，把源码推到 gh-pages。
+#    正确做法：复制到临时目录再 push。
+cd /tmp && rm -rf deploy && mkdir deploy && cd deploy
+cp -r "B:/antigtavity projects/boss web/dist/"* .
+touch .nojekyll          # ⚠️ 必须！否则 GitHub Pages 会用 Jekyll 处理，
+                         #    导致页面显示成 README 而不是站点
+git init && git add -A && git commit -m "deploy"
+git push -f https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site.git master:gh-pages
+```
+
+**踩过的坑（2026-10-13 记录）**
+1. `dist/` 里建 git 仓库 → 被 build 清掉 → git 命令穿透到主仓库 → **gh-pages 上是源码和 README**
+2. 忘了 `.nojekyll` → GitHub Pages 跑 Jekyll → **页面显示成 README 的 Jekyll 渲染结果**
+3. `basePath` 硬编码为 `/bosszhipin-job-bot-site` → 本地直接打开 `dist/index.html` 会**完全没有样式**（CSS 404）。本地预览必须把 dist 放到同名子目录下再起服务。
+
+## 5.7 已知未决项（2026-10-13 全面审计发现，待用户决策）
+
+| # | 问题 | 影响 |
+|---|---|---|
+| A | `siteConfig.safetyLimits`（5 条安全限制）与 `techStack` **定义了但从未展示**；Hero 统计写「5 道安全闸门」，而「三道闸门」区块展示的是 3 个运行模式 → **术语撞车** | 读者困惑；「克制」这一核心主张缺一个落点 |
+| B | `EFFECT_REGISTRY` / `PERFORMANCE_BUDGET` **没有任何代码消费** | 文档宣称的「一键关特效」是空头支票 |
+| C | ~~`docs/ARCHITECTURE.md` 严重过期~~ | ✅ 2026-10-13 已校正 |
+| D | 无 OG 分享图（`public/` 为空） | 分享到微信/Twitter 无缩略图 |
+| E | `eslint-config-next` 装了但未使用（ESLint 9 循环引用问题弃用） | 冗余依赖 |
+| F | **不滚动的整页截图**会显示空白区块 | 滚动进场动画的固有特性；真实滚动完全正常（已实测验证） |
+
+## 5.8 动效降级约定（2026-10-13 建立，**改 InView 前必读**）
+
+滚动进场（`InView`）的初始态是内联 `style="opacity:0"`，有四个会「永久白屏」的坑，已全部兜住：
+
+| 场景 | 兜底位置 |
+|---|---|
+| JS 不可用 | `layout.tsx` 的 `<noscript><style>` |
+| `prefers-reduced-motion` | `globals.css` 的 `@media (prefers-reduced-motion)` |
+| 打印 / 导出 PDF | `globals.css` 的 `@media print` |
+| **瞬时跳转**（截图工具 / `scrollTo` 到底）跳过区块 | `config/motion.ts` 的 `VIEWPORT.margin = '100000px 0px 0px 0px'` |
+
+统一靠 `InView` 根节点上的 **`data-inview` 属性** 被 CSS 选中（用 `!important` 覆盖内联样式）。
+→ **新增任何「初始隐藏」的动效，都要挂 `data-inview` 或自行提供同等兜底。**
+
+其他已固化的约定：
+- `eslint.config.mjs` 的 **`LARGE_FILE_ALLOWLIST`**：超过函数/文件真红线的文件必须三处登记（文件顶部注释 + `docs/CODE_STYLE.md` 豁免清单 + 该数组）
+- Grid / Flex 子项内含长不可断内容（URL、代码块）→ 必须加 **`min-w-0`**，否则移动端水平溢出
+
+---
+
 ## 6. 协作方式（用户指定的工作流）
 
 1. 用户会**逐个发送开源特效项目的链接**
