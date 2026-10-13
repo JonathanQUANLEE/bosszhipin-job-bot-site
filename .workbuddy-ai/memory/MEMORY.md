@@ -47,27 +47,83 @@
 
 ## 2. 被宣发的项目：Bosszhipin-job-bot（事实底稿）
 
+> ⚠️ **2026-10-13 重大更正**：旧版本节写的是「BOSS 单平台 + 无 AI」，**已严重过时**。
+> 以实际代码为准重新摸底，结论如下。
+
 | 维度 | 内容 |
 |---|---|
-| 是什么 | 面向个人求职者的 BOSS 直聘岗位筛选 + 固定招呼语沟通工具 |
-| 形态 | 0.2 起以 **Tauri 桌面 App**（PyTauri + React + Tailwind）为主入口，CLI 保留给高级用户 |
-| 技术栈 | `nodriver`（CDP 直连，无 chromedriver 中间层）+ OpenAI 兼容 LLM 端点 + chroma RAG 简历召回 |
-| 核心模式 | `scan`（只扫不发）/ `review`（逐条审核）/ `auto`（小批量自动） |
-| 设计哲学 | 个人求职辅助工具，**不是高频爬虫，不是绕过反爬的研究项目** |
-| 项目红线 | CLAUDE.md 明确禁止：提速 / 并发 / 绕反爬的改动；禁止把 AI 名字写进 commit trailer |
-| 视觉语言 | **Minimalist Monochrome** — 纯黑白 + 系统衬线字体，零圆角零阴影；唯一彩色是**薄荷绿**（运行状态 / 勾选 / 徽章） |
+| 是什么 | 面向个人求职的**多平台自动投递 + AI 求职助手**桌面应用 |
+| 形态 | **Tauri 桌面 App**（PyTauri + React + Zustand + Tailwind），CLI 保留给高级用户 |
+| 产品名（暂） | `boss-tauri-ui` / Bosszhipin Job Bot（**尚未定正式品牌名**） |
+| **支持平台** | **4 个**：BOSS直聘 / 猎聘 / 前程无忧 51job / 智联招聘（`platforms/manager.py` 注册） |
+| 技术栈（后端） | Python 3.11+ · `nodriver`（CDP 直连，无 chromedriver）· pytest |
+| 技术栈（前端） | React 18 · TypeScript · Vite · Zustand · Tailwind · framer-motion · gsap · lucide-react · hugeicons |
+| 代码规模 | **98 个 Python 文件** + `tauri-ui/src` 约 130 个 TS/TSX 文件 |
+| 核心机制 | 跨天去重账本（JSONL）· 拟人化随机节奏 · 验证码熔断 · 三模式 scan/review/auto |
+| 日限额（默认） | BOSS 150 / 猎聘 100 / 51job 40（**单日实战 290 份**，2026-10-08） |
 | 许可证 | MIT |
-| 致敬来源 | 参考了 `longsizhuo/BossZhiPin_Job_Search` 的浏览器自动化思路，0.2 已收敛为自己的工作流（README 里明确致谢） |
-| 现有素材 | `docs/images/dashboard-runtime-overview-hires.png`、`dashboard-runtime-filters-and-logs-hires.png`（实拍截图，姓名已脱敏） |
 
-### 值得在宣发页里讲的"反向卖点"
+### 实际功能面（来自 IPC 命令表 + Sidebar 导航，**这才是真相**）
 
-这个项目的卖点**不是"比别的 bot 更猛"**，而是**克制**：
-- 有随机等待（delay_min / delay_max）、单次发送上限、每日上限
-- 有 Dry-run 模式
-- 有验证码检测停止
-- 有审计日志（letters.jsonl）
-- 0.2 主动**移除**了 LLM 生成招呼语、简历解析、RAG、向量库、provider 配置 → 不需要任何 AI API key
+**应用导航分区**：`workbench`(工作台) · `profile`(求职档案) · `resumes`(简历) · `copilot`(AI 助手)
+· `analytics`(投递分析) · `live`(实时巡航) · `rules`(规则) · `policy`(策略)
+· `greeting`(招呼语) · `basic` · `model`(模型) · `monochrome`(主题)
+
+**后端 IPC 约 45 个命令**，覆盖：
+- 平台：`list_platforms` / `open_platform_login` / `check_login_status` / `check_platform_replies`
+- Agent：`agent_chat` / `agent_execute_action` / `calculate_ats_score` / `diagnose_resume`
+- 简历：`list_resumes` / `save_resume_file` / `delete_resume_file` / `open_resume_native` / `set_default_resume`
+- 运行：`start_run` / `stop_run` / `get_run_state` / `submit_review_decision` / `open_manual_browser`
+- 统计：`get_delivery_daily_stats` / `get_delivery_history` / `reset_today_delivery`
+- 调度：`save_schedule` / `cancel_schedule` / `get_schedule_status`
+- 模型：`get_llm_config` / `save_llm_config`
+
+**也就是说，现在的产品远不止「筛选 + 固定招呼语 + 发送」**：
+- ✅ 多平台并发投放 + 实时巡航监控（Live）
+- ✅ 对话式 AI Copilot（`agent_chat`，可执行 UI 动作）
+- ✅ 简历管理 + **ATS 评分** + 简历润色
+- ✅ 投递数据分析（图表、按城市/平台拆分）
+- ✅ 定时调度（无人值守）
+- ✅ 未读回复检测
+- ✅ LLM 可选接入（用户自配 key，**不是必须**）
+
+### 产品愿景（`bosszhitou/PROJECT_RULES.md`，2026-10-08 用户定稿）
+
+从「三平台自动投简历工具」升级为**「智能 Agent 投简历助手」**：
+1. **对话式入口**（形态参考 Codex / OpenCode / Chatbox）
+2. 可接入**免费模型**（调研见 `bosszhitou/_llm_research/`）
+3. **私密简历文件夹**（PDF/Word/图片）
+4. **全专业覆盖**（不只服务 AI/计算机岗 —— 文科、电气等都能用）
+5. **投递闭环**：打招呼 →（可选）自动发简历 → 回复后再发简历
+6. **UI 必须好看**（要在小红书投放 / 拍视频）
+7. **最终目标**：一个「真能跑、有人用、有真实用户、看得见迭代痕迹」的独立 AI 作品，**用于求职展示**
+
+### ⚠️ 仓库文档严重不同步（重要）
+
+| 文件 | 时间 | 内容状态 |
+|---|---|---|
+| `README.md` | ~2026-07 | ❌ 过时：写「只支持 BOSS」「已移除 LLM」「不需要 AI Key」 |
+| `CLAUDE.md` | ~2026-07 | ❌ 过时：描述的是旧架构（`providers.py` / `models/llm.py` / `vectorization.py` / `website_oper/`） |
+| `WORK_PROGRESS.md` | 2026-07-05 | ❌ 过时 |
+| `CHANGELOG.md` | 最新条目 2026-07-05 | ❌ 之后未再更新 |
+| `PROJECT_RULES.md` | **2026-10-08** | ⚠️ 较新但目录名也已变（写 `website_oper/`，实际已重构为 `platforms/`） |
+| `.design-sync/conventions.md` | — | ❌ 过时：写「纯黑白零圆角」，实际 UI 已引入 amber/cyan 渐变等 |
+| **实际代码** | 2026-10-13 | ✅ **唯一真相** |
+
+> **结论：写宣发文案时不要信 README，要问用户或看代码。**
+
+### 仓库地址（⚠️ 当前网页写错了）
+
+- 网页现在指向 `https://github.com/4evour/Bosszhipin-job-bot` —— **这不是用户的仓库！**
+- 用户尚未开源、尚未上传 GitHub、**尚未打包成 EXE**
+- 待用户正式开源后替换为真实地址
+
+### 值得在宣发页里讲的"反向卖点"（仍然成立）
+
+这个项目的气质仍然是**克制**（这点没变）：
+- 随机等待、单次上限、每日上限、Dry-run、验证码熔断、审计日志（letters.jsonl）
+- 项目红线（CLAUDE.md + PROJECT_RULES.md）明确禁止：提速 / 并发刷量 / 绕反爬
+- 「个人求职辅助工具，不是高频爬虫」
 
 ---
 
