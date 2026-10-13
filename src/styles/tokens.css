@@ -27,9 +27,12 @@
   --color-paper-dim: #d4d4d2; /* 次级文字 */
   --color-paper-muted: #9a9a98; /* 弱文字 / 说明 */
 
-  /* ---------- 唯一强调色 ---------- */
-  --color-accent: #5dcaa5; /* 薄荷绿 */
-  --color-accent-dim: #1d9e75;
+  /* ---------- 强调色 ---------- */
+  /* 紫罗兰系：与 Hero 的 Aurora 极光（紫→青）同一色域，避免绿紫打架 */
+  --color-accent: #a78bfa; /* 主强调（violet-400，暗底上对比度好） */
+  --color-accent-dim: #7c3aed; /* 深强调（violet-600，hover 用） */
+  /* RGB 分量：供需要透明度的场景（光晕、聚光、阴影）用 rgb(var(--x) / a) 组合 */
+  --color-accent-rgb: 167 139 250;
 
   /* ---------- 边框 ---------- */
   --color-line: rgba(255, 255, 255, 0.1);

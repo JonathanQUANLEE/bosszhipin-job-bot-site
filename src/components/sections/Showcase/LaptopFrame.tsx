@@ -14,7 +14,10 @@ export function LaptopFrame({ children }: LaptopFrameProps) {
   return (
     <div className="relative w-full">
       {/* 屏幕 */}
-      <div className="relative rounded-[14px] border border-line-strong bg-surface-raised p-1.5 shadow-[0_40px_120px_-20px_rgba(93,202,165,0.25)] sm:rounded-[20px] sm:p-2.5">
+      <div
+        className="relative rounded-[14px] border border-line-strong bg-surface-raised p-1.5 sm:rounded-[20px] sm:p-2.5"
+        style={{ boxShadow: '0 40px 120px -20px rgb(var(--color-accent-rgb) / 0.25)' }}
+      >
         {/* 摄像头 */}
         <div className="absolute left-1/2 top-0.5 hidden h-1 w-1 -translate-x-1/2 rounded-full bg-line-strong sm:block" />
 

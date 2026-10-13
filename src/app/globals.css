@@ -74,6 +74,7 @@
   [data-inview] {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 
   /**
@@ -83,6 +84,7 @@
   [data-scrollfx] {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 
@@ -95,5 +97,6 @@
   [data-scrollfx] {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }

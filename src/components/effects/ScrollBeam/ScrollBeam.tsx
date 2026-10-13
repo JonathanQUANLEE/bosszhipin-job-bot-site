@@ -37,8 +37,11 @@ export function ScrollBeam() {
 
       {/* 前端发光点 */}
       <motion.div
-        style={{ top: dotTop }}
-        className="absolute -left-[3px] h-2 w-2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_14px_3px_rgba(93,202,165,0.55)]"
+        style={{
+          top: dotTop,
+          boxShadow: '0 0 14px 3px rgb(var(--color-accent-rgb) / 0.55)',
+        }}
+        className="absolute -left-[3px] h-2 w-2 -translate-y-1/2 rounded-full bg-accent"
       />
     </div>
   );
