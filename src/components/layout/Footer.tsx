@@ -2,6 +2,9 @@ import { siteConfig } from '@/config/site';
 
 /** 页脚：开源信息、致谢、免责声明。 */
 export function Footer() {
+  const repoUrl = siteConfig.github.repoUrl;
+  const published = siteConfig.release.published && Boolean(repoUrl);
+
   return (
     <footer className="border-t border-line bg-surface">
       <div className="container-content py-10 sm:py-14">
@@ -18,14 +21,20 @@ export function Footer() {
             <p className="label-mono mb-4 text-accent">开源</p>
             <ul className="space-y-2.5">
               <li>
-                <a
-                  href={siteConfig.github.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-paper-dim transition-colors hover:text-accent"
-                >
-                  项目仓库
-                </a>
+                {published ? (
+                  <a
+                    href={repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-paper-dim transition-colors hover:text-accent"
+                  >
+                    项目仓库
+                  </a>
+                ) : (
+                  <span className="font-mono text-xs text-paper-muted">
+                    项目仓库 · {siteConfig.release.badge}
+                  </span>
+                )}
               </li>
               <li>
                 <a

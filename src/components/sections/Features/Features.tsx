@@ -12,9 +12,9 @@ export function Features() {
       <div className="container-content">
         <InView>
           <SectionHeading
-            eyebrow="它做什么"
-            title="只做三件事，剩下的交给你"
-            description="它不猜你想要什么工作，也不替你写打招呼的话。规则是你定的，话是你说的，它只负责筛选、审核、节流和发送。"
+            eyebrow="它能做什么"
+            title="六大模块，覆盖求职全流程"
+            description="从听懂你的需求、筛出合适的岗位、批量投递，到复盘效果 —— 每一步都有对应的模块，不用你自己拼一堆工具。"
           />
         </InView>
 

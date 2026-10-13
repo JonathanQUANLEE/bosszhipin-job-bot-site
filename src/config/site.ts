@@ -6,28 +6,39 @@ import type { SiteConfig } from '@/types/site';
  * ⚠️ 硬规则：组件里禁止硬编码任何文案、链接、数字。
  * 所有内容改这里，全站同步生效。
  *
- * 内容来源：Bosszhipin-job-bot 的 README.md / CLAUDE.md（只读引用，未修改源文件）
+ * 内容来源（2026-10-13 重新摸底）：
+ *   被宣发项目的 **实际代码**，而非 README —— 仓库文档停留在 2026-07，
+ *   与当前产品形态已严重脱节。平台名称 / 标语 / 日限额取自
+ *   `src/boss_zhipin/platforms/*.py` 的 `PlatformInfo`，逐字对齐。
  *
- * ⚠️ 注意：bot 本体仓库地址目前是 4evour/Bosszhipin-job-bot
- * （JonathanQUANLEE 名下没有同名仓库）。若日后迁移，只改这里一处即可。
+ * ⚠️ 项目尚未开源、尚未打包 EXE → `github.repoUrl` 留空，由组件渲染「即将开源」占位。
  */
 export const siteConfig: SiteConfig = {
   url: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site',
 
   github: {
-    repoUrl: 'https://github.com/4evour/Bosszhipin-job-bot',
+    // ⚠️ 留空 = 尚未开源。组件检测到空串会渲染「即将开源」而不是死链。
+    repoUrl: '',
     siteRepoUrl: 'https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site',
     inspirationUrl: 'https://github.com/longsizhuo/BossZhiPin_Job_Search',
   },
 
+  release: {
+    published: false,
+    badge: '即将开源',
+    note:
+      '项目正在做最后的打包与文档整理。开源仓库与 Windows 安装包发布后，' +
+      '这里会第一时间放上下载入口。',
+  },
+
   name: 'Bosszhipin Job Bot',
 
-  tagline: '一个「故意做慢」的求职工具',
+  tagline: '别一个人海投了',
 
   description:
-    '面向个人求职者的 BOSS 直聘岗位筛选与沟通工具。它按你写的本地关键词规则筛选岗位，' +
-    '用你自己的固定招呼语打招呼 —— 不生成、不猜测、不替你说话。' +
-    '0.2 版本起以桌面应用为主入口，规则、节奏、上限全部由你掌握。',
+    '一个帮你把简历投遍主流招聘平台的桌面助手。' +
+    '你说一句话，AI 副驾驶把它翻译成筛选规则；多个平台并发投递，实时巡航汇报进度；' +
+    '简历先过一遍 ATS 评分再出手。拟人化节奏与平台限额熔断，替应届生守住账号安全的底线。',
 
   modes: [
     {
@@ -48,133 +59,237 @@ export const siteConfig: SiteConfig = {
     {
       id: 'auto',
       name: 'auto',
-      title: '小批量自动',
-      behavior: '命中后按随机等待节奏发送固定招呼语',
-      scenario: '规则稳定后的小批量运行',
+      title: '自动投递',
+      behavior: '命中后按你选定的节奏档位自动投递',
+      scenario: '规则稳定后的批量投递',
     },
   ],
 
   features: [
     {
-      icon: 'Filter',
-      title: '本地规则筛选',
+      icon: 'LayoutDashboard',
+      title: '巡航工作台',
       description:
-        '按你写的关键词规则过滤岗位标题与描述。匹配顺序固定为 exclude → required → any，结果可解释、可预期。',
+        '一句话开跑。输入「帮我找深圳的 AI 实习」，AI 副驾驶生成筛选规则并回填，确认后点开始即可。',
     },
     {
-      icon: 'MessageSquareText',
-      title: '固定招呼语',
+      icon: 'UserRoundSearch',
+      title: '求职画像',
       description:
-        '打招呼的话由你自己写。系统不生成、不改写、不"优化"——你想说什么就说什么。',
+        '城市、学历、关键词、招聘者活跃度都能配。匹配顺序固定为 exclude → required → any，结果可解释。',
     },
     {
-      icon: 'KeyRound',
-      title: '不需要任何 AI Key',
+      icon: 'FileText',
+      title: '简历中心',
       description:
-        '0.2 已主动移除 LLM 生成、简历解析、RAG 与向量库。装好就能跑，不配 API key，不传数据。',
+        '简历放在本地私密文件夹，PDF / Word / 图片都支持，随时设为默认投递简历。',
     },
     {
-      icon: 'AppWindow',
-      title: '桌面应用主入口',
+      icon: 'Bot',
+      title: 'AI 副驾驶',
       description:
-        'Tauri 桌面端是主入口，可视化配置模式、规则、招呼语与上限。CLI 保留给技术用户与自动化测试。',
+        '对话式指挥台：换主题、调投递节奏、跳转页面、问它软件怎么用，说人话就行。',
     },
     {
-      icon: 'ShieldCheck',
-      title: '独立浏览器登录态',
+      icon: 'Radar',
+      title: '实时巡航',
       description:
-        '使用独立的 Chrome profile，不碰你日常浏览器。首次扫码登录后 cookie 留在本地目录。',
+        '投递过程实时可视化。每条岗位为什么通过、为什么跳过，都有中文原因说明。',
     },
     {
-      icon: 'ScrollText',
-      title: '全程可审计',
+      icon: 'BarChart3',
+      title: '数据统计与早报',
       description:
-        '扫描命中、已看过、已发送、跳过原因、招呼语审计分别落盘为独立日志，随时可查。',
+        '今天投了多少、分布在哪个平台、哪个城市，自动汇总成战报，进度一眼看清。',
+    },
+  ],
+
+  comparisons: [
+    {
+      other: '在三个招聘网站之间来回切，一个个手动打招呼',
+      ours: '一句话说清需求，三个平台同时开投',
+      note: 'BOSS / 猎聘 / 前程无忧，一次配置',
+    },
+    {
+      other: '简历投出去石沉大海，不知道问题出在哪',
+      ours: '先过一遍 ATS 评分，再带着建议去改',
+      note: '机器筛选怎么读你的简历，先告诉你',
+    },
+    {
+      other: '投了多少、有没有回音，全靠自己记',
+      ours: '实时巡航 + 每日战报，进度一眼看清',
+      note: '按平台、按城市自动汇总',
+    },
+    {
+      other: '听说自动投递容易被封号，不敢用',
+      ours: '15–45 秒拟人化节奏 + 平台限额熔断',
+      note: '命中平台提示自动停，不硬闯',
+    },
+  ],
+
+  faqs: [
+    {
+      q: '会被招聘平台封号吗？',
+      a: '任何浏览器自动化工具都存在账号风险，我们不会说「绝对安全」。能做的都做了：15–45 秒拟人化随机延迟、三档节奏可选、跟随平台每日限额、命中平台「已达上限」提示立即停止、检测到验证码自动熔断。但风险无法归零，请控制使用频率。',
+    },
+    {
+      q: '需要准备什么？',
+      a: '一台装有 Chrome 的电脑（目前以 Windows 为主）。首次使用需要在工具内置的独立浏览器里扫码或短信登录各平台，登录凭证会自动持久化保存，之后通常不需要重复登录。',
+    },
+    {
+      q: '我的简历和个人信息会被上传吗？',
+      a: '不会。简历存放在本地私密文件夹，PDF / Word / 图片都由你自己管理。投递记录、跳过原因、招呼语审计也全部落在本地日志文件里，可以随时查看和删除。',
+    },
+    {
+      q: '必须自己配 AI 的 API Key 吗？',
+      a: '不必须。核心的岗位筛选、投递、巡航、统计都不依赖大模型。AI 副驾驶属于增强能力 —— 想用可以接入你喜欢的模型（支持任意 OpenAI 兼容端点，也有免费方案），不想用就完全跳过。',
+    },
+    {
+      q: '现在能下载吗？',
+      a: '还不能。项目正在做最后的打包与文档整理，开源仓库和 Windows 安装包发布后会第一时间在这里放上下载入口。',
+    },
+    {
+      q: '收费吗？',
+      a: '完全免费，MIT 开源。没有付费版、没有功能限制、没有数据收集。',
+    },
+  ],
+
+  platforms: [
+    {
+      id: 'boss',
+      name: 'BOSS 直聘',
+      short: 'BOSS',
+      action: '点「立即沟通」建立会话',
+      note: '互联网与高薪岗主力 · 每日限额 150',
+    },
+    {
+      id: 'liepin',
+      name: '猎聘',
+      short: '猎聘',
+      action: '「聊一聊」并发送你的固定招呼语',
+      note: '中高端与海归名企岗 · 每日限额 100',
+    },
+    {
+      id: 'job51',
+      name: '前程无忧',
+      short: '51job',
+      action: '直接投递简历',
+      note: '传统名企与外企制造 · 每日限额 40',
+    },
+    {
+      id: 'zhaopin',
+      name: '智联招聘',
+      short: '智联',
+      action: '国企央企与校园秋招',
+      note: '平台适配开发中 · 即将开放接入',
+      comingSoon: true,
+    },
+  ],
+
+  paceTiers: [
+    {
+      id: 'sprint',
+      name: '效率档',
+      delay: '15 – 30 秒',
+      scenario: '短时冲刺，想尽快把简历铺出去',
+    },
+    {
+      id: 'standard',
+      name: '标准档',
+      delay: '20 – 40 秒',
+      scenario: '日常投递，速度与安全兼顾',
+      recommended: true,
+    },
+    {
+      id: 'steady',
+      name: '稳健档',
+      delay: '30 – 45 秒',
+      scenario: '长期挂机，把防封放在第一位',
     },
   ],
 
   safetyLimits: [
     {
       key: 'delay_min / delay_max',
-      label: '随机等待',
-      value: '10 – 60 秒',
-      description: '每次发送后在区间内随机等待，不固定节奏、不连续轰炸',
+      label: '拟人化节奏',
+      value: '15 – 45 秒',
+      description: '每次投递后随机等待，不固定节奏、不连续轰炸',
     },
     {
-      key: 'max_sent',
-      label: '单次上限',
-      value: '50 条',
-      description: '一次运行最多发送多少条，跑完即停',
-    },
-    {
-      key: 'daily_sent_limit',
-      label: '每日上限',
-      value: '80 条',
-      description: '当天累计到达上限后不再发送',
+      key: 'daily_limit',
+      label: '平台日限额',
+      value: '150 / 100 / 40',
+      description: '跟随各平台规则，命中平台提示即自动停止',
     },
     {
       key: 'stop_on_captcha',
       label: '验证码熔断',
-      value: 'true',
-      description: '检测到验证码或安全验证立即停止，不硬闯',
+      value: '自动暂停',
+      description: '检测到验证码或安全验证立即停下，不硬闯',
     },
     {
       key: 'DRY_RUN',
       label: '空跑模式',
       value: '1 = 开启',
-      description: '完整走一遍流程但不真实发送，先验证规则再上线',
+      description: '完整走一遍流程但不真实投递，先验证规则再上线',
+    },
+    {
+      key: 'logs/*.jsonl',
+      label: '全程可审计',
+      value: '本地日志',
+      description: '命中、已投、跳过原因、招呼语审计分别落盘，随时可查',
     },
   ],
 
   techStack: [
-    'nodriver',
     'Tauri',
     'React',
     'TypeScript',
+    'Rust',
+    'Python',
+    'nodriver',
     'Tailwind CSS',
-    'Python 3.11+',
     'Chrome DevTools Protocol',
-    'uv',
   ],
 
   downloads: [
     {
       platform: 'Windows',
       icon: 'Monitor',
-      href: 'https://github.com/4evour/Bosszhipin-job-bot/releases',
-      note: '.exe 安装包',
+      href: '',
+      note: '安装包制作中',
     },
     {
       platform: 'macOS',
       icon: 'Command',
-      href: 'https://github.com/4evour/Bosszhipin-job-bot/releases',
-      note: '.dmg',
+      href: '',
+      note: '规划中',
     },
     {
       platform: 'Linux',
       icon: 'Terminal',
-      href: 'https://github.com/4evour/Bosszhipin-job-bot/releases',
-      note: 'AppImage / deb',
+      href: '',
+      note: '规划中',
     },
   ],
 
   quickStart: 'uv run python -m boss_zhipin.tauri',
 
   stats: [
-    { value: 3, label: '运行模式', suffix: ' 种' },
-    { value: 80, label: '每日发送上限', suffix: ' 条' },
-    { value: 0, label: '需要的 AI API Key' },
-    { value: 5, label: '道安全闸门' },
+    { value: 3, suffix: ' 大', label: '主流招聘平台' },
+    { value: 6, suffix: ' 大', label: '核心功能模块' },
+    { value: 15, suffix: '–45 秒', label: '拟人化节奏区间' },
+    { value: 0, suffix: ' 次', label: '手动打招呼' },
   ],
 
   license: 'MIT',
 
   disclaimer:
-    '本项目是免费、开源的个人求职辅助工具。使用浏览器自动化访问 BOSS 直聘可能违反其服务条款，' +
+    '本项目是免费、开源的个人求职辅助工具。使用浏览器自动化访问招聘平台可能违反其服务条款，' +
     '是否使用、如何使用以及由此产生的账号风险或其他后果，均由使用者自行承担。' +
     '请仅用于个人求职，不要高频群发、骚扰招聘者，或用于任何商业化用途。',
 
   credits:
     '本项目最初参考 longsizhuo/BossZhiPin_Job_Search 的浏览器自动化思路，' +
-    '0.2 已收敛为自己的固定招呼语与本地规则工作流。感谢原参考项目与所有开源贡献者。',
+    '此后已收敛为自己的多平台投递与 AI 副驾驶工作流。感谢原参考项目与所有开源贡献者。',
 };

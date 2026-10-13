@@ -1,14 +1,25 @@
 import {
   AppWindow,
+  BarChart3,
+  Bot,
+  Briefcase,
   Command,
+  FileText,
   Filter,
   GitBranch,
   KeyRound,
+  LayoutDashboard,
   MessageSquareText,
   Monitor,
+  Radar,
+  Rocket,
   ScrollText,
   ShieldCheck,
+  Sparkles,
+  Target,
   Terminal,
+  UserRoundSearch,
+  Wand2,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -24,15 +35,26 @@ import {
  */
 const ICON_MAP = {
   AppWindow,
+  BarChart3,
+  Bot,
+  Briefcase,
   Command,
+  FileText,
   Filter,
   GitBranch,
   KeyRound,
+  LayoutDashboard,
   MessageSquareText,
   Monitor,
+  Radar,
+  Rocket,
   ScrollText,
   ShieldCheck,
+  Sparkles,
+  Target,
   Terminal,
+  UserRoundSearch,
+  Wand2,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICON_MAP;

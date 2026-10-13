@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { GitBranch, Monitor, ArrowRight } from 'lucide-react';
+import { GitBranch, Sparkles, ArrowRight, Download } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 import { DecryptedText } from '@/components/effects/DecryptedText';
@@ -18,16 +18,24 @@ const BeamsLazy = dynamic(() => import('@/components/effects/Beams/Beams'), {
  * 表现层：Beams（WebGL 光带背景）+ DecryptedText（解密字效标题）
  * 内容层：tagline + description + CTA + 统计数字
  *
+ * CTA 会根据 `siteConfig.release.published` 切换主次：
+ * 未发布时主 CTA = 「它怎么工作」，GitHub 入口降级为不可点的「即将开源」占位。
+ *
  * ⚠️ Beams 是全站唯一 heavy WebGL 特效，已懒加载（ssr: false）。
  */
 export function Hero() {
+  const repoUrl = siteConfig.github.repoUrl;
+  const published = siteConfig.release.published && Boolean(repoUrl);
+
   return (
     <section id="top" className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-40 sm:pb-32">
       {/* 背景层 */}
       <BeamsLazy />
 
       <div className="container-content relative z-10">
-        <p className="label-mono mb-6 text-accent">开源 · MIT · 桌面应用</p>
+        <p className="label-mono mb-6 text-accent">
+          开源 · 桌面应用 · 三大招聘平台
+        </p>
 
         <h1 className="max-w-3xl font-display text-3xl leading-[1.15] text-paper sm:text-5xl lg:text-6xl">
           <DecryptedText
@@ -42,14 +50,36 @@ export function Hero() {
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-          <Button href={siteConfig.github.repoUrl} className="w-full justify-center sm:w-auto">
-            <GitBranch size={18} aria-hidden />
-            <span>在 GitHub 上查看</span>
-          </Button>
-          <Button href="#start" variant="secondary" className="w-full justify-center sm:w-auto">
-            <Monitor size={18} aria-hidden />
-            <span>下载桌面版</span>
-            <ArrowRight size={16} aria-hidden />
+          {published ? (
+            <Button href={repoUrl} className="w-full justify-center sm:w-auto">
+              <GitBranch size={18} aria-hidden />
+              <span>在 GitHub 上查看</span>
+            </Button>
+          ) : (
+            <Button href="#what" className="w-full justify-center sm:w-auto">
+              <Sparkles size={18} aria-hidden />
+              <span>它怎么工作</span>
+              <ArrowRight size={16} aria-hidden />
+            </Button>
+          )}
+
+          <Button
+            href={published ? '#start' : undefined}
+            variant="secondary"
+            disabled={!published}
+            className="w-full justify-center sm:w-auto"
+          >
+            {published ? (
+              <>
+                <Download size={18} aria-hidden />
+                <span>下载桌面版</span>
+              </>
+            ) : (
+              <>
+                <GitBranch size={18} aria-hidden />
+                <span>{siteConfig.release.badge}</span>
+              </>
+            )}
           </Button>
         </div>
 
