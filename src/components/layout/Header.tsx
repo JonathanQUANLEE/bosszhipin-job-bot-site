@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { GitBranch, Menu, X } from 'lucide-react';
+import { useMotionValueEvent, useScroll } from 'motion/react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 
@@ -13,9 +14,21 @@ const NAV_ITEMS = [
   { label: 'FAQ', href: '#faq' },
 ];
 
-/** 固定在顶部的导航 —— 桌面端横排，移动端抽屉。 */
+/**
+ * 固定在顶部的导航 —— 桌面端横排，移动端抽屉。
+ *
+ * 滚动超过 40px 后自动「收缩 + 加强毛玻璃」（参考 Aceternity 的 Resizable Navbar），
+ * 让内容区获得更多可视面积。
+ */
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    setScrolled(y > 40);
+  });
+
   const repoUrl = siteConfig.github.repoUrl;
   const published = siteConfig.release.published && Boolean(repoUrl);
 
@@ -25,8 +38,18 @@ export function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-base/80 backdrop-blur-md">
-      <div className="container-content flex h-16 items-center justify-between">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled
+          ? 'border-line bg-base/95 backdrop-blur-xl'
+          : 'border-transparent bg-base/50 backdrop-blur-md'
+      }`}
+    >
+      <div
+        className={`container-content flex items-center justify-between transition-[height] duration-300 ${
+          scrolled ? 'h-14' : 'h-16'
+        }`}
+      >
         {/* Logo */}
         <a href="#top" className="font-display text-base text-paper sm:text-lg">
           {siteConfig.name}
@@ -73,7 +96,11 @@ export function Header() {
 
       {/* 移动端全屏抽屉 */}
       {open && (
-        <div className="absolute inset-x-0 top-16 border-b border-line bg-base/95 backdrop-blur-xl md:hidden">
+        <div
+          className={`absolute inset-x-0 border-b border-line bg-base/95 backdrop-blur-xl transition-[top] duration-300 md:hidden ${
+            scrolled ? 'top-14' : 'top-16'
+          }`}
+        >
           <nav className="container-content flex flex-col gap-1 py-4">
             {NAV_ITEMS.map((item) => (
               <a

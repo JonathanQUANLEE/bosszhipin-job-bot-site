@@ -1,5 +1,6 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollBeam } from '@/components/effects/ScrollBeam';
 import { Hero } from '@/components/sections/Hero';
 import { PainPoints } from '@/components/sections/PainPoints/PainPoints';
 import { Showcase } from '@/components/sections/Showcase';
@@ -20,6 +21,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
+      <ScrollBeam />
       <main>
         <Hero />
         <PainPoints />
