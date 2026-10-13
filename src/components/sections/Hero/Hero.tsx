@@ -3,25 +3,36 @@
 import dynamic from 'next/dynamic';
 import { GitBranch, Sparkles, ArrowRight, Download } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { HERO_BACKGROUND } from '@/config/effects';
 import { Button } from '@/components/ui/Button';
 import { DecryptedText } from '@/components/effects/DecryptedText';
 import { AnimatedNumber } from '@/components/effects/AnimatedNumber/AnimatedNumber';
 
-const BeamsLazy = dynamic(() => import('@/components/effects/Beams/Beams'), {
-  ssr: false,
-  loading: () => null,
-});
+/**
+ * Hero 背景特效。
+ * 全站唯一 heavy 特效，已懒加载（ssr: false）；选型见 config/effects.ts 的 HERO_BACKGROUND。
+ */
+const BACKGROUNDS = {
+  aurora: dynamic(() => import('@/components/effects/Aurora/Aurora'), {
+    ssr: false,
+    loading: () => null,
+  }),
+  beams: dynamic(() => import('@/components/effects/Beams/Beams'), {
+    ssr: false,
+    loading: () => null,
+  }),
+} as const;
+
+const HeroBackground = BACKGROUNDS[HERO_BACKGROUND];
 
 /**
  * Hero 区块。
  *
- * 表现层：Beams（WebGL 光带背景）+ DecryptedText（解密字效标题）
+ * 表现层：WebGL 背景（Aurora / Beams 可切）+ DecryptedText（解密字效标题）
  * 内容层：tagline + description + CTA + 统计数字
  *
  * CTA 会根据 `siteConfig.release.published` 切换主次：
  * 未发布时主 CTA = 「它怎么工作」，GitHub 入口降级为不可点的「即将开源」占位。
- *
- * ⚠️ Beams 是全站唯一 heavy WebGL 特效，已懒加载（ssr: false）。
  */
 export function Hero() {
   const repoUrl = siteConfig.github.repoUrl;
@@ -30,7 +41,13 @@ export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-40 sm:pb-32">
       {/* 背景层 */}
-      <BeamsLazy />
+      <HeroBackground />
+
+      {/* 底部渐隐：让极光平滑过渡到下一个区块，避免硬切边 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-b from-transparent to-base sm:h-44"
+      />
 
       <div className="container-content relative z-10">
         <p className="label-mono mb-6 text-accent">

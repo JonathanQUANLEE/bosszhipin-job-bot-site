@@ -14,6 +14,16 @@
 /** 设备性能档位 */
 export type PerformanceTier = 'high' | 'mid' | 'low' | 'off';
 
+/** Hero 背景可选特效 */
+export type HeroBackground = 'aurora' | 'beams';
+
+/**
+ * Hero 背景特效选型（一键切换，随时可回滚）。
+ * - `aurora`：多层竖直光帘被噪声推挤，紫罗兰→青渐变（当前）
+ * - `beams`：直线光束沿固定角度扫过，薄荷绿（已被替换，保留备选）
+ */
+export const HERO_BACKGROUND: HeroBackground = 'aurora';
+
 /** 单个特效的登记项 */
 export interface EffectEntry {
   /** 是否已启用 */
@@ -32,11 +42,10 @@ export interface EffectEntry {
 
 export const EFFECT_REGISTRY = {
   /**
-   * Hero 背景：React Bits `Beams`
-   * 光带流动 = 扫描 / 筛选的视觉隐喻；裸 WebGL2 shader，零 npm 依赖。
-   * ⚠️ 这是全站唯一允许的 heavy 特效。
+   * Hero 背景：裸 WebGL2 shader（当前 = Aurora 极光，备选 = Beams 光束）
+   * ⚠️ 这是全站唯一允许的 heavy 特效。选型见 HERO_BACKGROUND。
    */
-  heroBeams: {
+  heroBackground: {
     enabled: true,
     section: 'Hero',
     tech: 'webgl',
