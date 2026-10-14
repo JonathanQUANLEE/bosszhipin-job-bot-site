@@ -56,8 +56,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN">
-      <body className="min-h-screen bg-base text-paper antialiased">
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="min-h-screen bg-base text-paper antialiased" suppressHydrationWarning>
         {/*
           JS 不可用时的兜底：滚动进场动效依赖 IntersectionObserver，
           若脚本未执行，内容会停在 opacity:0 而整段消失。

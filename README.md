@@ -1,119 +1,134 @@
 <div align="center">
 
-# Bosszhipin Job Bot · 宣发页
+# JobKoi-AI · 官方宣发页
 
-**一个把「克制」做成视觉语言的开源项目落地页**
+**多平台全并发巡航 · 内置免费 AI 智能管家 · 现代极客求职工作站**
 
-[在线预览](#) · [源项目](https://github.com/JonathanQUANLEE/Bosszhipin-job-bot) · [报告问题](https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site/issues)
+[![成熟线上直接体验](https://img.shields.io/badge/🌐_成熟线上站-免安装点击即用-emerald?style=for-the-badge)](https://jonathanquanlee.github.io/bosszhipin-job-bot-site/)
+[![GitHub Release](https://img.shields.io/github/v/release/JonathanQUANLEE/JobKoi-AI?style=for-the-badge&color=8b5cf6)](https://github.com/JonathanQUANLEE/JobKoi-AI/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
+
+<br />
+
+[🌐 成熟线上直接体验](https://jonathanquanlee.github.io/bosszhipin-job-bot-site/) · [📦 软件开源主仓](https://github.com/JonathanQUANLEE/JobKoi-AI) · [💻 宣发网页源码](https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site) · [🐛 报告问题](https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site/issues)
 
 </div>
 
 ---
 
+## 🌟 线上成熟体验地址（免本地安装 · 浏览器点开即用）
+
+> 🚀 **成熟线上正式站网址：[https://jonathanquanlee.github.io/bosszhipin-job-bot-site/](https://jonathanquanlee.github.io/bosszhipin-job-bot-site/)**
+> 
+> **无需在本地安装运行 `localhost:3000`！** 
+> 页面已全面完成云端静态部署，直接点击上方线上链接即可在浏览器中完整体验全景并发巡航工作台、14 天多平台走势图表、昨日早报战报诊断、RAG 向量初筛交互与所有设计动效。
+
+---
+
 ## 这是什么
 
-这是开源项目 **[Bosszhipin-job-bot](https://github.com/JonathanQUANLEE/Bosszhipin-job-bot)** 的**官方宣发落地页**。
+这是开源项目 **[JobKoi-AI · 全智能求职锦鲤助手](https://github.com/JonathanQUANLEE/JobKoi-AI)**（原 Bosszhipin-job-bot 现代化重构升级版）的**官方宣发落地页**。
 
-⚠️ **本仓库只包含宣发页面本身，不包含 bot 的源码。** bot 源码在[它自己的仓库](https://github.com/JonathanQUANLEE/Bosszhipin-job-bot)，本仓库只做**只读引用**（取用它的截图、介绍文案、设计语言）。
-
-### 被宣发的项目
-
-[Bosszhipin-job-bot](https://github.com/JonathanQUANLEE/Bosszhipin-job-bot) 是一个面向个人求职者的 BOSS 直聘岗位筛选与沟通工具。它用浏览器自动化按本地规则筛选岗位，并发送你自己写的固定招呼语。
-
-它最有意思的地方是**它不做的事**：
-
-- 不提速、不并发、不绕反爬
-- 有随机等待、单次上限、每日上限
-- 有 Dry-run、有逐条审核、有验证码熔断
-- 0.2 版本主动**移除**了 LLM 生成、RAG、向量库 —— 你不需要任何 AI API key
-
-> 别人都在做「更猛的 bot」，它在做「更克制的 bot」。
+⚠️ **本仓库只包含宣发页面本身的前端工程。** 客户端与巡航内核源码存放在 [JobKoi-AI 开源主仓](https://github.com/JonathanQUANLEE/JobKoi-AI)。
 
 ---
 
-## 设计策略
+### 被宣发的主项目：JobKoi-AI
 
-**外壳要炸，内核要静。**
+[JobKoi-AI](https://github.com/JonathanQUANLEE/JobKoi-AI) 是基于 **Tauri 2 + Python + 大模型** 打造的现代化多平台求职工作站。
 
-| | 目标 | 做法 |
-|---|---|---|
-| **外壳** | 让不懂技术的普通求职者第一眼被震住 | WebGL 背景、解密字效、瞄准光标、滚动叙事 |
-| **内核** | 让技术圈看完觉得这项目真的克制 | SSR 直出的清晰信息架构、完整的功能介绍与免责声明 |
+它专为终结打工人机械海投的精力内耗而生，核心特性包括：
 
-关键在于**两层解耦**：
+1. **三大主流平台并发巡航**：
+   - 深度聚合 **BOSS 直聘**、**猎聘 Liepin**、**前程无忧 51Job** 三大主流求职渠道。
+   - 一句话描述求职意向，系统自动提炼结构化画像并多路并发开投，无需在各平台网页来回切换。
 
-```
-内容层（SSR 直出）→ 特效全挂也能读，是一个完整专业的产品页
-表现层（懒加载）  → 锦上添花的 WebGL 与动效
-```
+2. **内置作者买单的免费大模型 API Key**：
+   - **完全不需要用户自备或付费购买任何 AI API Key！** 
+   - 作者为大家免费内置并开放智谱 GLM-4-Flash 高并发大模型端点，开箱即用；
+   - 同时也保持高度自由开放，支持高阶极客一键切换为自己的 DeepSeek、OpenAI 等兼容端点。
 
-就算访客设备很烂、特效全部加载失败，他拿到的仍然是一个**及格的产品页**；
-设备好的访客拿到的则是**惊艳的作品**。**两边都不损失。**
+3. **RAG 岗位语义对齐与轻量向量初筛**：
+   - 绝非死板关键词匹配。搭载本地微型向量库与 RAG 检索增强引擎，双向深度对齐简历技能树与目标 JD 职责；
+   - 毫秒级智能识别并自动剔除外包、转包、培训贷、空壳招聘与用户自定义黑名单。
 
-### 特效不是装饰，是叙事
+4. **0-Driver 原生隐匿防封**：
+   - 摒弃传统容易触发风控的 Selenium / WebDriver 指纹，底层采用 Chrome DevTools Protocol 原生直连，`navigator.webdriver` 彻底为 `false`；
+   - 光标移动采用真人微生理的三次贝塞尔曲线（Cubic Bézier）手滑模拟；
+   - 配备 15~45 秒拟人随机间隔与动态平台额度守卫，遇到滑动验证码主动毫秒级熔断挂起。
 
-每个特效都在讲项目故事，不是为了炫而炫：
-
-| 特效 | 它在讲什么 |
-|---|---|
-| 流动光带背景 | 扫描、筛选 —— 项目的核心动作 |
-| 解密文字标题 | bot / 自动化 |
-| 瞄准光标 | 精准命中岗位 |
-| **长按才发送** 的按钮 | **把「克制」变成可交互的体验** |
+5. **AI 智能管家与简历 STAR 精修**：
+   - 内置 AI Copilot 智能管家，支持自然语言对话调控巡航节奏、诊断投递漏斗；
+   - 简历 STAR 原则深度重构量化打磨，ATS 岗位关键词权重诊断，并针对不同岗位自动定制高转化打招呼语。
 
 ---
 
-## 技术栈
+## 体验与使用方式
 
-只用该领域最成熟、长期有人维护的方案：
+### 途径一：成熟线上演示站（强烈推荐 · 免安装）
 
-| 层 | 选型 |
-|---|---|
-| 框架 | **Next.js 16**（App Router） |
-| 语言 | **TypeScript**（strict） |
-| 样式 | **Tailwind CSS** + CSS 变量 |
-| 动效 | **motion** |
-| 图标 | **lucide-react** |
+**[👉 点击立即进入成熟线上演示站](https://jonathanquanlee.github.io/bosszhipin-job-bot-site/)**
+- 无需配置任何环境，浏览器点开即用。
 
-**运行时依赖只有 5 个。** 没有 gsap、没有 three.js、没有 WebGL 库、没有图表库 ——
-背景特效用的是裸 WebGL2 shader，零 npm 依赖。
+### 途径二：下载 Windows 桌面客户端
 
-### 特效来源
+1. 前往 **[JobKoi-AI Releases 官方发布页](https://github.com/JonathanQUANLEE/JobKoi-AI/releases)**；
+2. 下载最新版本客户端安装包 `JobKoi-AI-setup.exe`；
+3. 双击安装运行，首次启动请确保本机已安装 Google Chrome。
 
-| 库 | 协议 | 用途 |
-|---|---|---|
-| [Motion Primitives](https://motion-primitives.com) | MIT | 内容层：精致克制的卡片、文字、弹窗 |
-| [React Bits](https://reactbits.dev) | MIT + Commons Clause | 表现层：Hero 背景、解密字效、CTA |
-| [Lucide](https://lucide.dev) | ISC | 全站图标（唯一图标源） |
+### 途径三：开发者本地运行宣发页源码
 
-> React Bits 采用 **MIT + Commons Clause Condition v1.0**：
-> 可用于自己的产品与网站（含商用），但不可将组件本身打包转售。
-> 本仓库作为自有项目的宣发页使用，符合协议要求，并保留了源码中的版权声明。
-
----
-
-## 快速开始
+如果您希望为本宣发页面贡献代码或进行样式调整：
 
 ```bash
+# 1. 克隆宣发页仓库
 git clone https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site.git
 cd bosszhipin-job-bot-site
+
+# 2. 安装依赖
 npm install
+
+# 3. 启动开发服务器
 npm run dev
 ```
 
-打开 http://localhost:3000
+本地服务启动后，可在浏览器中查看 `http://localhost:3000`。
 
-### 可用命令
+### 途径四：从源码启动 Bot 巡航客户端
 
-| 命令 | 作用 |
+如果您是 Python / Rust 开发者，希望从源码运行客户端主程序：
+
+```bash
+git clone https://github.com/JonathanQUANLEE/JobKoi-AI.git
+cd JobKoi-AI
+uv sync
+uv run python -m boss_zhipin.tauri
+```
+
+---
+
+## 宣发页技术栈与设计策略
+
+**外壳要炸，内核要静。**
+
+| 维度 | 选型 / 策略 |
 |---|---|
-| `npm run dev` | 本地开发 |
-| `npm run build` | 生产构建 |
-| `npm run typecheck` | TypeScript 类型检查 |
-| `npm run lint` | ESLint 检查 |
-| `npm run format` | Prettier 格式化 |
-| `npm run check` | 类型 + 规范 + 构建，一次跑完 |
-| `npm run analyze` | 打包体积分析 |
+| **框架** | **Next.js 16**（App Router，SSR 直出保障内容层首屏） |
+| **语言** | **TypeScript**（Strict 强类型） |
+| **样式** | **Tailwind CSS** + CSS 设计变量 Tokens |
+| **动效** | **Motion (framer-motion)** + 裸 WebGL2 Shader（Aurora / Beams） |
+| **图标** | **lucide-react** |
+| **图表** | 自研轻量纯 SVG 交互走势折线图与早报晨报卡片 |
+
+### 核心设计原则
+
+1. **两层解耦**：
+   - **内容层（SSR 直出）**：即使在低端设备或禁用 JS / WebGL 场景下，也能获得排版完美、信息完整的专业产品说明与数据展示。
+   - **表现层（懒加载）**：黑曜石深邃暗黑美学、拟真物理撕票根通行证、可折叠数据战报抽屉、滚动光束与解密字效。
+2. **全站色系纯净统一**：
+   - 全面剔除突兀的羊皮纸亮白反差块，全站统一在深邃黑曜石（`#0b0914`）与霓虹冷紫/翡翠绿微光晕中，沉浸舒适护眼。
+3. **大屏自适应沉浸布局**：
+   - 桌面宽屏最大内容宽度提升至 `1520px`，配合弹性网格，彻底消除大屏幕两侧空旷留白。
 
 ---
 
@@ -121,82 +136,60 @@ npm run dev
 
 ```text
 .
-├── .workbuddy-ai/memory/     # 📌 项目记忆（Agent 交接必读）
-│   ├── MEMORY.md             #    长期记忆
-│   └── YYYY-MM-DD.md         #    每日工作日志
-├── docs/                     # 📚 工程文档
-│   ├── CODE_STYLE.md         #    代码规范（项目法律）
-│   ├── ARCHITECTURE.md       #    架构与选型
-│   ├── PERFORMANCE.md        #    性能预算与降级策略
-│   └── EFFECTS.md            #    特效选型与决策记录
-├── public/                   # 静态资源
-├── scripts/                  # 构建期工具脚本
+├── docs/                     # 📚 架构规范与设计决策
+│   ├── ARCHITECTURE.md       #    系统架构
+│   ├── CODE_STYLE.md         #    代码规范
+│   ├── EFFECTS.md            #    特效决策记录
+│   └── PERFORMANCE.md        #    性能预算与分级降级
+├── public/                   # 静态媒体与图标资源
+├── scripts/                  # 构建脚本
 └── src/
-    ├── app/                  # Next.js App Router
+    ├── app/                  # Next.js App Router 路由与页面入口
     ├── components/
-    │   ├── sections/         # 页面区块（一个区块一个目录）
-    │   ├── effects/          # 特效组件（全部懒加载）
-    │   ├── ui/               # 通用原子组件
-    │   └── layout/           # 页头、页脚
-    ├── lib/                  # 纯逻辑（effects / performance / utils）
-    ├── hooks/                # 自定义 Hook
-    ├── config/               # 所有常量集中地
-    ├── styles/               # 设计变量 tokens
-    └── types/                # 跨模块类型
+    │   ├── effects/          # 特效组件（均支持懒加载与降级）
+    │   ├── layout/           # 顶部 Header 导航与底部 Footer
+    │   ├── sections/         # 页面功能区块（Hero / Analytics / Features / Platforms 等）
+    │   └── ui/               # 通用原子 UI 组件
+    ├── config/               # 站点数据与特效配置文件
+    ├── hooks/                # 视图与交互自定义 Hook
+    ├── lib/                  # 历史投递数据模拟与工具函数
+    ├── styles/               # 设计变量 tokens 与全局样式
+    └── types/                # TypeScript 跨模块类型定义
 ```
 
-**目录即文档** —— 光看目录树就该知道这个项目有什么、各自在哪。
-
 ---
 
-## 工程规范
-
-本项目由 AI Agent 协作开发，且会在多个 Agent 之间切换。规范不是建议，是**硬约束**：
-
-📄 完整规范见 **[`docs/CODE_STYLE.md`](./docs/CODE_STYLE.md)**
-
-核心两条：
-
-1. **职责分离**（最重要）—— 一个概念一个文件。一个文件里堆了多个本该独立的组件/功能/领域逻辑，必须拆。
-   > 行数是结果，职责混杂才是原因。拆得干净，文件自然就短。
-
-2. **特效三可** —— 每个特效必须可懒加载、可降级（按设备分 4 档）、可关闭（尊重 `prefers-reduced-motion`）。
-
-长度规则已做成 **ESLint 硬错误**：文件 >600 行、函数 >150 行直接报错。
-（提醒线 300 行不阻断，交给 code review。）
-
-性能预算同样写死：首屏 JS ≤170KB、LCP <2.5s、**全站只允许 1 个 WebGL 背景**。
-
----
-
-## 参与贡献
-
-欢迎提 issue 和 PR。提交前请跑：
+## 质量与规范命令
 
 ```bash
-npm run check
-```
+# 类型检查
+npm run typecheck
 
-> 注：commit message 中**不要添加 AI 的 `Co-Authored-By` trailer**（沿用 bot 项目的约定）。
+# 规范检查
+npm run lint
+
+# 生产环境静态打包构建
+npm run build
+```
 
 ---
 
-## 许可证
+## 开源许可证
 
-本宣发页源码采用 **MIT** 协议，见 [LICENSE](./LICENSE)。
+本项目宣发页源码采用 **MIT** 开源协议，详见 [LICENSE](./LICENSE)。
 
-其中包含的第三方组件遵循各自协议：
-React Bits（MIT + Commons Clause v1.0）、Motion Primitives（MIT）、Lucide（ISC）。
+第三方动效与组件遵循原作者协议：
+- [React Bits](https://reactbits.dev)（MIT + Commons Clause v1.0）
+- [Motion Primitives](https://motion-primitives.com)（MIT）
+- [Lucide Icons](https://lucide.dev)（ISC）
 
-**被宣发的 Bosszhipin-job-bot 项目本身同样是 MIT**，且仅用于个人求职，
-请勿用于高频群发、骚扰招聘者或任何商业用途。
+**声明**：本项目仅供个人求职学习与研究使用，请勿用于高频恶意群发、骚扰招聘者或任何违规商业场景。使用者需自行遵守招聘平台相关协议并承担相应风险。
 
 ---
 
 ## 致谢
 
-- [Bosszhipin-job-bot](https://github.com/JonathanQUANLEE/Bosszhipin-job-bot) —— 被宣发的主角
-- [longsizhuo/BossZhiPin_Job_Search](https://github.com/longsizhuo/BossZhiPin_Job_Search) —— bot 项目最初的参考来源
-- [Motion Primitives](https://motion-primitives.com) —— 内容层动效
-- [React Bits](https://reactbits.dev) —— 表现层特效
-- [Lucide](https://lucide.dev) —— 图标
+- [JobKoi-AI](https://github.com/JonathanQUANLEE/JobKoi-AI) —— 自动化求职工作站主角
+- [longsizhuo/BossZhiPin_Job_Search](https://github.com/longsizhuo/BossZhiPin_Job_Search) —— 早期灵感参考来源
+- [Motion Primitives](https://motion-primitives.com) —— 细腻动效组件
+- [Lucide](https://lucide.dev) —— 高质图标库

@@ -1,60 +1,44 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { LaptopFrame } from './LaptopFrame';
-import { AppScreenMock } from './AppScreenMock';
+import { MacbookScroll, DesktopWindow } from '@/components/effects/MacbookScroll';
 
 /**
- * Showcase —— 「滚动展开的电脑」。
+ * Showcase —— 旗舰级桌面端产品展示台
  *
- * 交互：区块从视口下方进入时，笔记本呈倾斜（rotateX 22°）+ 略微放大，
- * 随着滚动到视口中央逐渐「立正」并归位，屏幕里的应用界面清晰呈现。
- *
- * 技术：纯 DOM 3D 变换（perspective + rotateX/scale/translateY），
- * 由 motion 的 useScroll / useTransform 驱动 —— 零 WebGL、零图片、零新依赖。
- *
- * 降级：`data-scrollfx` 属性供 globals.css 的 prefers-reduced-motion 规则覆盖。
+ * 借鉴 grail-app.com 荧光紫水墨光效 + berd.xyz 原生视窗，
+ * 比例呼吸自然，彻底根除任何负边距重叠与穿模。
  */
 export function Showcase() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'center center'],
-  });
-
-  const rotateX = useTransform(scrollYProgress, [0, 1], [22, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0.35, 1]);
-
   return (
-    <section id="showcase" ref={ref} className="relative border-t border-line py-20 sm:py-32">
-      {/* 背景光晕 */}
+    <section id="showcase" className="relative border-t border-line/60 py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-base via-[#100d1c] to-base">
+      {/* 借鉴 grail-app.com：辐射状水墨粉紫柔光云 */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[min(900px,92vw)] -translate-x-1/2 rounded-[50%] bg-accent/[0.07] blur-[100px]"
+        className="pointer-events-none absolute left-1/2 top-1/4 h-[550px] w-[min(1100px,96vw)] -translate-x-1/2 rounded-[50%] bg-gradient-to-r from-purple-500/15 via-[#ffcdff]/10 to-indigo-500/15 blur-[130px]"
       />
 
       <div className="container-content relative">
         <SectionHeading
-          eyebrow="它长什么样"
-          title="说一句话，剩下的交给它"
-          description="你只需要说清想要什么岗位。它在三个平台同时开跑，每条岗位为什么投、为什么跳过，实时告诉你。"
+          eyebrow="实机运行视窗 · TAURI 2 NATIVE"
+          title="真正在你电脑上全速开跑的求职助手"
+          description="不只是一个脚本，更是一套工业级 Tauri 2 本地桌面控制中枢。在各大招聘平台多路并行，每条投递为什么发、为什么跳过，毫秒级日志尽在眼底。"
           align="center"
         />
 
-        <div className="mt-12 [perspective:1400px] sm:mt-20">
-          <motion.div
-            data-scrollfx=""
-            style={{ rotateX, scale, y, opacity }}
-            className="origin-top"
+        {/* 拟真 3D MacBook 展台（无任何负边距冲突） */}
+        <div className="mt-8 sm:mt-12 w-full">
+          <MacbookScroll
+            badge={
+              <div className="hidden rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 font-mono text-[9px] text-emerald-300 sm:inline-flex items-center gap-1.5 shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Tauri 2 • Python 3.12 • 0-Driver 本地隐身</span>
+              </div>
+            }
           >
-            <LaptopFrame>
-              <AppScreenMock />
-            </LaptopFrame>
-          </motion.div>
+            {/* 映射在屏幕里的原生视窗（借鉴 berd.xyz 高对比度明亮视窗） */}
+            <DesktopWindow />
+          </MacbookScroll>
         </div>
       </div>
     </section>

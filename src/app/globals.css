@@ -40,12 +40,46 @@
     font-size: 0.6875rem;
   }
 
-  /* 内容容器 */
+  /* 内容容器 —— 桌面大屏宽屏自适应，杜绝两侧空洞留白 */
   .container-content {
     width: 100%;
     max-width: var(--content-width);
     margin-inline: auto;
     padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-content {
+      padding-inline: 2.25rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-content {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* 聚光灯卡片纯 CSS 规则，杜绝任何内联样式 SSR 水合差异 */
+  .spotlight-card-bg {
+    background: radial-gradient(
+      600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgb(var(--color-accent-rgb) / 0.06),
+      transparent 40%
+    );
+  }
+
+  .spotlight-card-border {
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgb(var(--color-accent-rgb) / 0.55),
+      transparent 45%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
   }
 }
 

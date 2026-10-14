@@ -102,13 +102,13 @@ export function AppScreenMock() {
           <div className="grid grid-cols-3 gap-2">
             {siteConfig.platforms.slice(0, 3).map((p, i) => {
               const done = i === 0 ? 100 : i === 1 ? 72 : 38;
-              // 从平台备注里取出日限额数字（如「每日限额 150」→ 150）
-              const limitMatch = p.note.match(/\d+/);
-              const limit = limitMatch?.[0] ? Number(limitMatch[0]) : 0;
+              // 从平台配额或备注里取出日限额数字（如「100 次 / 天」→ 100）
+              const limitMatch = (p.dailyLimit || p.note || '').match(/\d+/);
+              const limit = limitMatch?.[0] ? Number(limitMatch[0]) : 100;
               const sent = Math.round(limit * (done / 100));
               return (
                 <div key={p.id} className="rounded-lg border border-line bg-surface p-2">
-                  <p className="truncate font-mono text-[9px] text-paper-muted">{p.short}</p>
+                  <p className="truncate font-mono text-[9px] text-paper-muted">{p.short || p.name}</p>
                   <p className="mt-0.5 font-mono text-[11px] text-paper sm:text-xs">
                     {sent}
                     <span className="text-paper-muted">/{limit}</span>

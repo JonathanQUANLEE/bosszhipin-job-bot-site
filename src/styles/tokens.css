@@ -1,43 +1,47 @@
 /**
- * 设计变量（Design Tokens）
+ * 设计变量（Design Tokens）—— 借鉴 grail-app.com 与 berd.xyz 的丰富色彩与明暗韵律
  *
- * 全站唯一的颜色 / 字体来源。组件里禁止硬编码色值。
- *
- * 设计语言：沿用被宣发项目 Bosszhipin-job-bot 的 Minimalist Monochrome
- * —— 纯黑白 + 衬线字体，唯一的彩色是薄荷绿（运行状态 / 强调）。
+ * 彻底告别单调灰黑：
+ * 引入高透光水墨紫、琉璃粉、琥珀金、翠绿终端光与高对比度纸张色，
+ * 让每个区块拥有鲜活的色彩层级与视觉呼吸感。
  */
 
 :root {
   /* ---------- 字体栈 ---------- */
-  /* 全部使用系统字体：零网络请求、零 FOUT，首屏最快 */
-  --font-display: Georgia, 'Times New Roman', 'Source Han Serif SC', 'Songti SC', '宋体', serif;
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', sans-serif;
-  --font-mono:
-    Consolas, Menlo, 'Courier New', 'Noto Sans Mono CJK SC', monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'PingFang SC', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', 'Source Han Serif SC', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* ---------- 背景层级 ---------- */
-  --color-base: #0a0a0b; /* 页面底色 */
-  --color-surface: #101012; /* 卡片 / 区块 */
-  --color-surface-raised: #17171a; /* 悬浮层 */
+  /* ---------- 底色与环境层级 ---------- */
+  --color-base: #0b0914; /* 深度宇宙底色（微泛幽紫） */
+  --color-base-warm: #141022; /* 暖紫墨水底色 */
+  --color-surface: #151224; /* 琉璃卡片面 */
+  --color-surface-raised: #1e1933; /* 浮空层 */
+  --color-surface-glass: rgba(255, 255, 255, 0.05); /* 毛玻璃透明层 */
 
-  /* ---------- 前景层级 ---------- */
-  --color-paper: #fafaf9; /* 主文字 */
-  --color-paper-dim: #d4d4d2; /* 次级文字 */
-  --color-paper-muted: #9a9a98; /* 弱文字 / 说明 */
+  /* ---------- 高对比度文字层级 ---------- */
+  --color-paper: #ffffff; /* 纯净高光白 */
+  --color-paper-warm: #f6f3ee; /* 象牙暖白纸张色（借鉴 berd.xyz） */
+  --color-paper-dim: #cbd5e1; /* 清晰副标浅灰 */
+  --color-paper-muted: #94a3b8; /* 弱文字 / 标注 */
 
-  /* ---------- 强调色 ---------- */
-  /* 紫罗兰系：与 Hero 的 Aurora 极光（紫→青）同一色域，避免绿紫打架 */
-  --color-accent: #a78bfa; /* 主强调（violet-400，暗底上对比度好） */
-  --color-accent-dim: #7c3aed; /* 深强调（violet-600，hover 用） */
-  /* RGB 分量：供需要透明度的场景（光晕、聚光、阴影）用 rgb(var(--x) / a) 组合 */
-  --color-accent-rgb: 167 139 250;
+  /* ---------- 鲜活品牌与特性色彩矩阵 ---------- */
+  --color-accent: #c084fc; /* 梦幻紫罗兰 (violet-400) */
+  --color-accent-light: #e9d5ff; /* 柔和浅紫 */
+  --color-accent-glow: #ffcdff; /* 荧光琉璃粉（借鉴 grail-app.com 标志色） */
+  --color-accent-rgb: 192 132 252;
 
-  /* ---------- 边框 ---------- */
-  --color-line: rgba(255, 255, 255, 0.1);
-  --color-line-strong: rgba(255, 255, 255, 0.22);
+  --color-gold: #fbbf24; /* 琥珀金标 */
+  --color-emerald: #34d399; /* 终端翠绿（运行状态 / 成功） */
+  --color-coral: #f43f5e; /* 淘汰珊瑚红（打叉 / 痛点警示） */
+  --color-cyan: #38bdf8; /* 天青石蓝 */
 
-  /* ---------- 布局 ---------- */
-  --content-width: 1200px;
+  /* ---------- 边框与微光分割线 ---------- */
+  --color-line: rgba(255, 255, 255, 0.12);
+  --color-line-strong: rgba(255, 255, 255, 0.25);
+  --color-line-glow: rgba(192, 132, 252, 0.35);
+
+  /* ---------- 布局宽深（拓宽桌面视口，消除两侧过多留白） ---------- */
+  --content-width: 1520px;
 }

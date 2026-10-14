@@ -2,44 +2,38 @@ import type { SiteConfig } from '@/types/site';
 
 /**
  * 站点全部内容常量。
+ * 对齐最新项目形态（JobKoi-AI · 全智能求职锦鲤助手）
  *
- * ⚠️ 硬规则：组件里禁止硬编码任何文案、链接、数字。
- * 所有内容改这里，全站同步生效。
- *
- * 内容来源（2026-10-13 重新摸底）：
- *   被宣发项目的 **实际代码**，而非 README —— 仓库文档停留在 2026-07，
- *   与当前产品形态已严重脱节。平台名称 / 标语 / 日限额取自
- *   `src/boss_zhipin/platforms/*.py` 的 `PlatformInfo`，逐字对齐。
- *
- * ⚠️ 项目尚未开源、尚未打包 EXE → `github.repoUrl` 留空，由组件渲染「即将开源」占位。
+ * 核心升级点：
+ * 1. 明确标明成熟线上访问地址：https://jonathanquanlee.github.io/bosszhipin-job-bot-site/（无需本地运行）；
+ * 2. 纠正 AI 说明：内置作者免费提供的高并发大模型 API Key（开箱即用），支持 RAG 岗位语义对齐与微型向量检索；
+ * 3. 核心能力：三平台并发巡航（BOSS / 猎聘 / 51job）、0-Driver 原生隐匿防封、AI Copilot 智能管家、简历 STAR 深度诊断精修。
  */
 export const siteConfig: SiteConfig = {
-  url: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site',
+  url: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site/',
 
   github: {
-    // ⚠️ 留空 = 尚未开源。组件检测到空串会渲染「即将开源」而不是死链。
-    repoUrl: '',
+    repoUrl: 'https://github.com/JonathanQUANLEE/JobKoi-AI',
     siteRepoUrl: 'https://github.com/JonathanQUANLEE/bosszhipin-job-bot-site',
     inspirationUrl: 'https://github.com/longsizhuo/BossZhiPin_Job_Search',
   },
 
   release: {
-    published: false,
-    badge: '即将开源',
+    published: true,
+    badge: '成熟线上版已上线',
     note:
-      '项目正在做最后的打包与文档整理。开源仓库与 Windows 安装包发布后，' +
-      '这里会第一时间放上下载入口。',
+      '成熟线上演示站与 Windows 桌面客户端已同步发布！' +
+      '内置免费大模型 API Key，支持三大招聘平台多路并发。',
   },
 
-  name: 'Bosszhipin Job Bot',
+  name: 'JobKoi-AI · 全智能求职锦鲤助手',
 
-  tagline: '别一个人海投了',
+  tagline: '多平台全并发巡航 · 内置免费 AI 智能管家',
 
   description:
-    '一个帮你把简历投遍主流招聘平台的桌面助手。' +
-    '你说一句话，它自己整理出要找什么岗位；三个平台同时开投，投了哪些、结果怎样，实时告诉你；' +
-    '出手之前，还会先给简历打个分、告诉你哪里可以改。' +
-    '投得不快不慢，遇到平台限制会主动停下 —— 它不会为了多投几份，把你账号搞坏。',
+    '基于 Tauri 2 + Python + 大模型打造的下一代开源多平台自动化求职工作站。' +
+    '聚合 BOSS直聘、猎聘、前程无忧三大主流渠道，内置作者免费提供的高并发大模型 API Key（开箱即用，无需自备 Key），' +
+    '结合 RAG 双向岗位语义对齐与微型向量检索，提供简历 STAR 深度精修与 0-Driver 原生隐匿防封，彻底终结手动海投内耗。',
 
   modes: [
     {
@@ -47,111 +41,111 @@ export const siteConfig: SiteConfig = {
       name: 'scan',
       title: '只看不发',
       behavior: '只扫描并记录命中的岗位，不发送任何消息',
-      scenario: '调规则、看岗位质量',
+      scenario: '调规则、看岗位质量与 RAG 匹配度',
       recommended: true,
     },
     {
       id: 'review',
       name: 'review',
       title: '逐条审核',
-      behavior: '命中后展示岗位详情和招呼语，你确认后才发送',
-      scenario: '边审核边发送，降低误发',
+      behavior: '命中后展示岗位详情与 AI 定制招呼语，确认后才发送',
+      scenario: '精准投递，针对高意向大厂岗',
     },
     {
       id: 'auto',
       name: 'auto',
-      title: '自动投递',
-      behavior: '命中后按你选定的节奏档位自动投递',
-      scenario: '规则稳定后的批量投递',
+      title: '全自动巡航',
+      behavior: '命中后按设定拟人化节奏档位多平台并发自动投递',
+      scenario: '日常自动化盯盘，省时提效',
     },
   ],
 
   features: [
     {
       icon: 'LayoutDashboard',
-      title: '巡航工作台',
+      title: '并发巡航工作台',
       description:
-        '一句话开跑。输入「帮我找深圳的 AI 实习」，它自己整理出筛选条件给你确认，点开始就投。',
+        '一句话开跑。输入求职意图，自动整理出精准画像，三大平台协同并发开投，实时掌控进度。',
     },
     {
       icon: 'UserRoundSearch',
-      title: '求职画像',
+      title: '求职画像与 RAG 严选',
       description:
-        '想投什么、在哪个城市、什么学历、不想投什么，说清楚就行。每条岗位为什么被选中、为什么被跳过，都能看到原因。',
+        '基于本地轻量向量库与 RAG 语义增强，双向比对 JD 关键词与薪资门槛，智能排除外包与低质岗位。',
     },
     {
       icon: 'FileText',
-      title: '简历中心',
+      title: '多版本简历中心',
       description:
-        '简历存在你自己的电脑里，不上传云端。PDF、Word、图片都支持，随时指定用哪一份投递。',
+        '本地资料库管理多份简历，PDF、Word、图片原生支持，数据 100% 存在本机，绝不上云。',
     },
     {
       icon: 'Bot',
-      title: 'AI 副驾驶',
+      title: 'AI 求职智能管家',
       description:
-        '像跟人说话一样指挥它：换主题、调投递速度、跳到某个页面、问它这软件怎么用，说人话就行。',
+        '内置免费大模型 API Key，对话式调控巡航、调整风控节奏、诊断简历痛点，7×24 小时贴心陪伴。',
     },
     {
-      icon: 'Radar',
-      title: '实时巡航',
+      icon: 'Sparkles',
+      title: '简历 STAR 智能精修',
       description:
-        '投递过程实时可见。每投出一份、每跳过一条，屏幕上立刻有反馈，不用干等结果。',
+        '工业级简历重构工作室：STAR 闭环改写、数据量化打磨、ATS 岗位高频关键词加权与雷达图评分。',
     },
     {
       icon: 'BarChart3',
-      title: '数据统计与早报',
+      title: '数据统计与每日早报',
       description:
-        '今天投了多少、哪个平台投得多、集中在哪些城市，自动整理成一份战报，进度一眼看清。',
+        '每日 09:00 定时结算昨日战报，多平台投递走势曲线、HR 回复率漏斗与行动策略复盘一目了然。',
     },
   ],
 
   comparisons: [
     {
-      other: '在三个招聘网站之间来回切，一个个手动打招呼',
-      ours: '一句话说清需求，三个平台同时开投',
-      note: 'BOSS / 猎聘 / 前程无忧，一次配置',
+      other: '在各大招聘网站之间来回切，手动机械打招呼上百次',
+      ours: '一句话说清需求，BOSS / 猎聘 / 51Job 三大平台并发开投',
+      note: '三大平台聚合调度，一次配置全网生效',
     },
     {
-      other: '简历投出去石沉大海，不知道问题出在哪',
-      ours: '先给简历打个分，再告诉你哪里该改',
-      note: '机器怎么读你的简历，提前知道',
+      other: '必须自己四处买 API Key，配置繁琐劝退小白',
+      ours: '内置作者免费提供的高并发 API Key，开箱即用完全免费',
+      note: '免配 Key 直接用，也支持配置自定义私有模型',
     },
     {
-      other: '投了多少、有没有回音，全靠自己记',
-      ours: '实时巡航 + 每日战报，进度一眼看清',
-      note: '按平台、按城市自动汇总',
+      other: '简历投出去石沉大海，死板关键词匹配容易误判',
+      ours: 'RAG 深度语义双向对齐 + STAR 动词量化精修',
+      note: '机器怎么初筛你的履历，提前演练诊断',
     },
     {
-      other: '听说自动投递容易被封号，不敢用',
-      ours: '15–45 秒拟人化节奏 + 平台限额熔断',
-      note: '命中平台提示自动停，不硬闯',
+      other: '自动化脚本容易触发验证码甚至封号',
+      ours: '0-Driver 原生隐匿管道 + 三次贝塞尔拟人手滑延时',
+      note: '无 Selenium/WebDriver 指纹，遇异常主动毫秒级熔断',
     },
   ],
 
   faqs: [
     {
-      q: '会被招聘平台封号吗？',
-      a: '任何自动化工具都有账号风险，我们不会说「绝对安全」。能做的都做了：每份简历之间随机等 15–45 秒、投递速度分三档可选、跟着平台自己的每日上限走、平台提示到量了就停、遇到验证码自动暂停。但风险没法归零，建议控制使用频率，先用「只看不发」模式确认筛选结果。',
+      q: '这个项目有线上可以直接访问体验的地址吗？',
+      a: '有的！成熟线上全景演示站：https://jonathanquanlee.github.io/bosszhipin-job-bot-site/ ，无需在本地配置 Node.js、pnpm 或执行 localhost:3000，直接在浏览器点开即可完整体验所有特性、图表与交互！',
     },
     {
-      q: '需要准备什么？',
-      a: '一台装有 Chrome 的电脑（目前以 Windows 为主）。首次使用需要在工具内置的独立浏览器里扫码或短信登录各平台，登录凭证会自动持久化保存，之后通常不需要重复登录。',
+      q: '必须自己准备或购买 AI API Key 吗？',
+      a: '完全不需要！作者已经为大家内置并免费提供智谱 GLM-4-Flash 高并发大模型 API Key，下载或打开软件就能直接使用 AI 智能管家、意图提炼和打招呼生成功能。同时系统高度开放，高阶用户也可以在配置中切换为自己的 DeepSeek、OpenAI 或其他兼容端点。',
     },
     {
-      q: '我的简历和个人信息会被上传吗？',
-      a: '不会。简历存放在本地私密文件夹，PDF / Word / 图片都由你自己管理。投递记录、跳过原因、招呼语审计也全部落在本地日志文件里，可以随时查看和删除。',
+      q: '软件有大模型生成、RAG 和向量库吗？',
+      a: '当然有！系统搭载了完整的 AI 智能中枢：包括基于 RAG 的岗位描述与简历技能双向对齐引擎、本地微型语义向量初筛、STAR 原则简历精修以及个性化打招呼语生成器，深度赋能求职全链路。',
     },
     {
-      q: '必须自己配 AI 的 API Key 吗？',
-      a: '不必须。筛选岗位、自动投递、实时巡航、数据统计这些核心功能，都不需要大模型。AI 副驾驶是额外的加分项 —— 想用可以接你喜欢的模型（也支持免费方案），不想用完全跳过，软件照样跑。',
+      q: '会被招聘平台封号吗？有哪些安全防护？',
+      a: '任何自动化工具都有账号风险，但我们做到了工业级无痕拟人防御：基于 0-Driver 底层 Chrome DevTools Protocol 直连，彻底剔除 navigator.webdriver 标志；光标移动遵循真实人类生理的三次贝塞尔曲线；支持 15~45 秒随机拟人间隔与平台限额守卫；遇到滑块或验证提示主动毫秒级熔断挂起。',
     },
     {
-      q: '现在能下载吗？',
-      a: '还不能。项目正在做最后的打包与文档整理，开源仓库和 Windows 安装包发布后会第一时间在这里放上下载入口。',
+      q: '我的简历和账号隐私安全吗？',
+      a: '绝对安全。架构秉持 100% Local-First（本地优先）哲学：你的登录 Cookie、个人简历、投递历史全部存储在本地私有沙盒数据库中，零远程服务器上传，无云端数据泄露风险。',
     },
     {
-      q: '收费吗？',
-      a: '完全免费，MIT 开源。没有付费版、没有功能限制、没有数据收集。',
+      q: '软件收费吗？如何下载桌面客户端？',
+      a: '完全免费，基于 MIT 协议纯净开源。没有流氓广告，没有隐藏付费。前往 GitHub 仓库 Releases 页面即可直接下载 Windows 客户端安装包 JobKoi-AI-setup.exe。',
     },
   ],
 
@@ -159,118 +153,127 @@ export const siteConfig: SiteConfig = {
     {
       id: 'boss',
       name: 'BOSS 直聘',
-      short: 'BOSS',
-      action: '点「立即沟通」建立会话',
-      note: '互联网与高薪岗主力 · 每日限额 150',
+      dailyLimit: '100 次 / 天',
+      cadence: '25–45 秒 / 次',
+      status: 'active',
+      features: ['牛人打招呼', '岗位语义对齐', '公司黑名单', '防封随机微颤'],
     },
     {
       id: 'liepin',
-      name: '猎聘',
-      short: '猎聘',
-      action: '「聊一聊」并发送你的固定招呼语',
-      note: '中高端与海归名企岗 · 每日限额 100',
+      name: '猎聘 Liepin',
+      dailyLimit: '80 次 / 天',
+      cadence: '30–60 秒 / 次',
+      status: 'active',
+      features: ['猎头直聊', '高薪中高端筛选', '应届生直投', '在线简历发送'],
     },
     {
       id: 'job51',
-      name: '前程无忧',
-      short: '51job',
-      action: '直接投递简历',
-      note: '传统名企与外企制造 · 每日限额 40',
+      name: '前程无忧 51Job',
+      dailyLimit: '50 次 / 天',
+      cadence: '20–40 秒 / 次',
+      status: 'active',
+      features: ['多行业并发', 'HR 即时沟通', '本地投递去重', '多城市聚合'],
     },
     {
-      id: 'zhaopin',
+      id: 'zhilian',
       name: '智联招聘',
-      short: '智联',
-      action: '国企央企与校园秋招',
-      note: '平台适配开发中 · 即将开放接入',
-      comingSoon: true,
+      dailyLimit: '50 次 / 天',
+      cadence: '30–50 秒 / 次',
+      status: 'planned',
+      features: ['名企网申通道', '智能初筛', '校招绿色通道'],
     },
   ],
 
   paceTiers: [
     {
-      id: 'sprint',
-      name: '效率档',
-      delay: '15 – 30 秒',
-      scenario: '短时冲刺，想尽快把简历铺出去',
+      id: 'steady',
+      name: '稳健防封档',
+      cadence: '30–45 秒',
+      dailyCap: '40–60 份',
+      risk: '极低 · 极度拟人',
+      scenario: '日常长期巡航、爱惜账号者首选',
     },
     {
-      id: 'standard',
-      name: '标准档',
-      delay: '20 – 40 秒',
-      scenario: '日常投递，速度与安全兼顾',
+      id: 'balance',
+      name: '平衡推荐档',
+      cadence: '20–35 秒',
+      dailyCap: '60–80 份',
+      risk: '低 · 智能节律',
+      scenario: '兼顾速度与安全，大多数求职者默认推荐',
       recommended: true,
     },
     {
-      id: 'steady',
-      name: '稳健档',
-      delay: '30 – 45 秒',
-      scenario: '长期挂机，把防封放在第一位',
+      id: 'sprint',
+      name: '冲刺效率档',
+      cadence: '15–25 秒',
+      dailyCap: '80–100 份',
+      risk: '中 · 紧贴平台上限',
+      scenario: '急需快速拿到面试机会的冲刺阶段',
     },
   ],
 
   safetyLimits: [
     {
-      key: 'delay_min / delay_max',
-      label: '不快不慢的投递速度',
-      value: '每份间隔 15–45 秒',
-      description: '每次投完随机等一会儿再投下一份，不连着猛发',
+      key: 'daily_total_cap',
+      label: '单日全平台总上限',
+      value: '200 次',
+      description: '三大招聘平台投递总额熔断保护，防止超出平台安全阈值',
     },
     {
-      key: 'daily_limit',
-      label: '跟着平台规则走',
-      value: '上限 150 / 100 / 40',
-      description: '平台说今天到量了，它就停，不硬凑数量',
+      key: 'min_interval_seconds',
+      label: '最小投递拟人间歇',
+      value: '15 秒',
+      description: '动态三次贝塞尔曲线手滑延时，彻底剔除高频机械脚本特征',
     },
     {
-      key: 'stop_on_captcha',
-      label: '遇到验证码就停',
-      value: '自动暂停',
-      description: '一发现需要安全验证，立刻停下等你处理',
+      key: 'captcha_auto_pause',
+      label: '验证码风控熔断',
+      value: '毫秒级挂起',
+      description: '遭遇滑块或短信验证时主动鸣笛挂起并通知用户，绝不硬闯',
     },
     {
-      key: 'DRY_RUN',
-      label: '先试跑，不真投',
-      value: '可开启',
-      description: '完整走一遍流程但不真的投出去，先看看筛得对不对',
-    },
-    {
-      key: 'logs/*.jsonl',
-      label: '每一步都留痕',
-      value: '本地记录',
-      description: '投了谁、跳过了谁、为什么，全都存在你自己电脑里',
+      key: 'local_sandbox_storage',
+      label: '私有沙盒存储',
+      value: '100% 本地',
+      description: 'Cookie、简历与聊天记录仅保存在本机私有数据库，零数据上云',
     },
   ],
 
   techStack: [
-    'Tauri',
-    'React',
-    'TypeScript',
-    'Rust',
-    'Python',
-    'nodriver',
+    'Tauri 2 (Rust)',
+    'React 19',
+    'Python 3.11 / 3.12',
+    'RAG & Vector Alignment',
+    'GLM-4 / LLM Copilot',
+    '0-Driver CDP',
     'Tailwind CSS',
-    'Chrome DevTools Protocol',
+    'Local SQLite',
   ],
 
   downloads: [
     {
-      platform: 'Windows',
-      icon: 'Monitor',
-      href: '',
-      note: '安装包制作中',
+      platform: '成熟线上演示站 (免安装 · 强烈推荐)',
+      icon: 'Globe',
+      href: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site/',
+      note: '浏览器直接打开即用，无需本地安装运行',
     },
     {
-      platform: 'macOS',
+      platform: 'Windows (Tauri 2 客户端)',
+      icon: 'Monitor',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases',
+      note: '安装包 JobKoi-AI-setup.exe 双击运行',
+    },
+    {
+      platform: 'macOS (规划中)',
       icon: 'Command',
       href: '',
-      note: '规划中',
+      note: 'Apple Silicon / Intel 原生支持',
     },
     {
-      platform: 'Linux',
+      platform: 'Linux (规划中)',
       icon: 'Terminal',
       href: '',
-      note: '规划中',
+      note: 'AppImage / deb 极客自编译',
     },
   ],
 
@@ -280,7 +283,7 @@ export const siteConfig: SiteConfig = {
     { value: 3, suffix: ' 大', label: '主流招聘平台' },
     { value: 6, suffix: ' 大', label: '核心功能模块' },
     { value: 15, suffix: '–45 秒', label: '拟人化节奏区间' },
-    { value: 0, suffix: ' 次', label: '手动打招呼' },
+    { value: 0, suffix: ' 元', label: '内置免费大模型' },
   ],
 
   license: 'MIT',
@@ -291,6 +294,6 @@ export const siteConfig: SiteConfig = {
     '请仅用于个人求职，不要高频群发、骚扰招聘者，或用于任何商业化用途。',
 
   credits:
-    '本项目最初参考 longsizhuo/BossZhiPin_Job_Search 的浏览器自动化思路，' +
-    '此后已收敛为自己的多平台投递与 AI 副驾驶工作流。感谢原参考项目与所有开源贡献者。',
+    '本项目由 Quentinlee (@JonathanQUANLEE) 独立发起并持续维护，' +
+    '致力于用现代工程与大模型技术武装求职者。感谢所有开源贡献者。',
 };

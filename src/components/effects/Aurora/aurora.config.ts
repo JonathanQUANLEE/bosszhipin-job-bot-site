@@ -9,8 +9,8 @@ export const auroraConfig = {
   colorA: [0.486, 0.227, 0.929],
   /** 颜色 B —— 高处（青 #22D3EE） */
   colorB: [0.133, 0.827, 0.933],
-  /** 底色（#0a0a0b，与 tokens.css 的 --color-base 一致） */
-  base: [0.039, 0.039, 0.043],
+  /** 底色（#0b0914，与 tokens.css 的 --color-base 一致） */
+  base: [0.043, 0.035, 0.078],
   /** 流动速度 */
   speed: 1,
   /**

@@ -14,18 +14,26 @@ export default {
       colors: {
         // 背景层级（由深到浅）
         base: 'var(--color-base)',
+        'base-warm': 'var(--color-base-warm)',
         surface: 'var(--color-surface)',
         'surface-raised': 'var(--color-surface-raised)',
         // 前景层级（由亮到暗）
         paper: 'var(--color-paper)',
+        'paper-warm': 'var(--color-paper-warm)',
         'paper-dim': 'var(--color-paper-dim)',
         'paper-muted': 'var(--color-paper-muted)',
-        // 唯一强调色：薄荷绿
+        // 鲜活强调色（借鉴 grail-app 与 berd）
         accent: 'var(--color-accent)',
         'accent-dim': 'var(--color-accent-dim)',
+        'accent-glow': 'var(--color-accent-glow)',
+        gold: 'var(--color-gold)',
+        emerald: 'var(--color-emerald)',
+        coral: 'var(--color-coral)',
+        cyan: 'var(--color-cyan)',
         // 边框
         line: 'var(--color-line)',
         'line-strong': 'var(--color-line-strong)',
+        'line-glow': 'var(--color-line-glow)',
       },
       fontFamily: {
         // 衬线：标题与 display（沿用 bot 项目的系统衬线栈）

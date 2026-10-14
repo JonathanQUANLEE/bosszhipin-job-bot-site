@@ -17,6 +17,7 @@ export type IconName =
   | 'FileText'
   | 'Filter'
   | 'GitBranch'
+  | 'Globe'
   | 'KeyRound'
   | 'LayoutDashboard'
   | 'MessageSquareText'
@@ -62,13 +63,21 @@ export interface Platform {
   /** 平台全名 */
   name: string;
   /** 平台短名（等宽展示） */
-  short: string;
+  short?: string;
   /** 投递动作描述 */
-  action: string;
+  action?: string;
   /** 补充说明 */
-  note: string;
+  note?: string;
   /** 是否仍在筹备中（尚未接入） */
   comingSoon?: boolean;
+  /** 单日限额 */
+  dailyLimit?: string;
+  /** 巡航节奏 */
+  cadence?: string;
+  /** 状态 */
+  status?: string;
+  /** 平台特性标签 */
+  features?: string[];
 }
 
 /** 投递节奏档位（安全机制） */
@@ -77,7 +86,10 @@ export interface PaceTier {
   id: string;
   name: string;
   /** 延迟区间 */
-  delay: string;
+  delay?: string;
+  cadence?: string;
+  dailyCap?: string;
+  risk?: string;
   /** 适用场景 */
   scenario: string;
   /** 是否为推荐档 */

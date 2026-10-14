@@ -9,12 +9,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-/** 检测是否为触摸设备（无精细鼠标指针） */
-const isTouchDevice = () => {
-  if (typeof window === 'undefined') return false;
-  return window.matchMedia('(pointer: coarse)').matches;
-};
-
 interface CrosshairProps {
   children: React.ReactNode;
 }
@@ -31,7 +25,13 @@ export function Crosshair({ children }: CrosshairProps) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
-  const [touchOnly] = useState(() => isTouchDevice());
+  const [touchOnly, setTouchOnly] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+      setTouchOnly(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (touchOnly) return;

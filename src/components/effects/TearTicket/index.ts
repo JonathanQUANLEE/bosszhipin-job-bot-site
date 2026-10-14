@@ -1,0 +1,1 @@
+export { TearTicket } from './TearTicket';

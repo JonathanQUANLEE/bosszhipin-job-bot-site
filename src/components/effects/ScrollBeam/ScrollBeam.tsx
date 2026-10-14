@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 
 /**
@@ -11,8 +12,15 @@ import { motion, useScroll, useSpring, useTransform } from 'motion/react';
  * 参考：Aceternity UI 的 Tracing Beam。
  * 技术：useScroll + useSpring（弹簧跟随，手感更顺）+ 纯 transform，零依赖。
  * 小屏隐藏（移动端没有悬停语义，且宽度宝贵）。
+ * 客户端挂载后再渲染，彻底消除 SSR 水合差异。
  */
 export function ScrollBeam() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 140,
@@ -20,6 +28,10 @@ export function ScrollBeam() {
     restDelta: 0.001,
   });
   const dotTop = useTransform(progress, (v) => `${Math.min(100, Math.max(0, v * 100))}%`);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div
@@ -37,11 +49,8 @@ export function ScrollBeam() {
 
       {/* 前端发光点 */}
       <motion.div
-        style={{
-          top: dotTop,
-          boxShadow: '0 0 14px 3px rgb(var(--color-accent-rgb) / 0.55)',
-        }}
-        className="absolute -left-[3px] h-2 w-2 -translate-y-1/2 rounded-full bg-accent"
+        style={{ top: dotTop }}
+        className="absolute -left-[3px] h-2 w-2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_14px_3px_rgb(var(--color-accent-rgb)/0.55)]"
       />
     </div>
   );

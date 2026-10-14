@@ -1,0 +1,1 @@
+export { CinematicEntrance } from './CinematicEntrance';

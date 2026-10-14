@@ -3,9 +3,11 @@ import type { ReactNode } from 'react';
 type Variant = 'primary' | 'secondary' | 'ghost';
 
 const VARIANT_CLASS: Record<Variant, string> = {
-  primary: 'bg-accent text-base hover:bg-accent-dim',
-  secondary: 'border border-line-strong text-paper hover:border-accent hover:text-accent',
-  ghost: 'text-paper-dim hover:text-accent',
+  primary:
+    'bg-gradient-to-r from-accent via-[#d8b4fe] to-[#ffcdff] text-[#0b0914] font-bold shadow-lg shadow-purple-500/25 hover:brightness-110 hover:shadow-purple-500/40',
+  secondary:
+    'border border-white/20 bg-white/5 text-white backdrop-blur-md hover:bg-white/10 hover:border-white/40 shadow-sm',
+  ghost: 'text-paper-dim hover:text-white hover:bg-white/5',
 };
 
 interface ButtonProps {

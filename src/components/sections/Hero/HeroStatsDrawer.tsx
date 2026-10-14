@@ -1,0 +1,145 @@
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { siteConfig } from '@/config/site';
+import { AnimatedNumber } from '@/components/effects/AnimatedNumber/AnimatedNumber';
+import { ChevronDown, ChevronUp, BarChart2 } from 'lucide-react';
+
+const STAT_ACCENTS = [
+  {
+    color: 'text-teal-400',
+    border: 'border-teal-500/30',
+    bg: 'bg-teal-950/25',
+    sparkline: 'M0 20 Q 25 5, 50 15 T 100 2',
+    tag: 'BOSS / 猎聘 / 51job',
+  },
+  {
+    color: 'text-accent',
+    border: 'border-purple-500/30',
+    bg: 'bg-purple-950/25',
+    sparkline: 'M0 18 Q 30 18, 50 6 T 100 4',
+    tag: '0-Driver 隐匿协议',
+  },
+  {
+    color: 'text-amber-400',
+    border: 'border-amber-500/30',
+    bg: 'bg-amber-950/25',
+    sparkline: 'M0 12 Q 25 22, 60 8 T 100 14',
+    tag: '贝塞尔生理拟人',
+  },
+  {
+    color: 'text-emerald-400',
+    border: 'border-emerald-500/30',
+    bg: 'bg-emerald-950/25',
+    sparkline: 'M0 22 Q 40 18, 70 8 T 100 2',
+    tag: '100% 本地 SQLite',
+  },
+];
+
+export function HeroStatsDrawer() {
+  const [isOverviewFolded, setIsOverviewFolded] = useState(false);
+
+  const toggleFold = () => {
+    setIsOverviewFolded((prev) => !prev);
+    if (!isOverviewFolded) {
+      // 折叠收走第一张后，平滑滚动至下方真实数据走势
+      const el = document.getElementById('analytics');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 320);
+      }
+    }
+  };
+
+  return (
+    <div className="mt-14 sm:mt-20 select-none">
+      {/* 第一张：海投指标卡片组（支持平滑折叠收走） */}
+      <AnimatePresence initial={false}>
+        {!isOverviewFolded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0, y: -15 }}
+            animate={{
+              height: 'auto',
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              y: -20,
+              transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+            }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
+              {siteConfig.stats.map((stat, i) => {
+                const a = STAT_ACCENTS[i % STAT_ACCENTS.length]!;
+
+                return (
+                  <div
+                    key={stat.label}
+                    className={`relative overflow-hidden rounded-2xl border ${a.border} ${a.bg} p-4 sm:p-5 backdrop-blur-xl transition-all hover:scale-[1.02] shadow-xl flex flex-col justify-between`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="font-mono text-paper-muted text-[11px] truncate">{stat.label}</p>
+                        <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-paper-dim border border-white/10 hidden sm:inline-block">
+                          {a.tag}
+                        </span>
+                      </div>
+
+                      <div className={`font-mono text-2xl sm:text-3xl lg:text-4xl font-bold ${a.color} tracking-tight`}>
+                        <AnimatedNumber value={stat.value} suffix={stat.suffix ?? ''} />
+                      </div>
+                    </div>
+
+                    <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-paper-muted">真实动态巡航</span>
+                      <svg className="w-16 h-5 opacity-70" viewBox="0 0 100 24" fill="none">
+                        <path
+                          d={a.sparkline}
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          className={a.color}
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 交互式折叠控制条（折叠收走上屏 / 开启下屏） */}
+      <div className="mt-4 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={toggleFold}
+          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full border text-xs font-mono transition-all shadow-lg group ${
+            isOverviewFolded
+              ? 'border-accent/40 bg-accent/15 text-accent hover:bg-accent/25'
+              : 'border-white/15 bg-white/5 text-slate-300 hover:bg-white/10 hover:border-white/30'
+          }`}
+        >
+          <BarChart2 size={13} className={isOverviewFolded ? 'text-accent' : 'text-slate-400'} />
+          <span>
+            {isOverviewFolded
+              ? '▲ 已收走海投卡片 · 点击展开首屏核心指标四宫格'
+              : '▼ 折叠收起首屏海投卡片 · 开启三大平台 14 天走势与晨报'}
+          </span>
+          {isOverviewFolded ? (
+            <ChevronUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
+          ) : (
+            <ChevronDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
+          )}
+        </button>
+      </div>
+    </div>
+  );
+}

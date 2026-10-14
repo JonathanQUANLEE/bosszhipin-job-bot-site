@@ -1,38 +1,44 @@
-import { siteConfig } from '@/config/site';
+'use client';
+
+import React from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { InView } from '@/components/effects/InView/InView';
-import { FeatureRow } from './FeatureRow';
+import { FlowingMenu } from '@/components/effects/FlowingMenu';
+import { ResumeParserBento, ConcurrencyBento, VaultReportBento } from './BentoCards';
 
 /**
- * 功能模块 —— 左侧粘性标题 + 右侧滚动卡片（Apple 式滚动叙事）。
+ * Features —— 核心功能与多模态解析（现代均衡 Bento Grid 架构）
  *
- * 大屏下标题钉在左侧，卡片从右侧滚过，浏览节奏更像在「翻一份产品说明」，
- * 而不是扫一张密密麻麻的表格。小屏自动退化为单列堆叠。
+ * 彻底废除导致大面积留白的传统非对称粘性双列，
+ * 采用全宽均衡 Bento Grid：
+ * - 顶部：FlowingMenu 跑马灯
+ * - 首行：8:4 焦点卡片（GlideSelect 简历解析实验室 + 0-Driver 原生隐匿管道）
+ * - 次行：4:4:4 三大并发、语义严选与智能招呼语
+ * - 尾行：6:6 本地沙盒隐私 + 每日晨报诊断
  */
 export function Features() {
   return (
-    <section id="what" className="border-t border-line py-20 sm:py-32">
-      <div className="container-content">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
-          {/* 左：粘性标题 */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <InView>
-              <SectionHeading
-                eyebrow="它能做什么"
-                title="六大模块，覆盖求职全流程"
-                description="从听懂你的需求、筛出合适的岗位、批量投递，到复盘效果 —— 每一步都有对应的模块，不用你自己拼一堆工具。"
-              />
-            </InView>
-          </div>
+    <section id="features" className="border-t border-line py-16 sm:py-28 relative overflow-hidden bg-[#0a0814]">
+      {/* 顶部横向流动跑马灯 */}
+      <div className="mb-14">
+        <FlowingMenu />
+      </div>
 
-          {/* 右：滚动卡片 */}
-          <div className="flex flex-col gap-4">
-            {siteConfig.features.map((feature, i) => (
-              <InView key={feature.title} transition={{ delay: i * 0.05 }}>
-                <FeatureRow feature={feature} index={i} />
-              </InView>
-            ))}
-          </div>
+      <div className="container-content relative z-10">
+        <InView>
+          <SectionHeading
+            eyebrow="核心特性矩阵 · DEEP CAPABILITIES"
+            title="六大模块全链路贯通，让求职像工业流水线般高效"
+            description="从多模态简历理解、三大平台并发巡航、拟人化风控防御，到每日数据晨报复盘 —— 每一环皆为工业级精工铸造，彻底终结手动机械点击。"
+            align="center"
+          />
+        </InView>
+
+        {/* Bento Grid 容器 */}
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <ResumeParserBento />
+          <ConcurrencyBento />
+          <VaultReportBento />
         </div>
       </div>
     </section>

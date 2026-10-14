@@ -1,17 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { GitBranch, Menu, X } from 'lucide-react';
+import { GitBranch, Menu, X, Globe } from 'lucide-react';
 import { useMotionValueEvent, useScroll } from 'motion/react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 
 const NAV_ITEMS = [
-  { label: '为什么', href: '#why' },
+  { label: '走势晨报', href: '#analytics' },
+  { label: '痛点对比', href: '#pain-points' },
   { label: '支持平台', href: '#platforms' },
-  { label: '它能做什么', href: '#what' },
-  { label: '安全与节奏', href: '#gates' },
-  { label: 'FAQ', href: '#faq' },
+  { label: '核心功能', href: '#features' },
+  { label: '安全风控', href: '#safety' },
+  { label: '极客背书', href: '#author' },
+  { label: '开启体验', href: '#start' },
 ];
 
 /**
@@ -41,7 +43,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         scrolled
-          ? 'border-line bg-base/95 backdrop-blur-xl'
+          ? 'border-line bg-base/95 backdrop-blur-xl shadow-lg shadow-purple-950/10'
           : 'border-transparent bg-base/50 backdrop-blur-md'
       }`}
     >
@@ -50,9 +52,17 @@ export function Header() {
           scrolled ? 'h-14' : 'h-16'
         }`}
       >
-        {/* Logo */}
-        <a href="#top" className="font-display text-base text-paper sm:text-lg">
-          {siteConfig.name}
+        {/* Brand Logo */}
+        <a href="#top" className="flex items-center gap-2 font-display text-base text-paper sm:text-lg group">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-accent via-purple-500 to-indigo-600 text-white font-mono font-bold text-xs shadow-md shadow-purple-500/30">
+            JK
+          </span>
+          <span className="font-bold tracking-tight text-white group-hover:text-accent transition-colors">
+            JobKoi AI
+          </span>
+          <span className="hidden sm:inline-block rounded border border-emerald-400/30 bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[9px] text-emerald-400">
+            Tauri 2
+          </span>
         </a>
 
         {/* 桌面导航 */}
@@ -69,7 +79,17 @@ export function Header() {
         </nav>
 
         {/* 右侧操作区 */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <a
+            href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xs font-mono font-medium transition-all shadow-sm"
+          >
+            <Globe size={13} className="animate-spin" style={{ animationDuration: '10s' }} />
+            <span>成熟线上站</span>
+          </a>
+
           {published ? (
             <Button href={repoUrl} variant="secondary" className="hidden !px-3 !py-2 sm:flex sm:!px-4">
               <GitBranch size={16} aria-hidden />
@@ -115,18 +135,28 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-4 py-3 text-sm font-medium text-emerald-400 hover:bg-emerald-500/25 transition-all shadow-sm"
+            >
+              <Globe size={16} />
+              <span>成熟线上站（免安装直接体验）</span>
+            </a>
+
             {published ? (
               <a
                 href={repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 flex items-center gap-2 rounded-lg px-4 py-3 text-sm text-accent hover:bg-surface"
+                className="mt-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-accent hover:bg-white/10"
               >
                 <GitBranch size={16} aria-hidden />
-                在 GitHub 上查看
+                <span>在 GitHub 上查看</span>
               </a>
             ) : (
-              <span className="mt-2 flex items-center gap-2 rounded-lg px-4 py-3 font-mono text-xs text-paper-muted">
+              <span className="mt-1 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs text-paper-muted">
                 <GitBranch size={16} aria-hidden />
                 {siteConfig.release.badge}
               </span>

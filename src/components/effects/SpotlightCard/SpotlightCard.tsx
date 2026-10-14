@@ -33,25 +33,12 @@ export function SpotlightCard({ children, className = '' }: SpotlightCardProps) 
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className={`group/spot relative overflow-hidden ${className}`}
-      style={{
-        background:
-          'radial-gradient(600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgb(var(--color-accent-rgb) / 0.06), transparent 40%)',
-      }}
+      className={`group/spot relative overflow-hidden spotlight-card-bg ${className}`}
     >
       {/* 边框光晕：用 mask 把渐变裁进 1px 边框 */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/spot:opacity-100"
-        style={{
-          padding: 1,
-          background:
-            'radial-gradient(320px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgb(var(--color-accent-rgb) / 0.55), transparent 45%)',
-          WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-          WebkitMaskComposite: 'xor',
-          mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-          maskComposite: 'exclude',
-        }}
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/spot:opacity-100 spotlight-card-border"
       />
 
       {children}

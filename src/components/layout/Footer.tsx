@@ -21,6 +21,17 @@ export function Footer() {
             <p className="label-mono mb-4 text-accent">开源</p>
             <ul className="space-y-2.5">
               <li>
+                <a
+                  href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-emerald-400 font-medium transition-colors hover:text-emerald-300"
+                >
+                  <span>🌐 成熟线上直接体验</span>
+                  <span className="text-[10px] rounded bg-emerald-500/20 px-1 py-0.5 border border-emerald-500/30">免安装</span>
+                </a>
+              </li>
+              <li>
                 {published ? (
                   <a
                     href={repoUrl}
