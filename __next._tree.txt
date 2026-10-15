@@ -1,4 +1,4 @@
-:HL["/bosszhipin-job-bot-site/_next/static/chunks/03j57346k4x_s.css","style"]
+:HL["/bosszhipin-job-bot-site/_next/static/chunks/1sh3mn9b5b5sb.css","style"]
 :HL["/bosszhipin-job-bot-site/_next/static/chunks/33vjxwemule16.css","style"]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"c45IEZrRGonHFC5xV1V0Y","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"rwbzctMlS38XjSId84juZ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
