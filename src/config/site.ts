@@ -252,16 +252,22 @@ export const siteConfig: SiteConfig = {
 
   downloads: [
     {
-      platform: '成熟线上演示站 (免安装 · 强烈推荐)',
+      platform: 'Windows 桌面安装包 (.exe · 推荐)',
+      icon: 'Monitor',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI_v0.5.0_x64-setup.exe',
+      note: 'v0.5.0 稳定版 · 浏览器点击直接下载 · 双击极速安装',
+    },
+    {
+      platform: 'Windows 企业安装包 (.msi)',
+      icon: 'Monitor',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64_zh-CN.msi',
+      note: 'MSI 标准打包 · 支持企业静默部署与组策略分发',
+    },
+    {
+      platform: '成熟线上演示站 (免安装 · 极速预览)',
       icon: 'Globe',
       href: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site/',
       note: '浏览器直接打开即用，无需本地安装运行',
-    },
-    {
-      platform: 'Windows (Tauri 2 客户端)',
-      icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases',
-      note: '安装包 JobKoi-AI-setup.exe 双击运行',
     },
     {
       platform: 'macOS (规划中)',

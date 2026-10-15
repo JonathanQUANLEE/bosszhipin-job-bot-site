@@ -72,7 +72,7 @@ export function Start() {
               {published ? '下载桌面客户端' : '软件在活跃开发中'}
             </h2>
             <p className="mt-3 text-sm text-paper-muted leading-relaxed">
-              {published ? '首次运行前请确保已安装 Chrome。' : siteConfig.release.note}
+              {published ? '首次运行前请确保已安装 Chrome。点击对应安装包将由浏览器直接下载至本地，双击即可极速安装运行。' : siteConfig.release.note}
             </p>
 
             <div className="mt-8 grid gap-3">

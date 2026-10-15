@@ -72,9 +72,10 @@
 
 ### 途径二：下载 Windows 桌面客户端
 
-1. 前往 **[JobKoi-AI Releases 官方发布页](https://github.com/JonathanQUANLEE/JobKoi-AI/releases)**；
-2. 下载最新版本客户端安装包 `JobKoi-AI-setup.exe`；
-3. 双击安装运行，首次启动请确保本机已安装 Google Chrome。
+- **[👉 点击直接下载 Windows 桌面安装包 (.exe · 推荐)](https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI_v0.5.0_x64-setup.exe)**
+- **[👉 点击直接下载 Windows 企业安装包 (.msi)](https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64_zh-CN.msi)**
+- 或前往 **[JobKoi-AI Releases 官方发布页](https://github.com/JonathanQUANLEE/JobKoi-AI/releases)** 查看所有历史版本与更新说明；
+- 双击安装包即可极速安装运行，首次启动请确保本机已安装 Google Chrome。
 
 ### 途径三：开发者本地运行宣发页源码
 

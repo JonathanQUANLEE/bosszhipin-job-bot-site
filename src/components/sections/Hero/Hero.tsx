@@ -71,7 +71,16 @@ export function Hero() {
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
           <Button
+            href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI_v0.5.0_x64-setup.exe"
+            className="w-full justify-center sm:w-auto"
+          >
+            <Download size={18} aria-hidden />
+            <span>立即下载 Windows 客户端 (v0.5.0)</span>
+          </Button>
+
+          <Button
             href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+            variant="secondary"
             className="w-full justify-center sm:w-auto"
           >
             <Sparkles size={18} aria-hidden />
@@ -82,19 +91,10 @@ export function Hero() {
           <Button
             href={repoUrl}
             variant="secondary"
-            className="w-full justify-center sm:w-auto"
+            className="w-full justify-center sm:w-auto text-slate-300"
           >
             <GitBranch size={18} aria-hidden />
             <span>GitHub 开源主仓</span>
-          </Button>
-
-          <Button
-            href="#start"
-            variant="secondary"
-            className="w-full justify-center sm:w-auto text-slate-300"
-          >
-            <Download size={18} aria-hidden />
-            <span>下载客户端 / 源码</span>
           </Button>
         </div>
 
