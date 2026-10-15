@@ -5,6 +5,7 @@ import { GitBranch, Download } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { HERO_BACKGROUND } from '@/config/effects';
 import { Button } from '@/components/ui/Button';
+import { useLatestRelease } from '@/hooks/use-latest-release';
 import { HeroStatsDrawer } from './HeroStatsDrawer';
 
 /**
@@ -32,6 +33,7 @@ const HeroBackground = BACKGROUNDS[HERO_BACKGROUND];
  */
 export function Hero() {
   const repoUrl = siteConfig.github.repoUrl;
+  const { exe: downloadExeUrl } = useLatestRelease();
 
   return (
     <section id="top" className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-40 sm:pb-32">
@@ -59,7 +61,8 @@ export function Hero() {
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
           <Button
-            href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
+            href={downloadExeUrl}
+            external={false}
             className="w-full justify-center sm:w-auto text-base !px-7 !py-3.5 shadow-xl shadow-purple-950/40 hover:scale-105 transition-all"
           >
             <Download size={18} aria-hidden />

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Ticket, Scissors, CheckCircle2, GitBranch } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { useLatestRelease } from '@/hooks/use-latest-release';
 
 /**
  * TearTicket —— 物理撕票根开启求职通行证
@@ -13,6 +14,7 @@ import { siteConfig } from '@/config/site';
  */
 export function TearTicket() {
   const [isTorn, setIsTorn] = useState(false);
+  const { exe: downloadExeUrl } = useLatestRelease();
 
   return (
     <div className="flex flex-col items-center select-none w-full max-w-xl mx-auto">
@@ -116,9 +118,7 @@ export function TearTicket() {
 
                   <div className="mt-3 flex flex-col gap-1.5 w-full">
                     <a
-                      href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={downloadExeUrl}
                       className="flex items-center justify-center gap-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 px-3 py-2 text-xs font-bold text-white transition-colors shadow-md"
                     >
                       <span>免费下载客户端</span>

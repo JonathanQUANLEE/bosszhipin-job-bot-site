@@ -3,6 +3,7 @@
 import { ArrowRight, GitBranch, Download, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
+import { useLatestRelease } from '@/hooks/use-latest-release';
 import { TearTicket } from '@/components/effects/TearTicket';
 import { PulseHeart } from '@/components/effects/PulseHeart';
 
@@ -11,6 +12,7 @@ import { PulseHeart } from '@/components/effects/PulseHeart';
  */
 export function Start() {
   const repoUrl = siteConfig.github.repoUrl;
+  const { exe: downloadExeUrl, msi: downloadMsiUrl } = useLatestRelease();
 
   return (
     <section id="start" className="border-t border-white/10 py-20 sm:py-32 relative overflow-hidden bg-[#07050e]">
@@ -78,7 +80,8 @@ export function Start() {
 
             <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
               <Button
-                href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
+                href={downloadExeUrl}
+                external={false}
                 className="w-full justify-center !py-3.5 text-sm font-semibold shadow-xl shadow-purple-900/30"
               >
                 <Download size={16} />
@@ -86,9 +89,7 @@ export function Start() {
               </Button>
 
               <a
-                href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={downloadMsiUrl}
                 className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors py-1"
               >
                 <span>或者下载 MSI 企业安装包</span>

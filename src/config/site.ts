@@ -144,7 +144,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       q: '软件收费吗？如何下载桌面客户端？',
-      a: '完全免费，基于 MIT 协议纯净开源。没有流氓广告，没有隐藏付费。前往 GitHub 仓库 Releases 页面即可直接下载 Windows 客户端安装包 JobKoi-AI-setup.exe。',
+      a: '完全免费，基于 MIT 协议纯净开源。没有流氓广告，没有隐藏付费。点击页面任意"免费下载"按钮即可直接下载 Windows 客户端安装包 JobKoi-AI-setup.exe，无需跳转 GitHub。',
     },
   ],
 
@@ -253,13 +253,13 @@ export const siteConfig: SiteConfig = {
     {
       platform: 'Windows 桌面安装包 (.exe · 推荐)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64-setup.exe',
       note: '官方最新稳定版 · 纯净无广告 · 下载后双击极速安装',
     },
     {
       platform: 'Windows 企业安装包 (.msi)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64_zh-CN.msi',
       note: 'MSI 标准格式 · 支持企业静默部署与多机配置',
     },
     {
