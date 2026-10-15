@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { InView } from '@/components/effects/InView/InView';
-import { GitBranch, Terminal, Shield, Star, Code2, Lock } from 'lucide-react';
+import { GitBranch, Shield, Star, Code2, Lock } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 /**
@@ -27,14 +27,10 @@ export function Creator() {
       <div className="container-content relative z-10">
         <InView>
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-            <span className="text-xs font-mono font-medium text-purple-300 px-3.5 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 inline-flex items-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
-              <Terminal size={13} className="text-purple-400" />
-              <span>极客档案 · 执剑人宣言</span>
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               在冷血的算法面前，递上一把反抗的剑
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-300">
+            <p className="mt-4 text-base sm:text-lg text-slate-300">
               这是一个由独立开发者发起并持续维护的开源项目。纯粹、透明、用技术守护每一位求职者的尊严。
             </p>
           </div>
@@ -85,11 +81,11 @@ export function Creator() {
                 <p className="font-mono text-xs text-purple-300 mt-0.5">
                   @JonathanQUANLEE
                 </p>
-                <div className="mt-2.5 inline-block rounded-full bg-purple-500/15 border border-purple-500/30 px-3 py-0.5 text-[11px] text-purple-200">
+                <div className="mt-2.5 inline-block rounded-full bg-purple-500/15 border border-purple-500/30 px-3 py-0.5 text-xs text-purple-200">
                   逆向工程与自动化独立执剑人
                 </div>
 
-                <div className="mt-5 w-full pt-4 border-t border-white/5 flex flex-wrap justify-center gap-1.5 font-mono text-[10px]">
+                <div className="mt-5 w-full pt-4 border-t border-white/5 flex flex-wrap justify-center gap-1.5 font-mono text-xs">
                   <span className="rounded bg-white/5 border border-white/10 px-2 py-0.5 text-slate-300">Tauri 2</span>
                   <span className="rounded bg-white/5 border border-white/10 px-2 py-0.5 text-slate-300">Python</span>
                   <span className="rounded bg-white/5 border border-white/10 px-2 py-0.5 text-slate-300">CDP 0-Driver</span>
@@ -120,14 +116,14 @@ export function Creator() {
                       <Star size={14} className="fill-amber-400" />
                       <span className="font-bold text-sm">3,200+ 收藏</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 mt-0.5">GitHub 全球开发者星标信赖</p>
+                    <p className="text-xs text-slate-400 mt-1">GitHub 全球开发者星标信赖</p>
                   </div>
                   <div className="rounded-xl p-3 bg-white/[0.03] border border-white/5">
                     <div className="flex items-center gap-1.5 text-emerald-400">
                       <Lock size={14} />
                       <span className="font-bold text-sm">100% 本地安全</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 mt-0.5">代码全开源，接受全球审计</p>
+                    <p className="text-xs text-slate-400 mt-1">代码全开源，接受全球审计</p>
                   </div>
                 </div>
 
@@ -137,9 +133,9 @@ export function Creator() {
                     href={repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs transition-all shadow-lg shadow-purple-600/30 hover:scale-105"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/30 hover:scale-105"
                   >
-                    <GitBranch size={14} />
+                    <GitBranch size={16} />
                     <span>访问作者 GitHub 主页与开源仓库</span>
                   </a>
                 </div>

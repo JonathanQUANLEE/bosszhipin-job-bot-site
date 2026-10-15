@@ -44,11 +44,11 @@ export function SpringCheck({ items }: SpringCheckProps) {
   return (
     <div className="w-full space-y-3">
       {/* 顶部批量操作 */}
-      <div className="flex items-center justify-between pb-2 text-xs font-mono text-paper-muted">
+      <div className="flex items-center justify-between pb-2 text-sm font-medium text-slate-300">
         <span>传统手动求职痛点（点击方框将其淘汰）：</span>
         <button
           onClick={eliminateAll}
-          className="rounded-md border border-red-500/30 bg-red-500/10 px-2.5 py-1 text-red-400 transition-colors hover:bg-red-500/20"
+          className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-400 transition-colors hover:bg-red-500/20"
         >
           全部打叉淘汰 ✕
         </button>
@@ -141,17 +141,17 @@ export function SpringCheck({ items }: SpringCheckProps) {
                   </div>
 
                   {isEliminated && (
-                    <span className="shrink-0 rounded bg-red-500/20 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-red-400">
+                    <span className="shrink-0 rounded-full bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-400 border border-red-500/30">
                       已淘汰 ✕
                     </span>
                   )}
                 </div>
 
-                <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                   <span className="text-emerald-400 font-medium">
                     ✓ 锦鲤方案：{item.solution}
                   </span>
-                  <span className="font-mono text-paper-muted text-[11px]">
+                  <span className="text-xs text-slate-400">
                     ({item.impact})
                   </span>
                 </div>

@@ -48,11 +48,11 @@ export function MorningBriefCard({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className={`text-sm font-bold ${isParchment ? 'text-stone-900' : 'text-white'}`}>
+              <h3 className={`text-base font-bold ${isParchment ? 'text-stone-900' : 'text-white'}`}>
                 {viewingDate ? '历史战报回看' : '投递早报 · 昨日反馈归纳复盘'}
               </h3>
               <span
-                className={`text-[10px] px-2 py-0.5 rounded-full border font-mono font-medium ${
+                className={`text-xs px-2.5 py-0.5 rounded-full border font-mono font-medium ${
                   isParchment
                     ? 'bg-amber-100 text-amber-800 border-amber-300'
                     : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
@@ -61,7 +61,7 @@ export function MorningBriefCard({
                 每日 09:00 定时结算
               </span>
             </div>
-            <p className={`text-xs mt-0.5 ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>
+            <p className={`text-sm mt-0.5 ${isParchment ? 'text-stone-500' : 'text-stone-300'}`}>
               统计周期: {brief.yesterdayDate} 昨日全天多平台投递成效复盘
             </p>
           </div>
@@ -97,30 +97,30 @@ export function MorningBriefCard({
       {/* 核心指标四宫格 */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className={`rounded-xl p-3 border ${isParchment ? 'bg-white border-stone-200' : 'bg-black/30 border-white/5'}`}>
-          <span className={`text-[11px] font-mono ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>昨日总投递</span>
+          <span className={`text-xs font-medium ${isParchment ? 'text-stone-600' : 'text-slate-300'}`}>昨日总投递</span>
           <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-amber-500">
-            {brief.totalSent} <span className="text-xs font-normal font-sans">家</span>
+            {brief.totalSent} <span className="text-sm font-normal font-sans">家</span>
           </p>
         </div>
 
         <div className={`rounded-xl p-3 border ${isParchment ? 'bg-white border-stone-200' : 'bg-black/30 border-white/5'}`}>
-          <span className={`text-[11px] font-mono ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>HR 回复</span>
+          <span className={`text-xs font-medium ${isParchment ? 'text-stone-600' : 'text-slate-300'}`}>HR 回复</span>
           <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-emerald-500">
-            {brief.repliedCount} <span className="text-xs font-normal font-sans">家</span>
+            {brief.repliedCount} <span className="text-sm font-normal font-sans">家</span>
           </p>
         </div>
 
         <div className={`rounded-xl p-3 border ${isParchment ? 'bg-white border-stone-200' : 'bg-black/30 border-white/5'}`}>
-          <span className={`text-[11px] font-mono ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>综合回复率</span>
+          <span className={`text-xs font-medium ${isParchment ? 'text-stone-600' : 'text-slate-300'}`}>综合回复率</span>
           <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-cyan-500">
             {brief.replyRate}%
           </p>
         </div>
 
         <div className={`rounded-xl p-3 border ${isParchment ? 'bg-white border-stone-200' : 'bg-black/30 border-white/5'}`}>
-          <span className={`text-[11px] font-mono ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>等待回复</span>
+          <span className={`text-xs font-medium ${isParchment ? 'text-stone-600' : 'text-slate-300'}`}>等待回复</span>
           <p className={`mt-1 font-mono text-xl sm:text-2xl font-bold ${isParchment ? 'text-stone-600' : 'text-stone-300'}`}>
-            {brief.unrepliedCount} <span className="text-xs font-normal font-sans">家</span>
+            {brief.unrepliedCount} <span className="text-sm font-normal font-sans">家</span>
           </p>
         </div>
       </div>
@@ -141,7 +141,7 @@ export function MorningBriefCard({
             <div className="font-mono text-right">
               <span>{p.sent} 投 / </span>
               <strong style={{ color: p.color }}>{p.replied} 答</strong>
-              <span className="text-[10px] text-stone-400 ml-1">({p.rate}%)</span>
+              <span className="text-xs text-slate-400 ml-1">({p.rate}%)</span>
             </div>
           </div>
         ))}

@@ -22,13 +22,13 @@ export function ChartHeader({
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h3 className={`text-sm font-bold flex items-center gap-2 ${isParchment ? 'text-stone-900' : 'text-white'}`}>
+        <h3 className={`text-base font-bold flex items-center gap-2 ${isParchment ? 'text-stone-900' : 'text-white'}`}>
           <span>各平台每日投递趋势折线图</span>
-          <span className={`text-[11px] font-normal ${isParchment ? 'text-stone-500' : 'text-stone-400'}`}>
+          <span className={`text-xs font-normal ${isParchment ? 'text-stone-500' : 'text-slate-300'}`}>
             (BOSS直聘 · 猎聘 · 前程无忧)
           </span>
         </h3>
-        <p className={`text-xs mt-0.5 ${isParchment ? 'text-stone-600' : 'text-stone-400'}`}>
+        <p className={`text-sm mt-0.5 ${isParchment ? 'text-stone-600' : 'text-slate-300'}`}>
           多平台投递走势对比与实时动态曲线
         </p>
       </div>

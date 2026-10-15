@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { GitBranch, Sparkles, Download } from 'lucide-react';
+import { GitBranch, Download } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { HERO_BACKGROUND } from '@/config/effects';
 import { Button } from '@/components/ui/Button';
@@ -27,8 +27,8 @@ const HeroBackground = BACKGROUNDS[HERO_BACKGROUND];
 /**
  * Hero 区块。
  *
- * 表现层：WebGL 背景（Aurora / Beams 可切）+ DecryptedText（解密字效标题）
- * 内容层：tagline + description + CTA + HeroStatsDrawer 可折叠指标与走势抽屉
+ * 表现层：极简苹果叙事风格 + WebGL 柔和极光背景
+ * 内容层：温情故事叙事 + 核心行动 CTA + 指标折叠抽屉
  */
 export function Hero() {
   const repoUrl = siteConfig.github.repoUrl;
@@ -45,21 +45,16 @@ export function Hero() {
       />
 
       <div className="container-content relative z-10">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 backdrop-blur-md shadow-[0_0_20px_rgba(192,132,252,0.12)]">
-          <Sparkles size={14} className="text-purple-300 animate-pulse" />
-          <span className="text-xs font-medium text-purple-200">开源纯净 · 保护隐私 · 彻底终结手动海投内耗</span>
-        </div>
-
         <h1 className="max-w-4xl font-display text-4xl leading-[1.15] font-extrabold sm:text-6xl lg:text-7xl text-white">
-          <span>别再把时间</span>
+          <span>不要一个人</span>
           <br />
           <span className="bg-gradient-to-r from-purple-200 via-white to-indigo-200 bg-clip-text text-transparent">
-            浪费在手动海投上了
+            在海投了
           </span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:mt-8 sm:text-lg">
-          三大招聘平台后台自动帮你盯盘、筛选优质岗位、真诚打招呼。自带免费 AI，不花一分钱，保护个人隐私，把找工作的尊严还给自己。
+          无数个疲惫的深夜，面对成百上千个岗位与石沉大海的已读不回，找工作不该是一场消耗自尊的机械重复。JobKoi 替你穿过算法的喧嚣，全天候甄选真实机会、真诚沟通，把时间留给生活与真正的面试。
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">

@@ -17,13 +17,13 @@ export function TearTicket() {
   return (
     <div className="flex flex-col items-center select-none w-full max-w-xl mx-auto">
       {/* 顶部引导提示 */}
-      <div className="mb-4 flex items-center justify-between w-full text-xs font-mono text-white/80">
-        <span className="flex items-center gap-1.5 text-accent font-semibold">
-          <Ticket size={15} />
+      <div className="mb-4 flex items-center justify-between w-full text-sm font-medium text-slate-300">
+        <span className="flex items-center gap-1.5 text-purple-300 font-semibold">
+          <Ticket size={16} />
           <span>求职早报 · 极客专属巡航通行证</span>
         </span>
         <span className="flex items-center gap-1.5 text-xs text-amber-300 font-medium">
-          <Scissors size={13} className="text-amber-300" />
+          <Scissors size={14} className="text-amber-300" />
           <span>{isTorn ? '已亲手撕开解锁！' : '亲手撕开右侧副券开启'}</span>
         </span>
       </div>
@@ -42,8 +42,8 @@ export function TearTicket() {
                   JOBKOI BOARDING PASS
                 </span>
               </div>
-              <span className="rounded-full bg-accent/20 border border-accent/40 px-2.5 py-0.5 font-mono text-[10px] text-accent font-bold">
-                VIP #8848 · 免安装
+              <span className="rounded-full bg-accent/20 border border-accent/40 px-2.5 py-0.5 text-xs text-accent font-semibold">
+                特权通行证
               </span>
             </div>
 
@@ -51,19 +51,19 @@ export function TearTicket() {
               <h3 className="text-xl font-bold text-white tracking-wide">
                 全自动多平台求职特权通行证
               </h3>
-              <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
-                凭此凭证即可解锁三大招聘平台 0 驱动并发巡航、拟人化随机延时防封算法与多模态结构化简历解析。内置免费 API Key，开箱即用。
+              <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                凭此凭证即可解锁三大招聘平台并发巡航、拟人化随机延时防封算法与多模态结构化简历解析。内置免费 AI，开箱即用。
               </p>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-mono font-semibold text-slate-300">
-              <span className="rounded-md bg-white/5 px-2 py-0.5 border border-white/10 text-emerald-400">
+            <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-slate-300">
+              <span className="rounded-md bg-white/5 px-2.5 py-1 border border-white/10 text-emerald-400">
                 ✓ 100% 本地离线
               </span>
-              <span className="rounded-md bg-white/5 px-2 py-0.5 border border-white/10 text-purple-300">
+              <span className="rounded-md bg-white/5 px-2.5 py-1 border border-white/10 text-purple-300">
                 ✓ 内置免费大模型
               </span>
-              <span className="rounded-md bg-white/5 px-2 py-0.5 border border-white/10 text-amber-300">
+              <span className="rounded-md bg-white/5 px-2.5 py-1 border border-white/10 text-amber-300">
                 ✓ 自动屏蔽外包培训
               </span>
             </div>
@@ -91,14 +91,11 @@ export function TearTicket() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsTorn(true)}
-                  className="cursor-pointer flex flex-col items-center justify-center text-center p-4 rounded-xl border-2 border-dashed border-accent/40 bg-accent/10 hover:bg-accent/20 transition-all w-full h-full shadow-sm"
+                  className="cursor-pointer flex flex-col items-center justify-center text-center p-4 rounded-xl border-2 border-dashed border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/20 transition-all w-full h-full shadow-sm"
                 >
-                  <Scissors size={24} className="text-accent animate-bounce" />
-                  <span className="mt-2 text-xs font-bold text-white tracking-wider">
+                  <Scissors size={24} className="text-purple-300 animate-bounce" />
+                  <span className="mt-2 text-sm font-bold text-white tracking-wide">
                     亲手撕下此联
-                  </span>
-                  <span className="mt-0.5 font-mono text-[9px] font-semibold text-accent">
-                    TEAR TO UNLOCK
                   </span>
                 </motion.div>
               ) : (
@@ -113,11 +110,8 @@ export function TearTicket() {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md">
                     <CheckCircle2 size={20} />
                   </div>
-                  <span className="mt-2 text-xs font-bold text-emerald-400">
+                  <span className="mt-2 text-sm font-bold text-emerald-400">
                     已成功解锁！
-                  </span>
-                  <span className="font-mono text-[10px] text-paper-muted mt-0.5">
-                    PASS_READY
                   </span>
 
                   <div className="mt-3 flex flex-col gap-1.5 w-full">
@@ -125,7 +119,7 @@ export function TearTicket() {
                       href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 px-3 py-1.5 text-xs font-bold text-white transition-colors shadow-md"
+                      className="flex items-center justify-center gap-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 px-3 py-2 text-xs font-bold text-white transition-colors shadow-md"
                     >
                       <span>免费下载客户端</span>
                     </a>
@@ -133,9 +127,9 @@ export function TearTicket() {
                       href={siteConfig.github.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-1 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors"
+                      className="flex items-center justify-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-1.5 text-xs font-medium text-slate-300 hover:bg-white/10 transition-colors"
                     >
-                      <GitBranch size={12} className="text-purple-300" />
+                      <GitBranch size={13} className="text-purple-300" />
                       <span>在 GitHub 关注</span>
                     </a>
                   </div>

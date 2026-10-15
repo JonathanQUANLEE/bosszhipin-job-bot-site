@@ -23,13 +23,13 @@ export function SectionHeading({
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
   return (
-    <div className={`max-w-2xl ${alignment}`}>
+    <div className={`max-w-3xl ${alignment}`}>
       {eyebrow ? <p className="label-mono mb-3 text-accent">{eyebrow}</p> : null}
-      <h2 className="font-display text-2xl leading-tight text-paper sm:text-3xl lg:text-4xl">
+      <h2 className="font-display text-3xl leading-tight text-white sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
         <BlurText text={title} />
       </h2>
       {description ? (
-        <p className="mt-3 text-sm leading-relaxed text-paper-muted sm:mt-4 sm:text-base">
+        <p className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
           {description}
         </p>
       ) : null}

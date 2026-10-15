@@ -80,8 +80,8 @@ function AiGreetingBentoCard() {
               <p className="text-xs text-slate-300 leading-relaxed">
                 “您好！看到贵团队正在招聘相关岗位，我的背景与岗位职责高度契合，特别是在实际项目落地方面有深入积累。方便与您进一步沟通交流吗？”
               </p>
-              <div className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
-                <CheckCircle2 size={13} />
+              <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
+                <CheckCircle2 size={14} />
                 <span>已对齐岗位关键词 · 告别生硬群发</span>
               </div>
             </div>
@@ -170,10 +170,7 @@ export function Features() {
       <div className="container-content relative z-10">
         <InView>
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
-            <span className="text-xs font-medium text-purple-300 px-3.5 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
-              核心优势
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               简单直观，把找工作变成一件轻松的事
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">

@@ -33,13 +33,10 @@ export function Start() {
 
         {/* 章节标题 */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs font-medium text-purple-300 px-3.5 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
-            开始使用
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
             把时间留给准备面试，机械琐事交给它
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300">
+          <p className="mt-4 text-base sm:text-lg text-slate-300">
             纯净绿色、开箱即用。双击极速安装，无需配置任何复杂的 Python 或开发环境。
           </p>
         </div>
@@ -50,8 +47,8 @@ export function Start() {
           <div className="min-w-0 rounded-3xl border border-white/10 bg-[#120e20]/80 p-7 sm:p-9 backdrop-blur-xl flex flex-col justify-between shadow-2xl">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium text-purple-300">官方安装通道</span>
-                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                <span className="text-sm font-semibold text-purple-300">官方安装通道</span>
+                <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
                   推荐普通用户
                 </span>
               </div>
@@ -104,8 +101,8 @@ export function Start() {
           <div className="min-w-0 rounded-3xl border border-white/10 bg-[#120e20]/80 p-7 sm:p-9 backdrop-blur-xl flex flex-col justify-between shadow-2xl">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium text-slate-400">开发者极客通道</span>
-                <span className="text-[11px] font-mono text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">
+                <span className="text-sm font-semibold text-slate-300">开发者极客通道</span>
+                <span className="text-xs font-mono text-purple-300 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20">
                   面向开源开发者
                 </span>
               </div>
@@ -122,7 +119,7 @@ export function Start() {
                   <span className="h-2 w-2 rounded-full bg-rose-500/80" />
                   <span className="h-2 w-2 rounded-full bg-amber-500/80" />
                   <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
-                  <span className="ml-2 font-mono text-[11px] text-slate-400">终端命令</span>
+                  <span className="ml-2 font-mono text-xs text-slate-400">终端命令</span>
                 </div>
                 <pre className="overflow-x-auto p-4 font-mono text-xs text-slate-300 leading-relaxed">
                   <code>{`git clone https://github.com/JonathanQUANLEE/JobKoi-AI.git

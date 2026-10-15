@@ -66,20 +66,16 @@ export function PulseHeart({ initialCount = 1204 }: PulseHeartProps) {
 
         {/* 文字与滚轮计数值 */}
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs font-semibold text-paper">
-            {liked ? '已点亮 Star · 感谢支持！' : 'Star on GitHub'}
+          <span className="font-mono text-sm font-semibold text-white">
+            {liked ? '已点亮 Star · 感谢支持！' : '在 GitHub 点赞支持'}
           </span>
           <span className="rounded bg-black/40 px-2 py-0.5 font-mono text-xs font-bold text-amber-400 border border-white/5">
             {count}
           </span>
         </div>
 
-        <GitBranch size={14} className="text-paper-muted group-hover:text-accent transition-colors" />
+        <GitBranch size={16} className="text-slate-400 group-hover:text-purple-300 transition-colors" />
       </motion.button>
-
-      <span className="font-mono text-[10px] text-paper-muted flex items-center gap-1">
-        <span>点星将同步直达 GitHub 仓库</span>
-      </span>
     </div>
   );
 }
