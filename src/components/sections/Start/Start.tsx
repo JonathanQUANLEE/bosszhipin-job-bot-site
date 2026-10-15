@@ -4,6 +4,7 @@ import { ArrowRight, GitBranch, Download, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 import { useLatestRelease } from '@/hooks/use-latest-release';
+import { useSmartDownload } from '@/hooks/use-smart-download';
 import { TearTicket } from '@/components/effects/TearTicket';
 import { PulseHeart } from '@/components/effects/PulseHeart';
 
@@ -12,7 +13,8 @@ import { PulseHeart } from '@/components/effects/PulseHeart';
  */
 export function Start() {
   const repoUrl = siteConfig.github.repoUrl;
-  const { exe: officialExeUrl, exeFast, msiFast } = useLatestRelease();
+  const { exe: officialExeUrl, msi: officialMsiUrl } = useLatestRelease();
+  const smartDownload = useSmartDownload();
 
   return (
     <section id="start" className="border-t border-white/10 py-20 sm:py-32 relative overflow-hidden bg-[#07050e]">
@@ -80,30 +82,43 @@ export function Start() {
 
             <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
               <Button
-                href={exeFast}
+                href={officialExeUrl}
                 external={false}
+                onClick={(e) => {
+                  e.preventDefault();
+                  void smartDownload('exe');
+                }}
                 className="w-full justify-center !py-3.5 text-sm font-semibold shadow-xl shadow-purple-900/30"
               >
                 <Download size={16} />
-                <span>国内高速下载 Windows 客户端 (.exe)</span>
+                <span>免费下载 Windows 客户端 (.exe · 自动选择最快通道)</span>
               </Button>
 
               <div className="flex items-center justify-center gap-3 text-xs">
                 <a
-                  href={msiFast}
+                  href={officialMsiUrl}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void smartDownload('msi');
+                  }}
                   className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors py-1"
                 >
-                  <span>MSI 企业安装包（加速）</span>
+                  <span>MSI 企业安装包</span>
                 </a>
                 <span className="text-slate-600">·</span>
                 <a
                   href={officialExeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors py-1"
                 >
                   <span>GitHub 官方直链（海外用户）</span>
                   <ArrowRight size={12} />
                 </a>
               </div>
+              <p className="text-center text-[11px] text-slate-500">
+                点击后自动探测可用下载通道（加速镜像 → 官方直链），无需手动选择
+              </p>
             </div>
           </div>
 

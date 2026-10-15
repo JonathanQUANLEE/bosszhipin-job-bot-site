@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, MouseEventHandler } from 'react';
 
 type Variant = 'primary' | 'secondary' | 'ghost';
 
@@ -18,6 +18,8 @@ interface ButtonProps {
   external?: boolean;
   /** 禁用：渲染成不可点的 span（用于「即将开源」等占位） */
   disabled?: boolean;
+  /** 兼容 <a>/<button> 两种渲染形态 */
+  onClick?: MouseEventHandler<HTMLElement>;
   className?: string;
 }
 
@@ -31,6 +33,7 @@ export function Button({
   variant = 'primary',
   external,
   disabled = false,
+  onClick,
   className = '',
 }: ButtonProps) {
   const base =
@@ -54,6 +57,7 @@ export function Button({
     return (
       <a
         href={href}
+        onClick={onClick}
         className={cls}
         {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
@@ -62,5 +66,9 @@ export function Button({
     );
   }
 
-  return <button type="button" className={cls}>{children}</button>;
+  return (
+    <button type="button" onClick={onClick} className={cls}>
+      {children}
+    </button>
+  );
 }
