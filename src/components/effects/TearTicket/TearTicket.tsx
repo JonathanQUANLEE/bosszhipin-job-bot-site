@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Ticket, Scissors, CheckCircle2, GitBranch, Globe } from 'lucide-react';
+import { Ticket, Scissors, CheckCircle2, GitBranch } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 /**
@@ -122,13 +122,12 @@ export function TearTicket() {
 
                   <div className="mt-3 flex flex-col gap-1.5 w-full">
                     <a
-                      href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+                      href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 px-3 py-1.5 text-xs font-bold text-emerald-300 hover:bg-emerald-500/30 transition-colors shadow-md"
+                      className="flex items-center justify-center gap-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 px-3 py-1.5 text-xs font-bold text-white transition-colors shadow-md"
                     >
-                      <Globe size={13} className="text-emerald-400" />
-                      <span>线上直接体验</span>
+                      <span>免费下载客户端</span>
                     </a>
                     <a
                       href={siteConfig.github.repoUrl}
@@ -136,8 +135,8 @@ export function TearTicket() {
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-1 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors"
                     >
-                      <GitBranch size={12} className="text-accent" />
-                      <span>GitHub 仓库</span>
+                      <GitBranch size={12} className="text-purple-300" />
+                      <span>在 GitHub 关注</span>
                     </a>
                   </div>
                 </motion.div>

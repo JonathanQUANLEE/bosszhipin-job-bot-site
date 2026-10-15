@@ -1,26 +1,19 @@
 'use client';
 
-import { ArrowRight, GitBranch } from 'lucide-react';
+import { ArrowRight, GitBranch, Download, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/Button';
-import { Icon } from '@/components/ui/Icon';
 import { TearTicket } from '@/components/effects/TearTicket';
 import { PulseHeart } from '@/components/effects/PulseHeart';
 
 /**
- * Start —— 开始使用与终极仪式感转化
- *
- * 融合两大转化交互：
- * 1. TearTicket：亲手撕下带齿孔的求职通行证开启体验（用户指定必用）；
- * 2. PulseHeart：GitHub 点 Star 心跳动效与数字自增滚轮；
- * 3. 桌面端下载入口与源码一键启动命令。
+ * Start —— 开始使用（极简清晰，单一入口，彻底去重）
  */
 export function Start() {
   const repoUrl = siteConfig.github.repoUrl;
-  const published = siteConfig.release.published && Boolean(repoUrl);
 
   return (
-    <section id="start" className="border-t border-line py-16 sm:py-28 relative overflow-hidden">
+    <section id="start" className="border-t border-white/10 py-20 sm:py-32 relative overflow-hidden bg-[#07050e]">
       {/* 背景柔光晕 */}
       <div
         aria-hidden
@@ -28,128 +21,127 @@ export function Start() {
       />
 
       <div className="container-content relative">
-        {/* 顶部高潮：TearTicket 亲手撕票根仪式 */}
-        <div className="mb-16 sm:mb-20">
+        {/* 顶部：TearTicket 亲手撕票根开启体验 */}
+        <div className="mb-14 sm:mb-16">
           <TearTicket />
         </div>
 
         {/* GitHub 点 Star 心跳支持按钮 */}
         <div className="mb-16 flex justify-center">
-          <PulseHeart initialCount={1204} />
+          <PulseHeart initialCount={3200} />
         </div>
 
-        {/* 核心通道推荐：线上免安装直接体验 */}
-        <div className="mb-12 rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-purple-950/30 to-indigo-950/40 p-6 sm:p-8 backdrop-blur-xl shadow-[0_0_30px_rgba(16,185,129,0.1)] flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/15 px-3 py-1 font-mono text-xs text-emerald-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>成熟线上正式站 · 推荐免安装直接用</span>
+        {/* 章节标题 */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-medium text-purple-300 px-3.5 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
+            开始使用
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            把时间留给准备面试，机械琐事交给它
+          </h2>
+          <p className="mt-3 text-sm sm:text-base text-slate-300">
+            纯净绿色、开箱即用。双击极速安装，无需配置任何复杂的 Python 或开发环境。
+          </p>
+        </div>
+
+        {/* 下载与源码双通道（清晰去重） */}
+        <div className="grid gap-8 lg:grid-cols-2 items-stretch max-w-5xl mx-auto">
+          {/* 下载客户端通道 */}
+          <div className="min-w-0 rounded-3xl border border-white/10 bg-[#120e20]/80 p-7 sm:p-9 backdrop-blur-xl flex flex-col justify-between shadow-2xl">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium text-purple-300">官方安装通道</span>
+                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  推荐普通用户
+                </span>
+              </div>
+
+              <h3 className="text-2xl font-bold text-white tracking-tight">
+                下载 Windows 客户端
+              </h3>
+              <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                支持 Windows 10 / 11 操作系统。点击下方按钮下载最新安装包，双击极速安装运行。首次运行前请确保电脑已安装 Chrome 浏览器。
+              </p>
+
+              <div className="mt-6 space-y-2 text-xs text-slate-300">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <span>纯净安全 · 零广告 · 绝无流氓捆绑</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <span>内置免费大模型 · 开箱即用无需自备 Key</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <span>数据 100% 存在本地私有沙盒，绝不上云</span>
+                </div>
+              </div>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              无需本地运行，浏览器点开即用
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300">
-              已全面部署至 GitHub Pages，所有功能交互、多平台巡航模拟、投递图表与晨报开箱即验，无需配置任何本地 Node / Python 环境。
-            </p>
-          </div>
-          <a
-            href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3.5 text-sm font-bold text-black transition-all shadow-lg shadow-emerald-500/25 hover:scale-[1.02]"
-          >
-            <span>立即进入线上体验</span>
-            <ArrowRight size={16} />
-          </a>
-        </div>
 
-        {/* 下载与源码双通道 */}
-        <div className="grid gap-12 sm:gap-16 lg:grid-cols-2 items-start">
-          {/* 下载通道 */}
-          <div className="min-w-0 rounded-2xl border border-white/10 bg-[#121118]/80 p-6 sm:p-8 backdrop-blur-xl">
-            <p className="label-mono mb-3 text-accent">官方发布通道 · RELEASES</p>
-            <h2 className="font-display text-2xl text-paper sm:text-3xl font-bold">
-              {published ? '下载桌面客户端' : '软件在活跃开发中'}
-            </h2>
-            <p className="mt-3 text-sm text-paper-muted leading-relaxed">
-              {published ? '首次运行前请确保已安装 Chrome。点击对应安装包将由浏览器直接下载至本地，双击即可极速安装运行。' : siteConfig.release.note}
-            </p>
+            <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
+              <Button
+                href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
+                className="w-full justify-center !py-3.5 text-sm font-semibold shadow-xl shadow-purple-900/30"
+              >
+                <Download size={16} />
+                <span>免费下载 Windows 客户端 (.exe)</span>
+              </Button>
 
-            <div className="mt-8 grid gap-3">
-              {siteConfig.downloads.map((dl) => {
-                const available = Boolean(dl.href);
-                const inner = (
-                  <>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-raised text-accent border border-white/10">
-                      <Icon name={dl.icon} size={18} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-paper">{dl.platform}</p>
-                      <p className="text-xs text-paper-muted">{dl.note}</p>
-                    </div>
-                    <ArrowRight
-                      size={16}
-                      className="ml-auto shrink-0 text-paper-muted group-hover:text-accent group-hover:translate-x-1 transition-all"
-                      aria-hidden
-                    />
-                  </>
-                );
-
-                return available ? (
-                  <a
-                    key={dl.platform}
-                    href={dl.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-4 rounded-xl border border-line bg-surface p-4 transition-all hover:border-accent hover:bg-white/5"
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <div
-                    key={dl.platform}
-                    className="flex items-center gap-4 rounded-xl border border-line bg-surface/50 p-4"
-                  >
-                    {inner}
-                  </div>
-                );
-              })}
+              <a
+                href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors py-1"
+              >
+                <span>或者下载 MSI 企业安装包</span>
+                <ArrowRight size={12} />
+              </a>
             </div>
           </div>
 
           {/* 从源码运行通道 */}
-          <div className="min-w-0 rounded-2xl border border-white/10 bg-[#121118]/80 p-6 sm:p-8 backdrop-blur-xl">
-            <p className="label-mono mb-3 text-accent">开发者极客通道 · SOURCE</p>
-            <h2 className="font-display text-2xl text-paper sm:text-3xl font-bold">
-              一行命令本地启动
-            </h2>
-            <p className="mt-3 text-sm text-paper-muted leading-relaxed">
-              支持通过 uv 极速包管理器一键同步 Python 依赖并启动 Tauri 桌面图形客户端。
-            </p>
-
-            <div className="mt-8 overflow-hidden rounded-xl border border-white/10 bg-[#0c0a12]">
-              <div className="flex items-center gap-2 border-b border-white/10 bg-[#14121d] px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-                <span className="ml-2 font-mono text-xs text-paper-muted">bash — uv local startup</span>
+          <div className="min-w-0 rounded-3xl border border-white/10 bg-[#120e20]/80 p-7 sm:p-9 backdrop-blur-xl flex flex-col justify-between shadow-2xl">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium text-slate-400">开发者极客通道</span>
+                <span className="text-[11px] font-mono text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">
+                  面向开源开发者
+                </span>
               </div>
-              <pre className="overflow-x-auto p-4 font-mono text-xs text-paper-dim sm:p-5">
-                <code>{`git clone https://github.com/JonathanQUANLEE/JobKoi-AI.git
+
+              <h3 className="text-2xl font-bold text-white tracking-tight">
+                从源码本地运行
+              </h3>
+              <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                适合希望自行审计代码或定制专属投递规则的开发者。通过 uv 包管理器一键同步依赖并启动：
+              </p>
+
+              <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-[#090710]">
+                <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+                  <span className="h-2 w-2 rounded-full bg-rose-500/80" />
+                  <span className="h-2 w-2 rounded-full bg-amber-500/80" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
+                  <span className="ml-2 font-mono text-[11px] text-slate-400">终端命令</span>
+                </div>
+                <pre className="overflow-x-auto p-4 font-mono text-xs text-slate-300 leading-relaxed">
+                  <code>{`git clone https://github.com/JonathanQUANLEE/JobKoi-AI.git
 cd JobKoi-AI
 uv sync
-${siteConfig.quickStart}`}</code>
-              </pre>
+uv run python -m boss_zhipin.tauri`}</code>
+                </pre>
+              </div>
             </div>
 
-            <div className="mt-6 flex gap-4">
+            <div className="mt-8 pt-6 border-t border-white/5">
               <Button
                 href={repoUrl}
-                className="w-full justify-center sm:w-auto"
+                variant="secondary"
+                className="w-full justify-center !py-3.5 text-sm font-medium"
               >
-                <GitBranch size={16} aria-hidden />
-                <span>访问 GitHub 仓库</span>
-                <ArrowRight size={16} aria-hidden />
+                <GitBranch size={16} />
+                <span>访问 GitHub 开源主仓</span>
+                <ArrowRight size={14} />
               </Button>
             </div>
           </div>

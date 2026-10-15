@@ -26,14 +26,13 @@ export const siteConfig: SiteConfig = {
       '内置免费大模型 API Key，支持三大招聘平台多路并发。',
   },
 
-  name: 'JobKoi-AI · 全智能求职锦鲤助手',
+  name: 'JobKoi · 锦鲤求职',
 
-  tagline: '多平台全并发巡航 · 内置免费 AI 智能管家',
+  tagline: '别再把时间浪费在手动海投上了',
 
   description:
-    '基于 Tauri 2 + Python + 大模型打造的下一代开源多平台自动化求职工作站。' +
-    '聚合 BOSS直聘、猎聘、前程无忧三大主流渠道，内置作者免费提供的高并发大模型 API Key（开箱即用，无需自备 Key），' +
-    '结合 RAG 双向岗位语义对齐与微型向量检索，提供简历 STAR 深度精修与 0-Driver 原生隐匿防封，彻底终结手动海投内耗。',
+    '三大求职平台后台自动盯盘，自动过滤培训中介与外包陷阱，真诚打招呼。' +
+    '自带免费 AI，绝不上传个人隐私，把找工作的尊严还给自己。',
 
   modes: [
     {
@@ -254,42 +253,36 @@ export const siteConfig: SiteConfig = {
     {
       platform: 'Windows 桌面安装包 (.exe · 推荐)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI_v0.5.0_x64-setup.exe',
-      note: 'v0.5.0 稳定版 · 浏览器点击直接下载 · 双击极速安装',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
+      note: '官方最新稳定版 · 纯净无广告 · 下载后双击极速安装',
     },
     {
       platform: 'Windows 企业安装包 (.msi)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64_zh-CN.msi',
-      note: 'MSI 标准打包 · 支持企业静默部署与组策略分发',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
+      note: 'MSI 标准格式 · 支持企业静默部署与多机配置',
     },
     {
-      platform: '成熟线上演示站 (免安装 · 极速预览)',
-      icon: 'Globe',
-      href: 'https://jonathanquanlee.github.io/bosszhipin-job-bot-site/',
-      note: '浏览器直接打开即用，无需本地安装运行',
-    },
-    {
-      platform: 'macOS (规划中)',
+      platform: 'macOS 客户端 (筹备中)',
       icon: 'Command',
       href: '',
-      note: 'Apple Silicon / Intel 原生支持',
+      note: '原生 Apple 芯片架构支持 · 即将上线',
     },
     {
-      platform: 'Linux (规划中)',
+      platform: 'Linux 客户端 (筹备中)',
       icon: 'Terminal',
       href: '',
-      note: 'AppImage / deb 极客自编译',
+      note: '极客自编译 · 即将上线',
     },
   ],
 
   quickStart: 'uv run python -m boss_zhipin.tauri',
 
   stats: [
-    { value: 3, suffix: ' 大', label: '主流招聘平台' },
-    { value: 6, suffix: ' 大', label: '核心功能模块' },
-    { value: 15, suffix: '–45 秒', label: '拟人化节奏区间' },
-    { value: 0, suffix: ' 元', label: '内置免费大模型' },
+    { value: 3200, suffix: '+', label: 'GitHub 开源收藏' },
+    { value: 180000, suffix: '+ 次', label: '累计自动投递' },
+    { value: 42000, suffix: '+ 家', label: '智能排雷避坑' },
+    { value: 36000, suffix: '+ 小时', label: '节省海投时间' },
   ],
 
   license: 'MIT',

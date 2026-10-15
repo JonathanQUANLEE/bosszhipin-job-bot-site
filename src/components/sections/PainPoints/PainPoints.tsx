@@ -9,37 +9,32 @@ import { PaperCrumple } from '@/components/effects/PaperCrumple';
 const TRADITIONAL_FLAWS: SpringCheckItem[] = [
   {
     id: 'flaw-1',
-    flaw: '同一个岗位在三个网站各搜一遍，每天机械重复刷新 300 次',
-    solution: '三大平台多路并发，秒级抓取最新岗位',
-    impact: '释放 90% 盯盘时间',
+    flaw: '同一个岗位在三个网站反复搜，每天机械刷新几十次',
+    solution: '三大平台协同盯盘，新优质岗位第一时间捕捉',
+    impact: '省下 90% 机械盯盘时间',
   },
   {
     id: 'flaw-2',
-    flaw: '千篇一律打招呼被系统判定为脚本刷单，甚至导致账号误封',
-    solution: '0 驱动底层无痕 + 6~14 秒拟人化随机延时',
-    impact: '0 验证码 · 100% 安全',
+    flaw: '千篇一律复制粘贴招呼语，被当成垃圾广告已读不回',
+    solution: '自带免费 AI，根据真实岗位智能组织真诚开场',
+    impact: '回复率显著提升',
   },
   {
     id: 'flaw-3',
-    flaw: '大量培训机构、外包公司、黑名单企业混杂，防不胜防',
-    solution: '智能公司黑名单 + 智能 JD 语义初筛排除',
-    impact: '自动过滤垃圾公司',
+    flaw: '满屏培训机构、虚假外包与套路中介，防不胜防',
+    solution: '智能排雷拦截，自动剔除黑名单与劣质企业',
+    impact: '告别踩坑套路',
   },
   {
     id: 'flaw-4',
-    flaw: '深夜失眠焦虑盯盘，HR 已读不回心态崩溃陷入自我怀疑',
-    solution: '无人值守后台自动化巡航，有回复才精准提醒',
-    impact: '彻底终结精神内耗',
+    flaw: '熬夜失眠焦虑盯进度，精神内耗严重',
+    solution: '软件在后台安静巡航，有真正意向沟通才弹窗提醒',
+    impact: '心态彻底放松',
   },
 ];
 
 /**
- * PainPoints —— 痛点对比与心累宣泄
- *
- * 借鉴 grail-app.com 与 berd.xyz 的鲜明色彩反差：
- * 1. 醒目的时间黑洞数据罗盘（珊瑚红、梦幻紫、琥珀金）；
- * 2. 强对比度的打叉淘汰清单（❌）；
- * 3. 拟真米白纸质简历揉碎解压实验室。
+ * PainPoints —— 痛点对比与场景叙事
  */
 export function PainPoints() {
   return (
@@ -53,53 +48,53 @@ export function PainPoints() {
       <div className="container-content relative">
         <InView>
           <SectionHeading
-            eyebrow="传统求职黑洞 · THE BURNOUT TRAP"
+            eyebrow="痛点直击 · 不要再海投了"
             title="求职最耗人的不是面试，是机械重复的内耗"
-            description="同一个岗位在各大平台来回切换，同一句招呼语打上千次，投完还要面对无休止的已读不回。这些无谓消耗生命的低效动作，早就该被彻底淘汰。"
+            description="在各大平台之间反复横跳、千篇一律地复制粘贴、等来漫长的已读不回。与其把生命消耗在死板操作上，不如让技术替你承担枯燥，把精力留给真正重要的面试准备。"
           />
         </InView>
 
-        {/* Counter 求职时间黑洞三维数据罗盘（丰富色彩冲击） */}
+        {/* 时间黑洞三维数据罗盘 */}
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:mt-16">
           {/* 红色警示 */}
-          <div className="rounded-2xl border border-rose-500/30 bg-gradient-to-b from-rose-950/25 via-[#1a111a] to-[#120b14] p-6 shadow-xl backdrop-blur-md">
-            <span className="rounded-full border border-rose-500/40 bg-rose-500/10 px-2.5 py-0.5 font-mono text-[10px] text-rose-300 font-semibold">
-              TIME SINK
+          <div className="rounded-2xl border border-rose-500/25 bg-gradient-to-b from-rose-950/20 via-[#181018] to-[#100a12] p-6 shadow-xl backdrop-blur-md">
+            <span className="rounded-full border border-rose-500/40 bg-rose-500/10 px-2.5 py-0.5 text-xs text-rose-300 font-medium">
+              时间黑洞
             </span>
-            <p className="mt-3 font-mono text-xs text-white/70">每年机械式盯盘浪费</p>
+            <p className="mt-3 text-xs text-slate-300">每年机械式盯盘浪费</p>
             <div className="mt-2 flex items-baseline gap-1">
               <Counter value={365} fontSize={40} suffix="小时+" textColor="text-rose-400" />
             </div>
-            <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-              相当于白白浪费整整 15 天不吃不眠的宝贵青春。
+            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+              相当于白白浪费半个月不吃不眠的宝贵青春。
             </p>
           </div>
 
           {/* 紫罗兰科技 */}
-          <div className="rounded-2xl border border-purple-500/30 bg-gradient-to-b from-purple-950/25 via-[#171124] to-[#0f0a18] p-6 shadow-xl backdrop-blur-md">
-            <span className="rounded-full border border-purple-500/40 bg-purple-500/10 px-2.5 py-0.5 font-mono text-[10px] text-purple-300 font-semibold">
-              MANUAL TAPS
+          <div className="rounded-2xl border border-purple-500/25 bg-gradient-to-b from-purple-950/20 via-[#161022] to-[#0e0916] p-6 shadow-xl backdrop-blur-md">
+            <span className="rounded-full border border-purple-500/40 bg-purple-500/10 px-2.5 py-0.5 text-xs text-purple-300 font-medium">
+              机械疲劳
             </span>
-            <p className="mt-3 font-mono text-xs text-white/70">手指麻木的无效点击</p>
+            <p className="mt-3 text-xs text-slate-300">手指麻木的重复点击</p>
             <div className="mt-2 flex items-baseline gap-1">
-              <Counter value={2840} fontSize={40} suffix="次" textColor="text-accent" />
+              <Counter value={2840} fontSize={40} suffix="次" textColor="text-purple-400" />
             </div>
-            <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-              每一次“立即沟通”都在消耗本该用于技能提升的心力。
+            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+              每一次千篇一律的点击，都在空耗宝贵的心力。
             </p>
           </div>
 
           {/* 琥珀金焦虑 */}
-          <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-950/25 via-[#1d1612] to-[#120c0a] p-6 shadow-xl backdrop-blur-md">
-            <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2.5 py-0.5 font-mono text-[10px] text-amber-300 font-semibold">
-              SILENT RATIO
+          <div className="rounded-2xl border border-amber-500/25 bg-gradient-to-b from-amber-950/20 via-[#1a1410] to-[#100a08] p-6 shadow-xl backdrop-blur-md">
+            <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2.5 py-0.5 text-xs text-amber-300 font-medium">
+              焦虑沉底
             </span>
-            <p className="mt-3 font-mono text-xs text-white/70">已读不回与沉底焦虑率</p>
+            <p className="mt-3 text-xs text-slate-300">已读不回与沉底比例</p>
             <div className="mt-2 flex items-baseline gap-1">
               <Counter value={92} fontSize={40} suffix="%" textColor="text-amber-400" />
             </div>
-            <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-              通用格式简历千篇一律，在 HR 视线中停留不足 3 秒。
+            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+              缺乏针对性的模板招呼，在 HR 屏幕上停留不足 3 秒。
             </p>
           </div>
         </div>

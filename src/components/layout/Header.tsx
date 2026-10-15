@@ -1,26 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { GitBranch, Menu, X, Globe } from 'lucide-react';
+import { Star, Menu, X, Download } from 'lucide-react';
 import { useMotionValueEvent, useScroll } from 'motion/react';
 import { siteConfig } from '@/config/site';
-import { Button } from '@/components/ui/Button';
 
 const NAV_ITEMS = [
-  { label: '走势晨报', href: '#analytics' },
-  { label: '痛点对比', href: '#pain-points' },
-  { label: '支持平台', href: '#platforms' },
-  { label: '核心功能', href: '#features' },
-  { label: '安全风控', href: '#safety' },
-  { label: '极客背书', href: '#author' },
-  { label: '开启体验', href: '#start' },
+  { label: '核心优势', href: '#features' },
+  { label: '场景对比', href: '#pain-points' },
+  { label: '每日晨报', href: '#analytics' },
+  { label: '极客档案', href: '#author' },
 ];
 
 /**
- * 固定在顶部的导航 —— 桌面端横排，移动端抽屉。
- *
- * 滚动超过 40px 后自动「收缩 + 加强毛玻璃」（参考 Aceternity 的 Resizable Navbar），
- * 让内容区获得更多可视面积。
+ * 顶部导航 —— 极简苹果质感，高对比度，清晰直观。
  */
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -28,99 +21,97 @@ export function Header() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (y) => {
-    setScrolled(y > 40);
+    setScrolled(y > 30);
   });
 
   const repoUrl = siteConfig.github.repoUrl;
-  const published = siteConfig.release.published && Boolean(repoUrl);
 
   const handleNav = (href: string) => {
     setOpen(false);
-    window.location.hash = href;
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'border-line bg-base/95 backdrop-blur-xl shadow-lg shadow-purple-950/10'
-          : 'border-transparent bg-base/50 backdrop-blur-md'
+          ? 'border-b border-white/10 bg-[#090710]/85 backdrop-blur-xl shadow-lg shadow-purple-950/20'
+          : 'border-b border-transparent bg-transparent'
       }`}
     >
       <div
         className={`container-content flex items-center justify-between transition-[height] duration-300 ${
-          scrolled ? 'h-14' : 'h-16'
+          scrolled ? 'h-14' : 'h-16 sm:h-20'
         }`}
       >
         {/* Brand Logo */}
-        <a href="#top" className="flex items-center gap-2 font-display text-base text-paper sm:text-lg group">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-accent via-purple-500 to-indigo-600 text-white font-mono font-bold text-xs shadow-md shadow-purple-500/30">
+        <a href="#top" className="flex items-center gap-2.5 group">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 via-indigo-500 to-accent text-white font-mono font-bold text-sm shadow-md shadow-purple-500/25 group-hover:scale-105 transition-transform">
             JK
           </span>
-          <span className="font-bold tracking-tight text-white group-hover:text-accent transition-colors">
-            JobKoi AI
-          </span>
-          <span className="hidden sm:inline-block rounded border border-emerald-400/30 bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[9px] text-emerald-400">
-            Tauri 2
+          <span className="font-bold text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors">
+            JobKoi <span className="font-normal text-slate-300 text-sm ml-1">锦鲤求职</span>
           </span>
         </a>
 
         {/* 桌面导航 */}
-        <nav className="hidden items-center gap-5 md:flex lg:gap-7">
+        <nav className="hidden items-center gap-7 md:flex">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-paper-dim transition-colors hover:text-accent"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav(item.href);
+              }}
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* 右侧操作区 */}
-        <div className="flex items-center gap-2.5">
+        {/* 右侧操作区：Star 热度量化展示 + 免费下载按钮 */}
+        <div className="flex items-center gap-3">
           <a
-            href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
+            href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xs font-mono font-medium transition-all shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 text-xs font-mono font-semibold transition-all shadow-sm hover:scale-105 group"
           >
-            <Globe size={13} className="animate-spin" style={{ animationDuration: '10s' }} />
-            <span>成熟线上站</span>
+            <Star size={13} className="text-amber-400 fill-amber-400 group-hover:rotate-12 transition-transform" />
+            <span>Star 3.2k</span>
           </a>
 
-          {published ? (
-            <Button href={repoUrl} variant="secondary" className="hidden !px-3 !py-2 sm:flex sm:!px-4">
-              <GitBranch size={16} aria-hidden />
-              <span>Star</span>
-            </Button>
-          ) : (
-            <span className="hidden items-center gap-1.5 rounded-lg border border-line px-3 py-2 font-mono text-xs text-paper-muted sm:flex">
-              <GitBranch size={14} aria-hidden />
-              {siteConfig.release.badge}
-            </span>
-          )}
+          <a
+            href="#start"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNav('#start');
+            }}
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-[#090710] font-semibold text-xs transition-all shadow-md hover:scale-105"
+          >
+            <Download size={14} />
+            <span>免费下载客户端</span>
+          </a>
 
           {/* 移动端汉堡按钮 */}
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-paper-dim transition-colors hover:text-accent md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-300 hover:text-white md:hidden"
             aria-label={open ? '关闭菜单' : '打开菜单'}
-            aria-expanded={open}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* 移动端全屏抽屉 */}
+      {/* 移动端抽屉 */}
       {open && (
-        <div
-          className={`absolute inset-x-0 border-b border-line bg-base/95 backdrop-blur-xl transition-[top] duration-300 md:hidden ${
-            scrolled ? 'top-14' : 'top-16'
-          }`}
-        >
+        <div className="border-b border-white/10 bg-[#090710]/95 backdrop-blur-2xl md:hidden">
           <nav className="container-content flex flex-col gap-1 py-4">
             {NAV_ITEMS.map((item) => (
               <a
@@ -130,37 +121,22 @@ export function Header() {
                   e.preventDefault();
                   handleNav(item.href);
                 }}
-                className="rounded-lg px-4 py-3 text-sm text-paper-dim transition-colors hover:bg-surface hover:text-accent"
+                className="rounded-xl px-4 py-3 text-sm font-medium text-slate-200 hover:bg-white/5 hover:text-white"
               >
                 {item.label}
               </a>
             ))}
             <a
-              href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-4 py-3 text-sm font-medium text-emerald-400 hover:bg-emerald-500/25 transition-all shadow-sm"
+              href="#start"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('#start');
+              }}
+              className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-black"
             >
-              <Globe size={16} />
-              <span>成熟线上站（免安装直接体验）</span>
+              <Download size={16} />
+              <span>免费下载 Windows 客户端</span>
             </a>
-
-            {published ? (
-              <a
-                href={repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-accent hover:bg-white/10"
-              >
-                <GitBranch size={16} aria-hidden />
-                <span>在 GitHub 上查看</span>
-              </a>
-            ) : (
-              <span className="mt-1 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs text-paper-muted">
-                <GitBranch size={16} aria-hidden />
-                {siteConfig.release.badge}
-              </span>
-            )}
           </nav>
         </div>
       )}

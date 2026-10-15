@@ -113,9 +113,9 @@ export function Analytics() {
       <div className="container-content relative z-10">
         <InView>
           <SectionHeading
-            eyebrow="真实数据复盘 · REAL-TIME ANALYTICS"
-            title="投递走势与昨日晨报，让每一次投递有迹可循"
-            description="告别盲目海投和焦虑猜测。全自动汇总 BOSS 直聘、猎聘、前程无忧三大平台多日投递曲线、HR 答复率与每日晨报诊断，100% 运行在你的本机电脑。"
+            eyebrow="每日晨报"
+            title="每一次沟通，都有迹可循"
+            description="每天清晨自动汇总三大平台投递战报与沟通反馈。投了多少、哪些公司回复了，一目了然。所有数据 100% 存在你自己的电脑里，保护隐私。"
             align="center"
           />
         </InView>
@@ -125,15 +125,15 @@ export function Analytics() {
           {/* 左侧：多平台走势图表 */}
           <div className="lg:col-span-7">
             <InView transition={{ delay: 0.1 }}>
-              <div className="space-y-2 mb-3">
+              <div className="space-y-1 mb-3">
                 <div className="flex items-center gap-2">
-                  <Activity size={16} className="text-accent" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-paper-muted">
-                    MULTI-PLATFORM TRENDS
+                  <Activity size={16} className="text-purple-400" />
+                  <span className="text-xs font-medium text-slate-300">
+                    多平台投递走势
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-white">
-                  7~14 天投递活跃曲线（点击图表节点联动查看单日详情）
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  近期投递活跃曲线（点击节点可查看单日详情）
                 </h3>
               </div>
 

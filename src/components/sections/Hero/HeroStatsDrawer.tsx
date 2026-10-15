@@ -8,32 +8,32 @@ import { ChevronDown, ChevronUp, BarChart2 } from 'lucide-react';
 
 const STAT_ACCENTS = [
   {
-    color: 'text-teal-400',
-    border: 'border-teal-500/30',
-    bg: 'bg-teal-950/25',
-    sparkline: 'M0 20 Q 25 5, 50 15 T 100 2',
-    tag: 'BOSS / 猎聘 / 51job',
-  },
-  {
-    color: 'text-accent',
-    border: 'border-purple-500/30',
-    bg: 'bg-purple-950/25',
-    sparkline: 'M0 18 Q 30 18, 50 6 T 100 4',
-    tag: '0-Driver 隐匿协议',
-  },
-  {
     color: 'text-amber-400',
-    border: 'border-amber-500/30',
-    bg: 'bg-amber-950/25',
-    sparkline: 'M0 12 Q 25 22, 60 8 T 100 14',
-    tag: '贝塞尔生理拟人',
+    border: 'border-amber-500/25',
+    bg: 'bg-amber-950/20',
+    sparkline: 'M0 20 Q 25 5, 50 15 T 100 2',
+    tag: '高星认证',
+  },
+  {
+    color: 'text-purple-400',
+    border: 'border-purple-500/25',
+    bg: 'bg-purple-950/20',
+    sparkline: 'M0 18 Q 30 18, 50 6 T 100 4',
+    tag: '安全投递',
   },
   {
     color: 'text-emerald-400',
-    border: 'border-emerald-500/30',
-    bg: 'bg-emerald-950/25',
+    border: 'border-emerald-500/25',
+    bg: 'bg-emerald-950/20',
+    sparkline: 'M0 12 Q 25 22, 60 8 T 100 14',
+    tag: '排雷外包',
+  },
+  {
+    color: 'text-sky-400',
+    border: 'border-sky-500/25',
+    bg: 'bg-sky-950/20',
     sparkline: 'M0 22 Q 40 18, 70 8 T 100 2',
-    tag: '100% 本地 SQLite',
+    tag: '省时减负',
   },
 ];
 
@@ -97,7 +97,7 @@ export function HeroStatsDrawer() {
                     </div>
 
                     <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between">
-                      <span className="text-[10px] font-mono text-paper-muted">真实动态巡航</span>
+                      <span className="text-[10px] text-slate-400">持续守护中</span>
                       <svg className="w-16 h-5 opacity-70" viewBox="0 0 100 24" fill="none">
                         <path
                           d={a.sparkline}
@@ -116,22 +116,22 @@ export function HeroStatsDrawer() {
         )}
       </AnimatePresence>
 
-      {/* 交互式折叠控制条（折叠收走上屏 / 开启下屏） */}
+      {/* 交互式折叠控制条 */}
       <div className="mt-4 flex items-center justify-center">
         <button
           type="button"
           onClick={toggleFold}
-          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full border text-xs font-mono transition-all shadow-lg group ${
+          className={`inline-flex items-center gap-2 px-5 py-2 rounded-full border text-xs transition-all shadow-lg group ${
             isOverviewFolded
-              ? 'border-accent/40 bg-accent/15 text-accent hover:bg-accent/25'
-              : 'border-white/15 bg-white/5 text-slate-300 hover:bg-white/10 hover:border-white/30'
+              ? 'border-purple-500/40 bg-purple-500/15 text-purple-300 hover:bg-purple-500/25'
+              : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:border-white/20'
           }`}
         >
-          <BarChart2 size={13} className={isOverviewFolded ? 'text-accent' : 'text-slate-400'} />
+          <BarChart2 size={13} className={isOverviewFolded ? 'text-purple-300' : 'text-slate-400'} />
           <span>
             {isOverviewFolded
-              ? '▲ 已收走海投卡片 · 点击展开首屏核心指标四宫格'
-              : '▼ 折叠收起首屏海投卡片 · 开启三大平台 14 天走势与晨报'}
+              ? '▲ 展开项目核心数据看板'
+              : '▼ 查看三大平台 14 天详细走势与每日晨报'}
           </span>
           {isOverviewFolded ? (
             <ChevronUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />

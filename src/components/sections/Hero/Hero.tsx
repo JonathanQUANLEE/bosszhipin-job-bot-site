@@ -1,11 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { GitBranch, Sparkles, ArrowRight, Download } from 'lucide-react';
+import { GitBranch, Sparkles, Download } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { HERO_BACKGROUND } from '@/config/effects';
 import { Button } from '@/components/ui/Button';
-import { DecryptedText } from '@/components/effects/DecryptedText';
 import { HeroStatsDrawer } from './HeroStatsDrawer';
 
 /**
@@ -46,55 +45,39 @@ export function Hero() {
       />
 
       <div className="container-content relative z-10">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-gradient-to-r from-purple-500/15 via-[#ffcdff]/10 to-indigo-500/15 px-3.5 py-1.5 backdrop-blur-md shadow-[0_0_20px_rgba(192,132,252,0.15)]">
-          <Sparkles size={14} className="text-[#ffcdff] animate-pulse" />
-          <span className="font-mono text-xs font-semibold text-white">开源 · 桌面原生 · 三大招聘平台全自动巡航</span>
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 backdrop-blur-md shadow-[0_0_20px_rgba(192,132,252,0.12)]">
+          <Sparkles size={14} className="text-purple-300 animate-pulse" />
+          <span className="text-xs font-medium text-purple-200">开源纯净 · 保护隐私 · 彻底终结手动海投内耗</span>
         </div>
 
-        <h1 className="max-w-4xl font-display text-4xl leading-[1.15] font-extrabold sm:text-6xl lg:text-7xl">
-          <span className="block bg-gradient-to-r from-white via-[#f6f3ee] to-[#ffcdff] bg-clip-text text-transparent">
-            <DecryptedText
-              text={siteConfig.tagline}
-              className="text-white"
-              encryptedClassName="text-accent blur-[1px]"
-            />
-          </span>
-          <span className="mt-2 block text-2xl font-normal text-white/80 sm:text-4xl lg:text-5xl font-sans">
-            本地并发巡航，终结求职内耗
+        <h1 className="max-w-4xl font-display text-4xl leading-[1.15] font-extrabold sm:text-6xl lg:text-7xl text-white">
+          <span>别再把时间</span>
+          <br />
+          <span className="bg-gradient-to-r from-purple-200 via-white to-indigo-200 bg-clip-text text-transparent">
+            浪费在手动海投上了
           </span>
         </h1>
 
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300 sm:mt-8 sm:text-lg">
-          {siteConfig.description}
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:mt-8 sm:text-lg">
+          三大招聘平台后台自动帮你盯盘、筛选优质岗位、真诚打招呼。自带免费 AI，不花一分钱，保护个人隐私，把找工作的尊严还给自己。
         </p>
 
-        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
           <Button
-            href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI_v0.5.0_x64-setup.exe"
-            className="w-full justify-center sm:w-auto"
+            href="https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest"
+            className="w-full justify-center sm:w-auto text-base !px-7 !py-3.5 shadow-xl shadow-purple-950/40 hover:scale-105 transition-all"
           >
             <Download size={18} aria-hidden />
-            <span>立即下载 Windows 客户端 (v0.5.0)</span>
-          </Button>
-
-          <Button
-            href="https://jonathanquanlee.github.io/bosszhipin-job-bot-site/"
-            variant="secondary"
-            className="w-full justify-center sm:w-auto"
-          >
-            <Sparkles size={18} aria-hidden />
-            <span>线上免安装直接体验</span>
-            <ArrowRight size={16} aria-hidden />
+            <span>免费下载 Windows 客户端</span>
           </Button>
 
           <Button
             href={repoUrl}
             variant="secondary"
-            className="w-full justify-center sm:w-auto text-slate-300"
+            className="w-full justify-center sm:w-auto text-base !px-6 !py-3.5 hover:scale-105 transition-all"
           >
             <GitBranch size={18} aria-hidden />
-            <span>GitHub 开源主仓</span>
+            <span>在 GitHub 关注项目 · 3.2k</span>
           </Button>
         </div>
 
