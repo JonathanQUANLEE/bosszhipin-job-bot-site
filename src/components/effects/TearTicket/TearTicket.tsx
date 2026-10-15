@@ -14,7 +14,7 @@ import { useLatestRelease } from '@/hooks/use-latest-release';
  */
 export function TearTicket() {
   const [isTorn, setIsTorn] = useState(false);
-  const { exe: downloadExeUrl } = useLatestRelease();
+  const { exeFast: downloadExeUrl } = useLatestRelease();
 
   return (
     <div className="flex flex-col items-center select-none w-full max-w-xl mx-auto">

@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { downloadConfig } from '@/config/downloads';
+import { accelerate, downloadConfig } from '@/config/downloads';
 
 /**
- * 最新版安装包直链。
+ * 最新版安装包直链（官方 + 国内加速双通道）。
  *
  * 页面加载后向 GitHub API 请求一次最新 Release，
  * 从资产列表里解析 .exe / .msi 的 browser_download_url。
- * 点击该链接时浏览器直接开始下载（GitHub 响应自带 attachment 头），不跳转页面。
+ * 点击任一链接时浏览器直接开始下载（响应自带 attachment 头），不跳转页面。
  *
  * 容错策略：
  * - API 失败（限流 60 次/小时、离线、字段缺失）→ 使用 config 里的 v0.5.0 静态直链，保证按钮永远可点
@@ -16,10 +16,14 @@ import { downloadConfig } from '@/config/downloads';
  */
 
 export interface ReleaseLinks {
-  /** Windows 安装包（.exe）直链 */
+  /** Windows 安装包（.exe）官方直链（GitHub CDN，国内慢） */
   exe: string;
-  /** Windows 企业安装包（.msi）直链 */
+  /** Windows 企业安装包（.msi）官方直链 */
   msi: string;
+  /** Windows 安装包（.exe）国内加速直链（镜像代理，国内快 ~6 倍） */
+  exeFast: string;
+  /** Windows 企业安装包（.msi）国内加速直链 */
+  msiFast: string;
 }
 
 interface GithubAsset {
@@ -52,12 +56,21 @@ async function resolveLinks(): Promise<ReleaseLinks> {
     const msi = pickAssetUrl(release.assets, '.msi');
     if (!exe || !msi) throw new Error('Release assets missing exe/msi');
 
-    return { exe, msi };
+    return { exe, msi, exeFast: accelerate(exe), msiFast: accelerate(msi) };
   } catch (error) {
     // 静默降级：任何异常都用静态兜底直链，用户无感知
     console.warn('[download] fallback to static links:', error);
-    return { ...downloadConfig.fallback };
+    return buildLinks(downloadConfig.fallback);
   }
+}
+
+function buildLinks(source: { exe: string; msi: string }): ReleaseLinks {
+  return {
+    exe: source.exe,
+    msi: source.msi,
+    exeFast: accelerate(source.exe),
+    msiFast: accelerate(source.msi),
+  };
 }
 
 function getLinks(): Promise<ReleaseLinks> {
@@ -74,7 +87,7 @@ function getLinks(): Promise<ReleaseLinks> {
 export function useLatestRelease(): ReleaseLinks {
   // 初始值用兜底直链（SSR 与客户端一致，避免 hydration 不匹配），
   // API 返回后无缝替换为最新版直链
-  const [links, setLinks] = useState<ReleaseLinks>({ ...downloadConfig.fallback });
+  const [links, setLinks] = useState<ReleaseLinks>(() => buildLinks(downloadConfig.fallback));
 
   useEffect(() => {
     let alive = true;

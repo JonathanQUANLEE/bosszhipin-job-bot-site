@@ -12,7 +12,7 @@ import { PulseHeart } from '@/components/effects/PulseHeart';
  */
 export function Start() {
   const repoUrl = siteConfig.github.repoUrl;
-  const { exe: downloadExeUrl, msi: downloadMsiUrl } = useLatestRelease();
+  const { exe: officialExeUrl, exeFast, msiFast } = useLatestRelease();
 
   return (
     <section id="start" className="border-t border-white/10 py-20 sm:py-32 relative overflow-hidden bg-[#07050e]">
@@ -80,21 +80,30 @@ export function Start() {
 
             <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
               <Button
-                href={downloadExeUrl}
+                href={exeFast}
                 external={false}
                 className="w-full justify-center !py-3.5 text-sm font-semibold shadow-xl shadow-purple-900/30"
               >
                 <Download size={16} />
-                <span>免费下载 Windows 客户端 (.exe)</span>
+                <span>国内高速下载 Windows 客户端 (.exe)</span>
               </Button>
 
-              <a
-                href={downloadMsiUrl}
-                className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors py-1"
-              >
-                <span>或者下载 MSI 企业安装包</span>
-                <ArrowRight size={12} />
-              </a>
+              <div className="flex items-center justify-center gap-3 text-xs">
+                <a
+                  href={msiFast}
+                  className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors py-1"
+                >
+                  <span>MSI 企业安装包（加速）</span>
+                </a>
+                <span className="text-slate-600">·</span>
+                <a
+                  href={officialExeUrl}
+                  className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors py-1"
+                >
+                  <span>GitHub 官方直链（海外用户）</span>
+                  <ArrowRight size={12} />
+                </a>
+              </div>
             </div>
           </div>
 

@@ -33,7 +33,7 @@ const HeroBackground = BACKGROUNDS[HERO_BACKGROUND];
  */
 export function Hero() {
   const repoUrl = siteConfig.github.repoUrl;
-  const { exe: downloadExeUrl } = useLatestRelease();
+  const { exeFast: downloadExeUrl } = useLatestRelease();
 
   return (
     <section id="top" className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-40 sm:pb-32">
