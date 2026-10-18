@@ -48,11 +48,7 @@ export function Hero() {
 
       <div className="container-content relative z-10">
         <h1 className="max-w-4xl font-display text-4xl leading-[1.15] font-extrabold sm:text-6xl lg:text-7xl text-white">
-          <span>不要一个人</span>
-          <br />
-          <span className="bg-gradient-to-r from-purple-200 via-white to-indigo-200 bg-clip-text text-transparent">
-            在海投了
-          </span>
+          不要一个人在海投了
         </h1>
 
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:mt-8 sm:text-lg">

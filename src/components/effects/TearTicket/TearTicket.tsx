@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { Ticket, Scissors, CheckCircle2, GitBranch } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { useSmartDownload } from '@/hooks/use-smart-download';
+import logoImg from '../../../../public/logo.png';
 
 /**
  * TearTicket —— 物理撕票根开启求职通行证
@@ -36,10 +38,14 @@ export function TearTicket() {
           {/* 主券左侧信息 */}
           <div className="flex-1 p-6 text-left">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-purple-600 text-white font-bold text-xs shadow-sm">
-                  JK
-                </span>
+              <div className="flex items-center gap-2.5">
+                <Image
+                  src={logoImg}
+                  alt="JobKoi"
+                  width={28}
+                  height={28}
+                  className="h-7 w-7 rounded-lg shadow-sm object-cover"
+                />
                 <span className="font-mono text-xs font-bold text-white tracking-widest uppercase">
                   JOBKOI BOARDING PASS
                 </span>

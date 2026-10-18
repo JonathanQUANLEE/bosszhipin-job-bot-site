@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Star, Menu, X, Download } from 'lucide-react';
 import { useMotionValueEvent, useScroll } from 'motion/react';
 import { siteConfig } from '@/config/site';
+import logoImg from '../../../public/logo.png';
 
 const NAV_ITEMS = [
   { label: '核心优势', href: '#features' },
@@ -48,10 +50,15 @@ export function Header() {
         }`}
       >
         {/* Brand Logo */}
-        <a href="#top" className="flex items-center gap-2.5 group">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 via-indigo-500 to-accent text-white font-mono font-bold text-sm shadow-md shadow-purple-500/25 group-hover:scale-105 transition-transform">
-            JK
-          </span>
+        <a href="#top" className="flex items-center gap-3 group">
+          <Image
+            src={logoImg}
+            alt="JobKoi 锦鲤求职"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-2xl shadow-lg shadow-pink-500/25 group-hover:scale-105 transition-transform object-cover"
+            priority
+          />
           <span className="font-bold text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors">
             JobKoi <span className="font-normal text-slate-300 text-sm ml-1">锦鲤求职</span>
           </span>

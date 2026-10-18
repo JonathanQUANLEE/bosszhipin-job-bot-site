@@ -44,6 +44,10 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
   },
+  icons: {
+    icon: '/bosszhipin-job-bot-site/logo.png',
+    apple: '/bosszhipin-job-bot-site/logo.png',
+  },
   robots: { index: true, follow: true },
 };
 

@@ -253,13 +253,13 @@ export const siteConfig: SiteConfig = {
     {
       platform: 'Windows 桌面安装包 (.exe · 推荐)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64-setup.exe',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
       note: '官方最新稳定版 · 纯净无广告 · 下载后双击极速安装',
     },
     {
       platform: 'Windows 企业安装包 (.msi)',
       icon: 'Monitor',
-      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/download/v0.5.0/JobKoi-AI._0.5.0_x64_zh-CN.msi',
+      href: 'https://github.com/JonathanQUANLEE/JobKoi-AI/releases/latest',
       note: 'MSI 标准格式 · 支持企业静默部署与多机配置',
     },
     {
