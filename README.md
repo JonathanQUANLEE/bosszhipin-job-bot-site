@@ -1,8 +1,12 @@
 <div align="center">
 
-# JobKoi 锦鲤求职
+<img src="./public/logo.png" alt="JobKoi Logo" width="130" style="border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 
-**告别手动海投，把时间还给自己**
+# JobKoi · 锦鲤求职
+
+### 不要一个人在海投了
+
+**告别手动海投，把时间与尊严还给自己**
 
 聚合三大求职平台 · 后台智能巡航 · 自带免费 AI · 保护个人隐私
 
